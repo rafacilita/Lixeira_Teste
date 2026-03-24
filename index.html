@@ -1286,8 +1286,8 @@ h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
           <div class="hr"></div>
 
           <div id="ticketsWrap" class="hidden">
-            <label id="lbl_inter_original">3) Bilhetes (FA/FHE)</label>
-            <textarea id="inter_original" placeholder="Cole aqui FA/FHE (com /P1, /P2...)"></textarea>
+            <label id="lbl_inter_original">3) Bilhetes (FA/FHE/TKT)</label>
+            <textarea id="inter_original" placeholder="Cole aqui FA/FHE ou máscara TKT (com /P1, /P2... quando houver)"></textarea>
             <div class="muted small" id="ticketsStatus" style="margin-top:6px"></div>
           </div>
         </div>
@@ -4604,8 +4604,10 @@ document.getElementById("paxq_adt").value = "1";
       }
 
       function parseTickets(text){
-        const lines = normalizeGdsText(text).lines;
+        const src = String(text||'');
+        const lines = normalizeGdsText(src).lines;
         const out = {};
+        const meta = { loc:'', source:'', airlineInfos:[] };
         let pendingTicket = null;
         const orphanTickets = [];
         const grabP = (line)=>{
@@ -4616,14 +4618,36 @@ document.getElementById("paxq_adt").value = "1";
         const grabTicket = (line)=>{
           const s = String(line||'');
           // Aceita 047-2681639174 e também 047-2681639174-75 / 0472681639174-75.
-          // O sufixo final (-75, -77 etc.) é bilhete auxiliar/cupom e deve ser ignorado.
-          let m = s.match(/(?:^|[^\d])(\d{3})-(\d{10})(?:-(\d{2}))?(?=[^\d]|$)/);
+          // O sufixo final (-75, -77, -891 etc.) é auxiliar/cupom e deve ser ignorado.
+          let m = s.match(/(?:^|[^\d])(\d{3})-(\d{10})(?:-(\d{2,3}))?(?=[^\d]|$)/);
           if(m) return ensureTicketHyphen(`${m[1]}-${m[2]}`);
-          m = s.match(/(?:^|[^\d])(\d{13})(?:-(\d{2}))?(?=[^\d]|$)/);
+          m = s.match(/(?:^|[^\d])(\d{13})(?:-(\d{2,3}))?(?=[^\d]|$)/);
           if(m) return ensureTicketHyphen(m[1]);
           return null;
         };
         const isFaFheLine = (line)=>/(?:^|\s)(?:FA|FHE)\s+PAX(?:\s|$)/i.test(String(line||''));
+        const isTktMask = /(?:^|\n)\s*TKT-(\d{13})(?:-\d{2,3})?/i.test(src);
+
+        if(isTktMask){
+          meta.source = 'TKT';
+          const tkm = src.match(/(?:^|\n)\s*TKT-(\d{13})(?:-\d{2,3})?/i);
+          const baseTicket = tkm ? ensureTicketHyphen(tkm[1]) : '';
+          const locm = src.match(/\bLOC-([A-Z0-9]{5,6})\b/i);
+          if(locm) meta.loc = (locm[1] || '').toUpperCase();
+          const paxLines = [];
+          for(const line of lines){
+            const pm = String(line||'').match(/^\s*(\d+)\.\s*([A-Z][A-Z\s'\/\-]+?)\s{2,}(ADT|CHD|INF)\b/i);
+            if(pm){ paxLines.push({p: parseInt(pm[1],10), name: pm[2].trim(), type: pm[3].toUpperCase()}); }
+          }
+          if(baseTicket){
+            if(paxLines.length){
+              paxLines.forEach(row=>{ if(row.p && !out[row.p]) out[row.p] = baseTicket; });
+            }else{
+              out[1] = baseTicket;
+            }
+          }
+        }
+
         for(const line of lines){
           const isFaFhe = isFaFheLine(line);
           const tk = grabTicket(line);
@@ -4640,15 +4664,21 @@ document.getElementById("paxq_adt").value = "1";
         if(orphanTickets.length === 1 && Object.keys(out).length === 0){
           out[1] = orphanTickets[0];
         }
-        return out;
+        const airlineInfos = [...new Map(Object.keys(out).map(k=>{
+          const info = getAirlineInfoByTicketPrefix(out[k]);
+          return info ? [info.code, info] : null;
+        }).filter(Boolean)).values()];
+        meta.airlineInfos = airlineInfos;
+        return { mapping: out, meta };
       }
       function applyTickets(){
         const ta = $("inter_original");
         if(!ta) return;
-        const mapping = parseTickets(ta.value || '');
+        const parsed = parseTickets(ta.value || '');
+        const mapping = parsed.mapping || {};
         const ts = $("ticketsStatus");
         const keys = Object.keys(mapping);
-        if(!keys.length){ if(ts) ts.textContent = 'Não encontrei bilhetes FA/FHE no texto colado.'; return; }
+        if(!keys.length){ if(ts) ts.textContent = 'Não encontrei bilhetes FA/FHE/TKT no texto colado.'; return; }
         const map = state.pIndexToTypePos || {};
         const store = getPaxStore();
         let applied = 0;
@@ -4657,17 +4687,24 @@ document.getElementById("paxq_adt").value = "1";
           if(info && store[info.type] && store[info.type][info.idx]){ store[info.type][info.idx].ticket = ensureTicketHyphen(mapping[k]); applied++; }
         });
         setPaxStore(store); renderPaxFields();
-        const airlineInfos = [...new Map(keys.map(k=>{
-          const info = getAirlineInfoByTicketPrefix(mapping[k]);
-          return info ? [info.code, info] : null;
-        }).filter(Boolean)).values()];
+        const airlineInfos = parsed.meta?.airlineInfos || [];
         const ciaInput = $('cia');
         if(ciaInput && airlineInfos.length === 1){
           ciaInput.value = airlineInfos[0].code;
           try{ ciaInput.dispatchEvent(new Event('input', {bubbles:true})); }catch(e){}
           try{ ciaInput.dispatchEvent(new Event('change', {bubbles:true})); }catch(e){}
         }
-        if(ts){ const airlines=airlineInfos.map(a=>a.name); ts.textContent = applied ? `OK — distribuí ${applied} bilhete(s) pelo P1/P2...${airlines.length ? ' Cia detectada: '+airlines.join(', ') : ''}${(ciaInput && airlineInfos.length===1) ? ' • Cia preenchida: '+airlineInfos[0].code : ''}` : 'Encontrei bilhetes, mas não consegui mapear P1/P2.'; }
+        const locInput = $('loc');
+        if(locInput && parsed.meta?.loc && !String(locInput.value||'').trim()){
+          locInput.value = parsed.meta.loc;
+          try{ locInput.dispatchEvent(new Event('input', {bubbles:true})); }catch(e){}
+          try{ locInput.dispatchEvent(new Event('change', {bubbles:true})); }catch(e){}
+        }
+        if(ts){
+          const airlines=airlineInfos.map(a=>a.name);
+          const viaTkt = parsed.meta?.source === 'TKT' ? ' via máscara TKT' : '';
+          ts.textContent = applied ? `OK — distribuí ${applied} bilhete(s) pelo P1/P2...${viaTkt}${airlines.length ? ' Cia detectada: '+airlines.join(', ') : ''}${(ciaInput && airlineInfos.length===1) ? ' • Cia preenchida: '+airlineInfos[0].code : ''}` : 'Encontrei bilhetes, mas não consegui mapear P1/P2.';
+        }
         if(applied) showToast('Bilhetes preenchidos no PAX');
       }
 
@@ -4679,8 +4716,8 @@ document.getElementById("paxq_adt").value = "1";
         if(auto){
           if(lblVoos) lblVoos.textContent = '1) Itinerário / Máscara (cole o PNR)';
           if(voosTA) voosTA.placeholder = 'Cole aqui RP/... com PAX + segmentos (Amadeus).';
-          if(lblTk) lblTk.textContent = '3) Bilhetes (FA/FHE)';
-          if(tkTA) tkTA.placeholder = 'Cole aqui FA/FHE (com /P1, /P2...)';
+          if(lblTk) lblTk.textContent = '3) Bilhetes (FA/FHE/TKT)';
+          if(tkTA) tkTA.placeholder = 'Cole aqui FA/FHE ou máscara TKT (com /P1, /P2... quando houver)';
           if(manualWrap) manualWrap.classList.add('hidden');
           const parsed = parsePassengersData(voosTA?.value || '');
           if(parsed.pax.length) show($("fxoWrap"), true);
