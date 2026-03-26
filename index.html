@@ -4436,7 +4436,7 @@ document.getElementById("paxq_adt").value = "1";
         const s = String(text || "");
         const lines = normalizeGdsText(s).lines;
         let inTable = false;
-        let currentOrigin = '';
+        let currentOrigin = "";
         const routes = [];
 
         function bagLabel(n){ return n > 0 ? `${n}PC` : 'Sem bagagem'; }
@@ -4445,8 +4445,8 @@ document.getElementById("paxq_adt").value = "1";
           routes.push({ from, to, pieces, label: bagLabel(pieces) });
         }
 
-        for (let rawLine of lines){
-          const line = String(rawLine || '').trim().replace(/\s+/g, ' ');
+        for (const rawLine of lines){
+          const line = String(rawLine || "").trim().replace(/\s+/g, " ");
           if(/AL\s+FLGT\s+BK\s+DATE\s+TIME.*BG/i.test(line)){ inTable = true; continue; }
           if(!inTable) continue;
           if(/ORIGIN\s+TRVL\s+CURRENCY|OLD\s+BASE\s+FARE/i.test(line)) break;
@@ -4554,17 +4554,26 @@ document.getElementById("paxq_adt").value = "1";
         return { canApply:true, needsFx:false, fx:fx||0, inferred, fare:toWant(parsed.fare), pen:toWant(parsed.pen), add:toWant(parsed.add), taxBal:toWant(parsed.taxBal), tktDiff:toWant(parsed.tktDiff) };
       }
 
+
       function updateBagSummary(){
         const bagEl = $("bag");
         if(!bagEl) return;
         const canOverwrite = !bagEl.value.trim() || bagEl.dataset.auto === '1';
         if(!canOverwrite) return;
-        const vals = state.requiredTypes.filter(t=>state.bagByType[t]).map(t=>`${t}: ${state.bagByType[t]}`);
+
+        const vals = state.requiredTypes
+          .filter(t => state.bagByType[t])
+          .map(t => `${t}: ${state.bagByType[t]}`);
+
         if(!vals.length) return;
-        const uniqVals = Array.from(new Set(vals.map(v=>v.split(': ')[1])));
+
+        const onlyBagText = vals.map(v => v.replace(/^[A-Z]{3}:\s*/, ''));
+        const uniqVals = Array.from(new Set(onlyBagText));
+
         bagEl.value = uniqVals.length === 1 ? uniqVals[0] : vals.join(' | ');
         bagEl.dataset.auto = '1';
       }
+
 
       function updateFamilySummary(){
         const famEl = $("familia");
