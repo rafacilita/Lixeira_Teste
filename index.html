@@ -4433,108 +4433,71 @@ document.getElementById("paxq_adt").value = "1";
 
       function parseBagFromText(text){
         const s = String(text||"");
-        const lines = s.split(/\r?\n/);
-        const mapped = [];
+        const lines = s.split(/?
+/).map(x=>x.replace(/ /g,' ').trimRight());
+        const rows = [];
         let inTable = false;
-        let currentOrigin = '';
-        let seq = 0;
-
+        let currentOrigin = null;
+        function bagLabel(n){ return n > 0 ? `${n}PC` : 'Sem bagagem'; }
         for(const rawLine of lines){
-          const line = String(rawLine || '');
-          if(/AL\s+FLGT\s+BK\s+DATE\s+TIME.*\bBG\b/i.test(line)){ inTable = true; continue; }
+          const line = rawLine.trim();
+          if(/AL\s+FLGT\s+BK\s+DATE\s+TIME.*BG/i.test(line)){ inTable = true; continue; }
           if(!inTable) continue;
           if(/ORIGIN\s+TRVL\s+CURRENCY|OLD\s+BASE\s+FARE/i.test(line)) break;
-          const trimmed = line.trim();
-          if(!trimmed) continue;
-
-          const baseOnly = trimmed.match(/^([A-Z]{3})$/i);
-          if(baseOnly){
-            currentOrigin = String(baseOnly[1]).toUpperCase();
-            continue;
-          }
-
-          const surface = line.match(/^\s*([A-Z]{3})?\s*S\s+U\s+R\s+F\s+A\s+C\s+E\s*$/i);
-          if(surface){
-            currentOrigin = surface[1] ? String(surface[1]).toUpperCase() : '';
-            continue;
-          }
-
-          const bagMatch = line.match(/\b(NIL|0P|\d{1,2}P)\s*$/i);
-          if(!bagMatch) continue;
-
-          const rowMatch = line.match(/^\s*([A-Z]{3})\s+([A-Z0-9]{1,3})\s+\d{1,4}[A-Z]{0,2}\s+[A-Z]\b/i);
-          const dest = rowMatch ? String(rowMatch[1]).toUpperCase() : '';
-          const raw = String(bagMatch[1]).toUpperCase();
+          if(!line) continue;
+          let m = line.match(/^([A-Z]{3})\s+(?:S\s+U\s+R\s+F\s+A\s+C\s+E|ARNK)\s*$/i);
+          if(m){ currentOrigin = String(m[1]).toUpperCase(); continue; }
+          m = line.match(/^([A-Z]{3})\s*$/i);
+          if(m){ currentOrigin = String(m[1]).toUpperCase(); continue; }
+          m = line.match(/^([A-Z]{3})\s+([A-Z0-9]{1,3})\s+\d{1,4}[A-Z]{0,2}?\s+[A-Z].*?(NIL|0P|\d{1,2}P)\s*$/i);
+          if(!m) continue;
+          const dest = String(m[1]).toUpperCase();
+          const raw = String(m[3]).toUpperCase();
           const pieces = /NIL|0P/i.test(raw) ? 0 : parseInt(raw,10);
-          const route = currentOrigin && dest ? `${currentOrigin}-${dest}` : '';
-          seq += 1;
-          mapped.push({ pieces, segNo: seq, route });
-          if(dest) currentOrigin = dest;
+          const from = currentOrigin;
+          const route = from ? `${from}-${dest}` : null;
+          rows.push({pieces, raw, from, to:dest, route});
+          currentOrigin = dest;
         }
-
-        if(!mapped.length){
-          if(/\bNIL\b|\b0P\b/i.test(s)) return {pieces:[0], text:'Sem bag', groups:[]};
+        if(!rows.length){
+          if(/NIL|0P/i.test(s)) return {pieces:[0], text:'Sem bagagem', groups:[]};
           return {pieces:[], text:'', groups:[]};
         }
-
-        const uniq = Array.from(new Set(mapped.map(x=>x.pieces))).sort((a,b)=>a-b);
-        function bagLabel(n){ return n > 0 ? `${n}PC` : 'Sem bag'; }
-
-        if(uniq.length===1){
-          return {
-            pieces:uniq,
-            text:bagLabel(uniq[0]),
-            groups:[{
-              pieces:uniq[0],
-              segFrom:mapped[0].segNo,
-              segTo:mapped[mapped.length-1].segNo,
-              routes:mapped.map(x=>x.route).filter(Boolean)
-            }]
-          };
+        const uniq = Array.from(new Set(rows.map(x=>x.pieces))).sort((a,b)=>a-b);
+        const allHaveRoutes = rows.every(r=>!!r.route);
+        if(uniq.length===1) return {pieces:uniq, text:bagLabel(uniq[0]), groups:[{pieces:uniq[0], routes:rows.map(r=>r.route).filter(Boolean)}]};
+        if(allHaveRoutes){
+          const groups = [];
+          for(const item of rows){
+            const last = groups[groups.length-1];
+            if(last && last.pieces === item.pieces){
+              last.routes.push(item.route);
+            } else {
+              groups.push({pieces:item.pieces, routes:[item.route]});
+            }
+          }
+          const textOut = groups.map(g=>`${bagLabel(g.pieces)}: ${g.routes.join(', ')}`).join(' • ');
+          return {pieces:uniq, text:textOut, groups};
         }
-
+        const segs = Array.isArray(state?.parseMeta?.segments) ? state.parseMeta.segments.filter(x=>x && (x.source === 'PNR' || x.segNo)) : [];
+        const mapped = rows.map((r, idx)=>({ pieces:r.pieces, segNo: segs[idx] && segs[idx].segNo ? segs[idx].segNo : null }));
         const groups = [];
         for(const item of mapped){
           const last = groups[groups.length-1];
           const contiguous = last && Number.isFinite(last.segTo) && Number.isFinite(item.segNo) && item.segNo === last.segTo + 1;
           if(last && last.pieces === item.pieces && contiguous){
             last.segTo = item.segNo;
-            if(item.route) last.routes.push(item.route);
           } else {
-            groups.push({
-              pieces:item.pieces,
-              segFrom:item.segNo,
-              segTo:item.segNo,
-              routes:item.route ? [item.route] : []
-            });
+            groups.push({pieces:item.pieces, segFrom:item.segNo, segTo:item.segNo});
           }
         }
-
-        const allHaveRoutes = groups.every(g=>Array.isArray(g.routes) && g.routes.length);
-        let textOut = '';
-        if(allHaveRoutes){
-          const byPieces = [];
-          for(const g of groups){
-            let bucket = byPieces.find(x=>x.pieces === g.pieces);
-            if(!bucket){
-              bucket = {pieces:g.pieces, routes:[]};
-              byPieces.push(bucket);
-            }
-            for(const rt of g.routes){
-              if(rt && !bucket.routes.includes(rt)) bucket.routes.push(rt);
-            }
+        const textOut = groups.map(g=>{
+          const label = bagLabel(g.pieces);
+          if(Number.isFinite(g.segFrom) && g.segFrom>0){
+            return `${label} (SEG ${g.segFrom}${g.segTo && g.segTo !== g.segFrom ? `-${g.segTo}` : ''})`;
           }
-          textOut = byPieces.map(g=>`${bagLabel(g.pieces)}: ${g.routes.join(', ')}`).join(' • ');
-        } else {
-          textOut = groups.map(g=>{
-            const label = bagLabel(g.pieces);
-            if(Number.isFinite(g.segFrom) && g.segFrom>0){
-              return `${label} (SEG ${g.segFrom}${g.segTo && g.segTo !== g.segFrom ? `-${g.segTo}` : ''})`;
-            }
-            return label;
-          }).join(' • ');
-        }
-
+          return label;
+        }).join(' • ');
         return {pieces:uniq, text:textOut, groups};
       }
 
@@ -5181,6 +5144,6 @@ document.getElementById("btnCarregarRACode").addEventListener("click", async ()=
 
 </script>
 
-<div class="app-version-footer" id="appVersionFooter" aria-label="Versão da calculadora">Versão: 1.0.14-test</div>
+<div class="app-version-footer" id="appVersionFooter" aria-label="Versão da calculadora">Versão: 1.0.13-test</div>
 </body>
 </html>
