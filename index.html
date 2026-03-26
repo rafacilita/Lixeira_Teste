@@ -4433,7 +4433,9 @@ document.getElementById("paxq_adt").value = "1";
 
       function parseBagFromText(text){
         const s = String(text||"");
-        const lines = s.replace(/\r/g,'').split('\n');
+        const blockMatch = s.match(/AL\s+FLGT\s+BK\s+DATE\s+TIME[\s\S]*?(?=(?:ORIGIN\s+TRVL\s+CURRENCY|OLD\s+BASE\s+FARE))/i);
+        const tableText = blockMatch ? blockMatch[0] : s;
+        const lines = tableText.replace(/\r/g,'').split('\n');
         const rows = [];
         let inTable = false;
         let currentOrigin = null;
@@ -4441,11 +4443,13 @@ document.getElementById("paxq_adt").value = "1";
         function bagLabel(n){ return n > 0 ? `${n}PC` : 'Sem bagagem'; }
         function parsePieces(raw){
           const v = String(raw||'').toUpperCase();
-          return /NIL|0P/.test(v) ? 0 : parseInt(v,10);
+          if(/\bNIL\b|\b0P\b/.test(v)) return 0;
+          const m = v.match(/(\d{1,2})P/);
+          return m ? parseInt(m[1],10) : null;
         }
 
         for(const rawLine of lines){
-          const line = String(rawLine||'').trim();
+          const line = String(rawLine||'').replace(/\s+/g,' ').trim();
           if(!line) continue;
 
           if(/AL\s+FLGT\s+BK\s+DATE\s+TIME.*\bBG\b/i.test(line)){ inTable = true; continue; }
@@ -4464,48 +4468,48 @@ document.getElementById("paxq_adt").value = "1";
             continue;
           }
 
-          const row = line.match(/^([A-Z]{3})\b.*\b(NIL|0P|\d{1,2}P)\s*$/i);
+          const row = line.match(/^([A-Z]{3})\b.*?\b(NIL|0P|\d{1,2}P)\s*$/i);
           if(!row) continue;
 
           const dest = row[1].toUpperCase();
           const pieces = parsePieces(row[2]);
+          if(pieces === null) continue;
+
           if(!currentOrigin){
             currentOrigin = dest;
             continue;
           }
 
-          rows.push({
-            from: currentOrigin,
-            to: dest,
-            pieces
-          });
+          rows.push({ from: currentOrigin, to: dest, pieces });
           currentOrigin = dest;
         }
 
         if(!rows.length){
           if(/\bNIL\b|\b0P\b/i.test(s)) return {pieces:[0], text:'Sem bagagem', groups:[]};
-          return {pieces:[], text:'', groups:[]};
+          const generic = Array.from(new Set((s.match(/\b(?:NIL|0P|\d{1,2}P)\b/gi)||[]).map(parsePieces).filter(v=>v!==null))).sort((a,b)=>a-b);
+          if(!generic.length) return {pieces:[], text:'', groups:[]};
+          if(generic.length === 1) return {pieces:generic, text:bagLabel(generic[0]), groups:[]};
+          return {pieces:generic, text:generic.map(v=>bagLabel(v)).join(' • '), groups:[]};
         }
 
         const uniq = Array.from(new Set(rows.map(x=>x.pieces))).sort((a,b)=>a-b);
         if(uniq.length===1) return {pieces:uniq, text:bagLabel(uniq[0]), groups:[{pieces:uniq[0], routes:rows.map(r=>`${r.from}-${r.to}`)}]};
 
-        const groups = [];
+        const grouped = new Map();
         for(const item of rows){
-          const route = `${item.from}-${item.to}`;
-          const last = groups[groups.length-1];
-          if(last && last.pieces === item.pieces){
-            last.routes.push(route);
-          } else {
-            groups.push({pieces:item.pieces, routes:[route]});
-          }
+          const label = bagLabel(item.pieces);
+          if(!grouped.has(label)) grouped.set(label, []);
+          grouped.get(label).push(`${item.from}-${item.to}`);
         }
 
-        const textOut = groups.map(g=>{
-          const label = bagLabel(g.pieces);
-          return `${label}: ${g.routes.join(', ')}`;
-        }).join(' • ');
+        const orderedLabels = [];
+        for(const item of rows){
+          const label = bagLabel(item.pieces);
+          if(!orderedLabels.includes(label)) orderedLabels.push(label);
+        }
 
+        const textOut = orderedLabels.map(label => `${label}: ${grouped.get(label).join(', ')}`).join(' • ');
+        const groups = orderedLabels.map(label => ({ pieces: label === 'Sem bagagem' ? 0 : parseInt(label,10), routes: grouped.get(label) }));
         return {pieces:uniq, text:textOut, groups};
       }
 
