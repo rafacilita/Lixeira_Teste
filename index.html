@@ -4433,75 +4433,76 @@ document.getElementById("paxq_adt").value = "1";
 
       function parseBagFromText(text){
         const s = String(text||"");
-        const lines = s.split(/?
-/).map(x=>x.replace(/ /g,' ').trimRight());
-        const rows = [];
+        const lines = normalizeGdsText(s).lines;
         let inTable = false;
-        let currentOrigin = null;
+        let currentOrigin = "";
+        const routes = [];
+
         function bagLabel(n){ return n > 0 ? `${n}PC` : 'Sem bagagem'; }
+        function cleanAirport(tok){ return String(tok||"").trim().toUpperCase(); }
+        function pushRoute(from, to, pieces){
+          from = cleanAirport(from); to = cleanAirport(to);
+          if(!from || !to || from.length !== 3 || to.length !== 3) return;
+          routes.push({ from, to, pieces:Number(pieces)||0, route:`${from}-${to}` });
+        }
+
         for(const rawLine of lines){
-          const line = rawLine.trim();
+          const line = String(rawLine||"");
           if(/AL\s+FLGT\s+BK\s+DATE\s+TIME.*BG/i.test(line)){ inTable = true; continue; }
           if(!inTable) continue;
           if(/ORIGIN\s+TRVL\s+CURRENCY|OLD\s+BASE\s+FARE/i.test(line)) break;
-          if(!line) continue;
-          let m = line.match(/^([A-Z]{3})\s+(?:S\s+U\s+R\s+F\s+A\s+C\s+E|ARNK)\s*$/i);
-          if(m){ currentOrigin = String(m[1]).toUpperCase(); continue; }
-          m = line.match(/^([A-Z]{3})\s*$/i);
-          if(m){ currentOrigin = String(m[1]).toUpperCase(); continue; }
-          m = line.match(/^([A-Z]{3})\s+([A-Z0-9]{1,3})\s+\d{1,4}[A-Z]{0,2}?\s+[A-Z].*?(NIL|0P|\d{1,2}P)\s*$/i);
-          if(!m) continue;
-          const dest = String(m[1]).toUpperCase();
-          const raw = String(m[3]).toUpperCase();
-          const pieces = /NIL|0P/i.test(raw) ? 0 : parseInt(raw,10);
-          const from = currentOrigin;
-          const route = from ? `${from}-${dest}` : null;
-          rows.push({pieces, raw, from, to:dest, route});
+
+          const trimmed = line.trim();
+          if(!trimmed) continue;
+
+          if(/^[A-Z]{3}$/.test(trimmed)){
+            currentOrigin = trimmed;
+            continue;
+          }
+
+          const surf = trimmed.match(/^([A-Z]{3})\s+(?:S\s+U\s+R\s+F\s+A\s+C\s+E|ARNK)\s*$/i);
+          if(surf){
+            currentOrigin = cleanAirport(surf[1]);
+            continue;
+          }
+
+          const bagMatch = trimmed.match(/(NIL|0P|\d{1,2}P)\s*$/i);
+          if(!bagMatch) continue;
+          const pieces = /NIL|0P/i.test(bagMatch[1]) ? 0 : parseInt(bagMatch[1],10);
+
+          const destMatch = trimmed.match(/^([A-Z]{3})/);
+          if(!destMatch) continue;
+          const dest = cleanAirport(destMatch[1]);
+          if(currentOrigin) pushRoute(currentOrigin, dest, pieces);
           currentOrigin = dest;
         }
-        if(!rows.length){
-          if(/NIL|0P/i.test(s)) return {pieces:[0], text:'Sem bagagem', groups:[]};
-          return {pieces:[], text:'', groups:[]};
+
+        if(!routes.length){
+          if(/NIL|0P/i.test(s)) return {pieces:[0], text:'Sem bagagem', groups:[], routes:[]};
+          return {pieces:[], text:'', groups:[], routes:[]};
         }
-        const uniq = Array.from(new Set(rows.map(x=>x.pieces))).sort((a,b)=>a-b);
-        const allHaveRoutes = rows.every(r=>!!r.route);
-        if(uniq.length===1) return {pieces:uniq, text:bagLabel(uniq[0]), groups:[{pieces:uniq[0], routes:rows.map(r=>r.route).filter(Boolean)}]};
-        if(allHaveRoutes){
-          const groups = [];
-          for(const item of rows){
-            const last = groups[groups.length-1];
-            if(last && last.pieces === item.pieces){
-              last.routes.push(item.route);
-            } else {
-              groups.push({pieces:item.pieces, routes:[item.route]});
-            }
-          }
-          const textOut = groups.map(g=>`${bagLabel(g.pieces)}: ${g.routes.join(', ')}`).join(' • ');
-          return {pieces:uniq, text:textOut, groups};
+
+        const uniq = Array.from(new Set(routes.map(x=>x.pieces))).sort((a,b)=>a-b);
+        if(uniq.length === 1){
+          return {pieces:uniq, text:bagLabel(uniq[0]), groups:[{pieces:uniq[0], routes:routes.map(r=>r.route)}], routes};
         }
-        const segs = Array.isArray(state?.parseMeta?.segments) ? state.parseMeta.segments.filter(x=>x && (x.source === 'PNR' || x.segNo)) : [];
-        const mapped = rows.map((r, idx)=>({ pieces:r.pieces, segNo: segs[idx] && segs[idx].segNo ? segs[idx].segNo : null }));
+
         const groups = [];
-        for(const item of mapped){
+        for(const r of routes){
           const last = groups[groups.length-1];
-          const contiguous = last && Number.isFinite(last.segTo) && Number.isFinite(item.segNo) && item.segNo === last.segTo + 1;
-          if(last && last.pieces === item.pieces && contiguous){
-            last.segTo = item.segNo;
-          } else {
-            groups.push({pieces:item.pieces, segFrom:item.segNo, segTo:item.segNo});
+          if(last && last.pieces === r.pieces){
+            last.routes.push(r.route);
+          }else{
+            groups.push({pieces:r.pieces, routes:[r.route]});
           }
         }
-        const textOut = groups.map(g=>{
-          const label = bagLabel(g.pieces);
-          if(Number.isFinite(g.segFrom) && g.segFrom>0){
-            return `${label} (SEG ${g.segFrom}${g.segTo && g.segTo !== g.segFrom ? `-${g.segTo}` : ''})`;
-          }
-          return label;
-        }).join(' • ');
-        return {pieces:uniq, text:textOut, groups};
+
+        const textOut = groups.map(g => `${bagLabel(g.pieces)}: ${g.routes.join(', ')}`).join(' • ');
+        return {pieces:uniq, text:textOut, groups, routes};
       }
 
-      function parseFareFamilies(text){
+      
+function parseFareFamilies(text){
         const items = Array.from(String(text||"").matchAll(/FARE\s+FAMILY:FC\d+:(\d+(?:-\d+)?):([A-Z0-9]+)/gi)).map(m=>({seg:m[1], fam:String(m[2]).toUpperCase()}));
         if(!items.length) return {items:[], text:''};
         const uniq = Array.from(new Set(items.map(x=>x.fam)));
