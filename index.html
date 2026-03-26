@@ -4434,39 +4434,48 @@ document.getElementById("paxq_adt").value = "1";
       function parseBagFromText(text){
         const s = String(text||"");
         const lines = s.split(/\r?\n/);
-        const rows = [];
+        const mapped = [];
         let inTable = false;
-        for(const line of lines){
+        let currentOrigin = '';
+        let seq = 0;
+
+        for(const rawLine of lines){
+          const line = String(rawLine || '');
           if(/AL\s+FLGT\s+BK\s+DATE\s+TIME.*\bBG\b/i.test(line)){ inTable = true; continue; }
           if(!inTable) continue;
           if(/ORIGIN\s+TRVL\s+CURRENCY|OLD\s+BASE\s+FARE/i.test(line)) break;
-          if(/S\s+U\s+R\s+F\s+A\s+C\s+E/i.test(line)) continue;
-          const m = line.match(/\b(NIL|0P|\d{1,2}P)\s*$/i);
-          if(!m) continue;
-          const raw = String(m[1]).toUpperCase();
+          const trimmed = line.trim();
+          if(!trimmed) continue;
+
+          const baseOnly = trimmed.match(/^([A-Z]{3})$/i);
+          if(baseOnly){
+            currentOrigin = String(baseOnly[1]).toUpperCase();
+            continue;
+          }
+
+          const surface = line.match(/^\s*([A-Z]{3})?\s*S\s+U\s+R\s+F\s+A\s+C\s+E\s*$/i);
+          if(surface){
+            currentOrigin = surface[1] ? String(surface[1]).toUpperCase() : '';
+            continue;
+          }
+
+          const bagMatch = line.match(/\b(NIL|0P|\d{1,2}P)\s*$/i);
+          if(!bagMatch) continue;
+
+          const rowMatch = line.match(/^\s*([A-Z]{3})\s+([A-Z0-9]{1,3})\s+\d{1,4}[A-Z]{0,2}\s+[A-Z]\b/i);
+          const dest = rowMatch ? String(rowMatch[1]).toUpperCase() : '';
+          const raw = String(bagMatch[1]).toUpperCase();
           const pieces = /NIL|0P/i.test(raw) ? 0 : parseInt(raw,10);
-          rows.push({pieces, raw});
+          const route = currentOrigin && dest ? `${currentOrigin}-${dest}` : '';
+          seq += 1;
+          mapped.push({ pieces, segNo: seq, route });
+          if(dest) currentOrigin = dest;
         }
-        if(!rows.length){
+
+        if(!mapped.length){
           if(/\bNIL\b|\b0P\b/i.test(s)) return {pieces:[0], text:'Sem bag', groups:[]};
           return {pieces:[], text:'', groups:[]};
         }
-
-        const segs = Array.isArray(state?.parseMeta?.segments)
-          ? state.parseMeta.segments.filter(x=>x && (x.source === 'PNR' || x.segNo))
-          : [];
-
-        const mapped = rows.map((r, idx)=>{
-          const seg = segs[idx] || null;
-          const route = seg && seg.origin && seg.destination
-            ? `${String(seg.origin).toUpperCase()}-${String(seg.destination).toUpperCase()}`
-            : '';
-          return {
-            pieces:r.pieces,
-            segNo: seg && seg.segNo ? seg.segNo : null,
-            route
-          };
-        });
 
         const uniq = Array.from(new Set(mapped.map(x=>x.pieces))).sort((a,b)=>a-b);
         function bagLabel(n){ return n > 0 ? `${n}PC` : 'Sem bag'; }
