@@ -4431,66 +4431,84 @@ document.getElementById("paxq_adt").value = "1";
         return { paxType, oldBase, newBase, fare, taxBal, tktDiff, pen, grand, add, residual, bag:bagInfo.text, family:familyInfo.text, familyItems:familyInfo.items, warnings, confidence:Math.min(100,confidence) };
       }
 
+
       function parseBagFromText(text){
-        const s = String(text||"");
+        const s = String(text || "");
         const lines = normalizeGdsText(s).lines;
         let inTable = false;
         let currentOrigin = '';
         const routes = [];
+
         function bagLabel(n){ return n > 0 ? `${n}PC` : 'Sem bagagem'; }
         function pushRoute(from, to, pieces){
           if(!from || !to) return;
           routes.push({ from, to, pieces, label: bagLabel(pieces) });
         }
-        for(let rawLine of lines){
-          const line = String(rawLine||'').trim().replace(/\s+/g,' ');
-          if(/AL\s+FLGT\s+BK\s+DATE\s+TIME.*BG/i.test(line)){ inTable = true; continue; }
+
+        for (let rawLine of lines){
+          const line = String(rawLine || '').trim().replace(/\s+/g, ' ');
+          if(/AL\s+FLGT\s+BK\s+DATE\s+TIME.*BG/i.test(line)){ inTable = true; continue; }
           if(!inTable) continue;
           if(/ORIGIN\s+TRVL\s+CURRENCY|OLD\s+BASE\s+FARE/i.test(line)) break;
           if(!line) continue;
 
           const surface = line.match(/^([A-Z]{3})\s+(?:S\s+U\s+R\s+F\s+A\s+C\s+E|ARNK)$/i);
-          if(surface){ currentOrigin = String(surface[1]).toUpperCase(); continue; }
+          if(surface){
+            currentOrigin = String(surface[1]).toUpperCase();
+            continue;
+          }
 
           const loneCity = line.match(/^([A-Z]{3})$/i);
-          if(loneCity){ currentOrigin = String(loneCity[1]).toUpperCase(); continue; }
+          if(loneCity){
+            currentOrigin = String(loneCity[1]).toUpperCase();
+            continue;
+          }
 
-          const bagMatch = line.match(/(NIL|0P|\d{1,2}P)\s*$/i);
+          const bagMatch = line.match(/\b(NIL|0P|\d{1,2}P)\s*$/i);
           if(!bagMatch) continue;
-          const destMatch = line.match(/^([A-Z]{3})/);
+
+          const destMatch = line.match(/^([A-Z]{3})\b/);
           if(!destMatch) continue;
+
           const dest = String(destMatch[1]).toUpperCase();
           const rawBag = String(bagMatch[1]).toUpperCase();
-          const pieces = /^(?:NIL|0P)$/i.test(rawBag) ? 0 : parseInt(rawBag,10);
+          const pieces = /^(?:NIL|0P)$/i.test(rawBag) ? 0 : parseInt(rawBag, 10);
+
           pushRoute(currentOrigin, dest, pieces);
           currentOrigin = dest;
         }
 
         if(!routes.length){
-          if(/NIL|0P/i.test(s)) return {pieces:[0], text:'Sem bagagem', groups:[], routes:[]};
+          if(/\bNIL\b|\b0P\b/i.test(s)) return {pieces:[0], text:'Sem bagagem', groups:[], routes:[]};
           return {pieces:[], text:'', groups:[], routes:[]};
         }
 
-        const uniq = Array.from(new Set(routes.map(r=>r.pieces)));
+        const uniq = Array.from(new Set(routes.map(r => r.pieces)));
         if(uniq.length === 1){
           const only = uniq[0];
-          return { pieces: uniq, text: only > 0 ? `${only}PC` : 'Sem bagagem', groups:[{pieces:only, routes:routes.map(r=>`${r.from}-${r.to}`)}], routes };
+          return {
+            pieces: uniq,
+            text: only > 0 ? `${only}PC` : 'Sem bagagem',
+            groups: [{ pieces: only, routes: routes.map(r => `${r.from}-${r.to}`) }],
+            routes
+          };
         }
 
         const groups = [];
-        for(const r of routes){
-          const last = groups[groups.length-1];
+        for (const r of routes){
+          const last = groups[groups.length - 1];
           const routeLabel = `${r.from}-${r.to}`;
           if(last && last.pieces === r.pieces){
             last.routes.push(routeLabel);
           } else {
-            groups.push({ pieces:r.pieces, routes:[routeLabel] });
+            groups.push({ pieces: r.pieces, routes: [routeLabel] });
           }
         }
 
         const textOut = groups.map(g => `${bagLabel(g.pieces)}: ${g.routes.join(', ')}`).join(' • ');
         return { pieces: uniq, text: textOut, groups, routes };
       }
+
 
       function parseFareFamilies(text){
         const items = Array.from(String(text||"").matchAll(/FARE\s+FAMILY:FC\d+:(\d+(?:-\d+)?):([A-Z0-9]+)/gi)).map(m=>({seg:m[1], fam:String(m[2]).toUpperCase()}));
