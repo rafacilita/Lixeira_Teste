@@ -4433,84 +4433,63 @@ document.getElementById("paxq_adt").value = "1";
 
       function parseBagFromText(text){
         const s = String(text||"");
-        const blockMatch = s.match(/AL\s+FLGT\s+BK\s+DATE\s+TIME[\s\S]*?(?=(?:ORIGIN\s+TRVL\s+CURRENCY|OLD\s+BASE\s+FARE))/i);
-        const tableText = blockMatch ? blockMatch[0] : s;
-        const lines = tableText.replace(/\r/g,'').split('\n');
-        const rows = [];
+        const lines = normalizeGdsText(s).lines;
         let inTable = false;
-        let currentOrigin = null;
-
+        let currentOrigin = '';
+        const routes = [];
         function bagLabel(n){ return n > 0 ? `${n}PC` : 'Sem bagagem'; }
-        function parsePieces(raw){
-          const v = String(raw||'').toUpperCase();
-          if(/\bNIL\b|\b0P\b/.test(v)) return 0;
-          const m = v.match(/(\d{1,2})P/);
-          return m ? parseInt(m[1],10) : null;
+        function pushRoute(from, to, pieces){
+          if(!from || !to) return;
+          routes.push({ from, to, pieces, label: bagLabel(pieces) });
         }
-
-        for(const rawLine of lines){
-          const line = String(rawLine||'').replace(/\s+/g,' ').trim();
-          if(!line) continue;
-
-          if(/AL\s+FLGT\s+BK\s+DATE\s+TIME.*\bBG\b/i.test(line)){ inTable = true; continue; }
+        for(let rawLine of lines){
+          const line = String(rawLine||'').trim().replace(/\s+/g,' ');
+          if(/AL\s+FLGT\s+BK\s+DATE\s+TIME.*BG/i.test(line)){ inTable = true; continue; }
           if(!inTable) continue;
           if(/ORIGIN\s+TRVL\s+CURRENCY|OLD\s+BASE\s+FARE/i.test(line)) break;
+          if(!line) continue;
 
-          const cityOnly = line.match(/^([A-Z]{3})$/i);
-          if(cityOnly){
-            currentOrigin = cityOnly[1].toUpperCase();
-            continue;
-          }
+          const surface = line.match(/^([A-Z]{3})\s+(?:S\s+U\s+R\s+F\s+A\s+C\s+E|ARNK)$/i);
+          if(surface){ currentOrigin = String(surface[1]).toUpperCase(); continue; }
 
-          const surface = line.match(/^([A-Z]{3})\s+S\s+U\s+R\s+F\s+A\s+C\s+E$/i);
-          if(surface){
-            currentOrigin = surface[1].toUpperCase();
-            continue;
-          }
+          const loneCity = line.match(/^([A-Z]{3})$/i);
+          if(loneCity){ currentOrigin = String(loneCity[1]).toUpperCase(); continue; }
 
-          const row = line.match(/^([A-Z]{3})\b.*?\b(NIL|0P|\d{1,2}P)\s*$/i);
-          if(!row) continue;
-
-          const dest = row[1].toUpperCase();
-          const pieces = parsePieces(row[2]);
-          if(pieces === null) continue;
-
-          if(!currentOrigin){
-            currentOrigin = dest;
-            continue;
-          }
-
-          rows.push({ from: currentOrigin, to: dest, pieces });
+          const bagMatch = line.match(/(NIL|0P|\d{1,2}P)\s*$/i);
+          if(!bagMatch) continue;
+          const destMatch = line.match(/^([A-Z]{3})/);
+          if(!destMatch) continue;
+          const dest = String(destMatch[1]).toUpperCase();
+          const rawBag = String(bagMatch[1]).toUpperCase();
+          const pieces = /^(?:NIL|0P)$/i.test(rawBag) ? 0 : parseInt(rawBag,10);
+          pushRoute(currentOrigin, dest, pieces);
           currentOrigin = dest;
         }
 
-        if(!rows.length){
-          if(/\bNIL\b|\b0P\b/i.test(s)) return {pieces:[0], text:'Sem bagagem', groups:[]};
-          const generic = Array.from(new Set((s.match(/\b(?:NIL|0P|\d{1,2}P)\b/gi)||[]).map(parsePieces).filter(v=>v!==null))).sort((a,b)=>a-b);
-          if(!generic.length) return {pieces:[], text:'', groups:[]};
-          if(generic.length === 1) return {pieces:generic, text:bagLabel(generic[0]), groups:[]};
-          return {pieces:generic, text:generic.map(v=>bagLabel(v)).join(' • '), groups:[]};
+        if(!routes.length){
+          if(/NIL|0P/i.test(s)) return {pieces:[0], text:'Sem bagagem', groups:[], routes:[]};
+          return {pieces:[], text:'', groups:[], routes:[]};
         }
 
-        const uniq = Array.from(new Set(rows.map(x=>x.pieces))).sort((a,b)=>a-b);
-        if(uniq.length===1) return {pieces:uniq, text:bagLabel(uniq[0]), groups:[{pieces:uniq[0], routes:rows.map(r=>`${r.from}-${r.to}`)}]};
-
-        const grouped = new Map();
-        for(const item of rows){
-          const label = bagLabel(item.pieces);
-          if(!grouped.has(label)) grouped.set(label, []);
-          grouped.get(label).push(`${item.from}-${item.to}`);
+        const uniq = Array.from(new Set(routes.map(r=>r.pieces)));
+        if(uniq.length === 1){
+          const only = uniq[0];
+          return { pieces: uniq, text: only > 0 ? `${only}PC` : 'Sem bagagem', groups:[{pieces:only, routes:routes.map(r=>`${r.from}-${r.to}`)}], routes };
         }
 
-        const orderedLabels = [];
-        for(const item of rows){
-          const label = bagLabel(item.pieces);
-          if(!orderedLabels.includes(label)) orderedLabels.push(label);
+        const groups = [];
+        for(const r of routes){
+          const last = groups[groups.length-1];
+          const routeLabel = `${r.from}-${r.to}`;
+          if(last && last.pieces === r.pieces){
+            last.routes.push(routeLabel);
+          } else {
+            groups.push({ pieces:r.pieces, routes:[routeLabel] });
+          }
         }
 
-        const textOut = orderedLabels.map(label => `${label}: ${grouped.get(label).join(', ')}`).join(' • ');
-        const groups = orderedLabels.map(label => ({ pieces: label === 'Sem bagagem' ? 0 : parseInt(label,10), routes: grouped.get(label) }));
-        return {pieces:uniq, text:textOut, groups};
+        const textOut = groups.map(g => `${bagLabel(g.pieces)}: ${g.routes.join(', ')}`).join(' • ');
+        return { pieces: uniq, text: textOut, groups, routes };
       }
 
       function parseFareFamilies(text){
