@@ -2573,7 +2573,7 @@ const store = getPaxStore();
 
     // ----- CRR4: mesmo conteúdo do CRR3, mas com chaves compactadas (reduz bem o tamanho) -----
     // Mapeia ids de campos -> índice base36 (ex.: "cia" -> "a") antes de compactar.
-    const CRR4_KEYS = ["themeSel","rentab","op_rf","agencia","filial","rent_tipo_multa","rent_tipo_diftar","rent_tipo_diftax","rent_pago_cia_multa_adt","rent_pago_cia_multa_chd","rent_pago_cia_multa_inf","rent_cobrar_ag_multa","rent_lucro_multa","rent_pago_cia_diftar_adt","rent_pago_cia_diftar_chd","rent_pago_cia_diftar_inf","rent_cobrar_ag_diftar","rent_lucro_diftar","rent_pago_cia_diftax_adt","rent_pago_cia_diftax_chd","rent_pago_cia_diftax_inf","rent_cobrar_ag_diftax","rent_lucro_diftax","cia","prazo","loc","oac","novo_loc","paxq_adt","paxq_chd","paxq_inf","pax_json","familia","pax","tks","bag","parcelamento","nac_fp","nac_link","nac_qty_ADT","nac_old_ADT","nac_new_ADT","nac_tax_ADT","nac_du_ADT","nac_pen_ADT","nac_qty_CHD","nac_old_CHD","nac_new_CHD","nac_tax_CHD","nac_du_CHD","nac_pen_CHD","nac_qty_INF","nac_old_INF","nac_new_INF","nac_tax_INF","nac_du_INF","nac_pen_INF","nac_services_on","nac_services_brl","nac_folio_on","nac_folio_text","nac_voos","nac_regras","inter_cur","inter_cur_other","inter_fx","inter_fx_usd","inter_incentivo","inter_tipo","inter_fp","inter_link","inter_qty_ADT","inter_fare_ADT","inter_tax_ADT","inter_du_ADT","inter_pen_ADT","inter_fee_ADT","inter_qty_CHD","inter_fare_CHD","inter_tax_CHD","inter_du_CHD","inter_pen_CHD","inter_fee_CHD","inter_qty_INF","inter_fare_INF","inter_tax_INF","inter_du_INF","inter_pen_INF","inter_fee_INF","inter_original","inter_voos","inter_interno","rf_include_racode","rf_mask_numbers","rf_include_tks"];
+    const CRR4_KEYS = ["themeSel","rentab","op_rf","agencia","filial","rent_tipo_multa","rent_tipo_diftar","rent_tipo_diftax","rent_pago_cia_multa_adt","rent_pago_cia_multa_chd","rent_pago_cia_multa_inf","rent_cobrar_ag_multa","rent_lucro_multa","rent_pago_cia_diftar_adt","rent_pago_cia_diftar_chd","rent_pago_cia_diftar_inf","rent_cobrar_ag_diftar","rent_lucro_diftar","rent_pago_cia_diftax_adt","rent_pago_cia_diftax_chd","rent_pago_cia_diftax_inf","rent_cobrar_ag_diftax","rent_lucro_diftax","cia","prazo","loc","oac","novo_loc","paxq_adt","paxq_chd","paxq_inf","pax_json","familia","pax","tks","bag","parcelamento","nac_fp","nac_link","nac_qty_ADT","nac_old_ADT","nac_new_ADT","nac_tax_ADT","nac_du_ADT","nac_pen_ADT","nac_qty_CHD","nac_old_CHD","nac_new_CHD","nac_tax_CHD","nac_du_CHD","nac_pen_CHD","nac_qty_INF","nac_old_INF","nac_new_INF","nac_tax_INF","nac_du_INF","nac_pen_INF","nac_services_on","nac_services_brl","nac_folio_on","nac_folio_text","nac_folio_agencia","nac_voos","nac_regras","inter_cur","inter_cur_other","inter_fx","inter_fx_usd","inter_incentivo","inter_tipo","inter_fp","inter_link","inter_qty_ADT","inter_fare_ADT","inter_tax_ADT","inter_du_ADT","inter_pen_ADT","inter_fee_ADT","inter_qty_CHD","inter_fare_CHD","inter_tax_CHD","inter_du_CHD","inter_pen_CHD","inter_fee_CHD","inter_qty_INF","inter_fare_INF","inter_tax_INF","inter_du_INF","inter_pen_INF","inter_fee_INF","inter_endosso_on","inter_endosso_text","inter_endosso_agencia","inter_original","inter_voos","inter_interno","rf_include_racode","rf_mask_numbers","rf_include_tks"];
     const CRR4_ID2K = {};
     const CRR4_K2ID = {};
     for(let i=0;i<CRR4_KEYS.length;i++){ 
@@ -4431,84 +4431,50 @@ document.getElementById("paxq_adt").value = "1";
         return { paxType, oldBase, newBase, fare, taxBal, tktDiff, pen, grand, add, residual, bag:bagInfo.text, family:familyInfo.text, familyItems:familyInfo.items, warnings, confidence:Math.min(100,confidence) };
       }
 
-
       function parseBagFromText(text){
-        const s = String(text || "");
+        const s = String(text||"");
         const lines = normalizeGdsText(s).lines;
+        const rows = [];
         let inTable = false;
-        let currentOrigin = "";
-        const routes = [];
-
-        function bagLabel(n){ return n > 0 ? `${n}PC` : 'Sem bagagem'; }
-        function pushRoute(from, to, pieces){
-          if(!from || !to) return;
-          routes.push({ from, to, pieces, label: bagLabel(pieces) });
-        }
-
-        for (const rawLine of lines){
-          const line = String(rawLine || "").trim().replace(/\s+/g, " ");
-          if(/AL\s+FLGT\s+BK\s+DATE\s+TIME.*BG/i.test(line)){ inTable = true; continue; }
+        for(const line of lines){
+          if(/AL\s+FLGT\s+BK\s+DATE\s+TIME.*\bBG\b/i.test(line)){ inTable = true; continue; }
           if(!inTable) continue;
           if(/ORIGIN\s+TRVL\s+CURRENCY|OLD\s+BASE\s+FARE/i.test(line)) break;
-          if(!line) continue;
-
-          const surface = line.match(/^([A-Z]{3})\s+(?:S\s+U\s+R\s+F\s+A\s+C\s+E|ARNK)$/i);
-          if(surface){
-            currentOrigin = String(surface[1]).toUpperCase();
-            continue;
-          }
-
-          const loneCity = line.match(/^([A-Z]{3})$/i);
-          if(loneCity){
-            currentOrigin = String(loneCity[1]).toUpperCase();
-            continue;
-          }
-
-          const bagMatch = line.match(/\b(NIL|0P|\d{1,2}P)\s*$/i);
-          if(!bagMatch) continue;
-
-          const destMatch = line.match(/^([A-Z]{3})\b/);
-          if(!destMatch) continue;
-
-          const dest = String(destMatch[1]).toUpperCase();
-          const rawBag = String(bagMatch[1]).toUpperCase();
-          const pieces = /^(?:NIL|0P)$/i.test(rawBag) ? 0 : parseInt(rawBag, 10);
-
-          pushRoute(currentOrigin, dest, pieces);
-          currentOrigin = dest;
+          if(/S\s+U\s+R\s+F\s+A\s+C\s+E/i.test(line)) continue;
+          const m = line.match(/\b(NIL|0P|\d{1,2}P)\s*$/i);
+          if(!m) continue;
+          const raw = String(m[1]).toUpperCase();
+          const pieces = /NIL|0P/i.test(raw) ? 0 : parseInt(raw,10);
+          rows.push({pieces, raw});
         }
-
-        if(!routes.length){
-          if(/\bNIL\b|\b0P\b/i.test(s)) return {pieces:[0], text:'Sem bagagem', groups:[], routes:[]};
-          return {pieces:[], text:'', groups:[], routes:[]};
+        if(!rows.length){
+          if(/\bNIL\b|\b0P\b/i.test(s)) return {pieces:[0], text:'Sem bag', groups:[]};
+          return {pieces:[], text:'', groups:[]};
         }
-
-        const uniq = Array.from(new Set(routes.map(r => r.pieces)));
-        if(uniq.length === 1){
-          const only = uniq[0];
-          return {
-            pieces: uniq,
-            text: only > 0 ? `${only}PC` : 'Sem bagagem',
-            groups: [{ pieces: only, routes: routes.map(r => `${r.from}-${r.to}`) }],
-            routes
-          };
-        }
-
+        const segs = Array.isArray(state?.parseMeta?.segments) ? state.parseMeta.segments.filter(x=>x && (x.source === 'PNR' || x.segNo)) : [];
+        const mapped = rows.map((r, idx)=>({ pieces:r.pieces, segNo: segs[idx] && segs[idx].segNo ? segs[idx].segNo : null }));
+        const uniq = Array.from(new Set(mapped.map(x=>x.pieces))).sort((a,b)=>a-b);
+        function bagLabel(n){ return n > 0 ? `${n}PC` : 'Sem bag'; }
+        if(uniq.length===1) return {pieces:uniq, text:bagLabel(uniq[0]), groups:[{pieces:uniq[0], segFrom:mapped[0].segNo, segTo:mapped[mapped.length-1].segNo}]};
         const groups = [];
-        for (const r of routes){
-          const last = groups[groups.length - 1];
-          const routeLabel = `${r.from}-${r.to}`;
-          if(last && last.pieces === r.pieces){
-            last.routes.push(routeLabel);
+        for(const item of mapped){
+          const last = groups[groups.length-1];
+          const contiguous = last && Number.isFinite(last.segTo) && Number.isFinite(item.segNo) && item.segNo === last.segTo + 1;
+          if(last && last.pieces === item.pieces && contiguous){
+            last.segTo = item.segNo;
           } else {
-            groups.push({ pieces: r.pieces, routes: [routeLabel] });
+            groups.push({pieces:item.pieces, segFrom:item.segNo, segTo:item.segNo});
           }
         }
-
-        const textOut = groups.map(g => `${bagLabel(g.pieces)}: ${g.routes.join(', ')}`).join(' • ');
-        return { pieces: uniq, text: textOut, groups, routes };
+        const textOut = groups.map(g=>{
+          const label = bagLabel(g.pieces);
+          if(Number.isFinite(g.segFrom) && g.segFrom>0){
+            return `${label} (SEG ${g.segFrom}${g.segTo && g.segTo !== g.segFrom ? `-${g.segTo}` : ''})`;
+          }
+          return label;
+        }).join(' • ');
+        return {pieces:uniq, text:textOut, groups};
       }
-
 
       function parseFareFamilies(text){
         const items = Array.from(String(text||"").matchAll(/FARE\s+FAMILY:FC\d+:(\d+(?:-\d+)?):([A-Z0-9]+)/gi)).map(m=>({seg:m[1], fam:String(m[2]).toUpperCase()}));
@@ -4554,26 +4520,17 @@ document.getElementById("paxq_adt").value = "1";
         return { canApply:true, needsFx:false, fx:fx||0, inferred, fare:toWant(parsed.fare), pen:toWant(parsed.pen), add:toWant(parsed.add), taxBal:toWant(parsed.taxBal), tktDiff:toWant(parsed.tktDiff) };
       }
 
-
       function updateBagSummary(){
         const bagEl = $("bag");
         if(!bagEl) return;
         const canOverwrite = !bagEl.value.trim() || bagEl.dataset.auto === '1';
         if(!canOverwrite) return;
-
-        const vals = state.requiredTypes
-          .filter(t => state.bagByType[t])
-          .map(t => `${t}: ${state.bagByType[t]}`);
-
+        const vals = state.requiredTypes.filter(t=>state.bagByType[t]).map(t=>`${t}: ${state.bagByType[t]}`);
         if(!vals.length) return;
-
-        const onlyBagText = vals.map(v => v.replace(/^[A-Z]{3}:\s*/, ''));
-        const uniqVals = Array.from(new Set(onlyBagText));
-
+        const uniqVals = Array.from(new Set(vals.map(v=>v.split(': ')[1])));
         bagEl.value = uniqVals.length === 1 ? uniqVals[0] : vals.join(' | ');
         bagEl.dataset.auto = '1';
       }
-
 
       function updateFamilySummary(){
         const famEl = $("familia");
