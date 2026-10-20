@@ -1360,7 +1360,7 @@
           <div class="btns" style="margin-top:10px">
             <button class="action" id="btnCarregarRACode">Carregar CRR</button>
           </div>
-          <div class="muted small" style="margin-top:8px">Se você colar um texto maior (ex.: a observação inteira do RF), o sistema tenta achar automaticamente o trecho <b>CRR4/CRR3/CRR2-...</b> (ou <b>CRR1/RA1</b> antigos).</div>
+          <div class="muted small" style="margin-top:8px">Se você colar um texto maior (ex.: a observação inteira do RF), o sistema tenta achar automaticamente o trecho <b>CRR5/CRR4/CRR3/CRR2-...</b> (ou <b>CRR1/RA1</b> antigos). CRR5 ainda é lido (compatibilidade com cotações antigas), mas esta build nunca gera CRR5 novo — o e-mail sempre leva o CRR4 completo.</div>
         </div>
 
       </div>      </div>
@@ -2622,10 +2622,30 @@ function buildCRRCode(){
     }
 
 
-// ===== CRR5 REMOVIDO DESTA BUILD (somente CRR4) =====
-// Esta build não lê nem gera CRR5: não há Cloudflare, não há Upstash,
-// nenhuma chamada de rede e nenhum id curto. O código que vai no e-mail
-// é sempre o CRR4 montado localmente por buildCRRCode().
+// ===== CRR5 nesta build: só LEITURA, nunca geração =====
+// Esta build nunca cria CRR5 novo (sem chamada a /save, sem id curto no
+// e-mail). O código que vai no e-mail é sempre o CRR4 montado localmente
+// por buildCRRCode(). Mas um CRR5 colado em "Carregar CRR" — de uma
+// cotação enviada antes da virada para CRR4-only — ainda é resolvido via
+// Worker, para não perder o acesso a cálculos já enviados nesse formato.
+const CRR5_API = "https://crr-api.rexturfacilita.workers.dev/".replace(/\/+$/,"");
+
+function extractCRR5(text){
+  const compact = String(text || "").replace(/\s+/g,"");
+  const mm = compact.match(/CRR5-([A-Za-z0-9]{6,64})/i);
+  if(!mm) return null;
+  return `CRR5-${mm[1].toLowerCase()}`;
+}
+
+async function loadCRR5ToCRR4(crr5){
+  const id = String(crr5 || "").trim().replace(/^CRR5-/i,"").toLowerCase();
+  const r = await fetch(`${CRR5_API}/load?id=${encodeURIComponent(id)}`);
+  if(!r.ok) throw new Error("CRR5 não encontrado (ou expirou). Se for uma cotação antiga, pode já ter sido descontinuado — peça o CRR4 de novo ao autor.");
+  const data = await r.json().catch(()=>null);
+  if(!data || typeof data.payload !== "string") throw new Error("Resposta inválida do servidor ao buscar CRR5.");
+  return data.payload;
+}
+
 // (updateAll() já mantém o textarea #raCode sincronizado com buildCRRCode().)
 function getCRRCodeForEmail(){
   return buildCRRCode();
@@ -4087,7 +4107,19 @@ document.getElementById("paxq_adt").value = "1";
 document.getElementById("btnCarregarRACode").addEventListener("click", async ()=>{
       const code = (document.getElementById("raCode").value || "").trim();
       try{
-        loadCRRCode(code);
+        // Checa duplicidade entre CRR5 (legado) e os formatos locais juntos,
+        // antes de resolver — uma thread pode ter mais de um código distinto.
+        const compact = code.replace(/\s+/g,"");
+        const crr5Matches = compact.match(/CRR5-[A-Za-z0-9]{6,64}/gi) || [];
+        const localMatches = compact.match(/(?:CRR4|CRR3|CRR2|CRR1|RA1)-[A-Za-z0-9\-_$\+]+/gi) || [];
+        const unicos = [...new Set([...crr5Matches, ...localMatches].map(m => m.toUpperCase()))];
+        if(unicos.length > 1){
+          throw new Error(`Encontrei ${unicos.length} códigos diferentes nesse texto (provavelmente de respostas anteriores do e-mail). Cole só o trecho do e-mail mais recente para evitar carregar um cálculo desatualizado.`);
+        }
+
+        const c5 = extractCRR5(code);
+        const crr4 = c5 ? await loadCRR5ToCRR4(c5) : code;
+        loadCRRCode(crr4);
         const rc = document.getElementById("raCode");
         if(rc){ rc.dataset.manual = "0"; rc.dataset.sig = ""; rc.value = buildCRRCode(); }
         lastEmailHtml = generateEmail();
