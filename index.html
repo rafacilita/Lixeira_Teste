@@ -1,15 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Calculadora de Reemissão • Gerador de cálculo de reemissão</title>
-  <style>
-    .app-version-footer{position:fixed;right:12px;bottom:10px;z-index:9999;padding:6px 10px;border-radius:999px;background:rgba(15,23,42,.82);color:#fff;font:700 12px/1.2 var(--sans);letter-spacing:.02em;box-shadow:0 8px 22px rgba(0,0,0,.18);backdrop-filter:blur(8px);opacity:.92} 
-    :root[data-theme="light"] .app-version-footer{background:rgba(15,23,42,.78);color:#fff;border:1px solid rgba(255,255,255,.14)}
-    @media (max-width: 700px){.app-version-footer{right:8px;bottom:8px;font-size:11px;padding:5px 9px}}
-
-    :root{
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Calculadora de Reemissao - teste CRR4</title>
+<style>html,body{margin:0;background:#0b0f17}</style>
+</head>
+<body>
+<!-- ================================================================
+     PAGINA DE TESTE. Nao e a build de producao.
+     Conteudo abaixo = index-intranet-crr4-only.html, colado sem alteracao.
+     O wrapper (doctype/head/body) existe apenas para a build da Intranet,
+     que e um fragmento, poder ser aberta como pagina standalone.
+     ================================================================ -->
+<!-- Calculadora de Reemissao - build Intranet
+     fonte: producao/index.html | versao: (sem APP_VERSION) | zoom: 0.9 | gerado: 2026-09-25 21:55
+     Gerado por ferramentas/scope_calc.js - nao editar a mao. -->
+<meta charset="utf-8">
+<style>
+    #calcRoot{
       --bg:#0b0f17;
       --card:#121a27;
       --muted:#8ea0b7;
@@ -21,7 +31,7 @@
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
     }
 
-    :root[data-theme="light"]{--bg:#f6f7fb;
+    #calcRoot[data-theme="light"]{--bg:#f6f7fb;
       --card:#ffffff;
       --muted:#334155;
       --text:#0f172a;
@@ -43,51 +53,47 @@
 }
 
 /* ===== Melhorias visuais (tema claro) ===== */
-[data-theme="light"] .legend .item{color:var(--text);font-weight:700}
-[data-theme="light"] .legend .dot{box-shadow:0 0 0 3px rgba(15,23,42,.06)}
+#calcRoot[data-theme="light"] .legend .item{color:var(--text);font-weight:700}
+#calcRoot[data-theme="light"] .legend .dot{box-shadow:0 0 0 3px rgba(15,23,42,.06)}
 /* Destaque por área */
-[data-theme="light"] .accent-calc{color:#1d4ed8}
-[data-theme="light"] .accent-rent{color:#166534}
-[data-theme="light"] .accent-cco{color:#6d28d9}
+#calcRoot[data-theme="light"] .accent-calc{color:#1d4ed8}
+#calcRoot[data-theme="light"] .accent-rent{color:#166534}
+#calcRoot[data-theme="light"] .accent-cco{color:#6d28d9}
 /* Tags das saídas */
-[data-theme="light"] .tag{
+#calcRoot[data-theme="light"] .tag{
   border:1px solid rgba(15,23,42,.16);
   color:#0f172a;
   font-weight:800;
 }
-[data-theme="light"] .tag.agencia{background:rgba(29,78,216,.10);border-color:rgba(29,78,216,.28)}
-[data-theme="light"] .tag.rent{background:rgba(22,101,52,.10);border-color:rgba(22,101,52,.25)}
-[data-theme="light"] .tag.cco{background:rgba(109,40,217,.10);border-color:rgba(109,40,217,.28)}
-[data-theme="light"] .tag.crr{background:rgba(15,23,42,.06);border-color:rgba(15,23,42,.14)}
+#calcRoot[data-theme="light"] .tag.agencia{background:rgba(29,78,216,.10);border-color:rgba(29,78,216,.28)}
+#calcRoot[data-theme="light"] .tag.rent{background:rgba(22,101,52,.10);border-color:rgba(22,101,52,.25)}
+#calcRoot[data-theme="light"] .tag.cco{background:rgba(109,40,217,.10);border-color:rgba(109,40,217,.28)}
+#calcRoot[data-theme="light"] .tag.crr{background:rgba(15,23,42,.06);border-color:rgba(15,23,42,.14)}
 /* Títulos de blocos mais “na cara” */
-[data-theme="light"] .section-title{color:#0f172a;font-weight:900}
-[data-theme="light"] .section-title .sub{color:#334155;font-weight:700}
+#calcRoot[data-theme="light"] .section-title{color:#0f172a;font-weight:900}
+#calcRoot[data-theme="light"] .section-title .sub{color:#334155;font-weight:700}
 /* Botões por intenção (mantém legível no claro) */
-[data-theme="light"] .btn.primary{background:rgba(29,78,216,.12);border-color:rgba(29,78,216,.30)}
-[data-theme="light"] .btn.purple{background:rgba(109,40,217,.12);border-color:rgba(109,40,217,.30)}
-[data-theme="light"] .btn.green{background:rgba(22,101,52,.12);border-color:rgba(22,101,52,.25)}
+#calcRoot[data-theme="light"] .btn.primary{background:rgba(29,78,216,.12);border-color:rgba(29,78,216,.30)}
+#calcRoot[data-theme="light"] .btn.purple{background:rgba(109,40,217,.12);border-color:rgba(109,40,217,.30)}
+#calcRoot[data-theme="light"] .btn.green{background:rgba(22,101,52,.12);border-color:rgba(22,101,52,.25)}
 
 
-    :root[data-theme="light"] body{
+    #calcRoot[data-theme="light"]{
       background: radial-gradient(1000px 600px at 15% 0%, rgba(155,92,255,.18), transparent 55%),
                   radial-gradient(800px 400px at 85% 20%, rgba(61,220,151,.12), transparent 55%),
                   var(--bg);
       color: var(--text);
     }
-    :root[data-theme="light"] .card{
+    #calcRoot[data-theme="light"] .card{
       background: linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.01));
       border:1px solid rgba(15,23,42,.12);
     }
-    :root[data-theme="light"] input,
-    :root[data-theme="light"] select,
-    :root[data-theme="light"] textarea{
+    #calcRoot[data-theme="light"] input, #calcRoot[data-theme="light"] select, #calcRoot[data-theme="light"] textarea{
       border:1px solid rgba(15,23,42,.14);
       background: rgba(255,255,255,.90);
       color: var(--text);
     }
-    :root[data-theme="light"] .tab,
-    :root[data-theme="light"] .action,
-    :root[data-theme="light"] .pill{
+    #calcRoot[data-theme="light"] .tab, #calcRoot[data-theme="light"] .action, #calcRoot[data-theme="light"] .pill{
       border:1px solid rgba(255,255,255,.10);
       background: rgba(0,0,0,.20);
       color: var(--text);
@@ -96,19 +102,19 @@
       font-weight: 900;
       font-size: 13px;
     }
-    :root[data-theme="light"] .hr{ background: rgba(15,23,42,.10); }
-    :root[data-theme="light"] .muted{ color: var(--muted); }
-    :root[data-theme="light"] .note{
+    #calcRoot[data-theme="light"] .hr{ background: rgba(15,23,42,.10); }
+    #calcRoot[data-theme="light"] .muted{ color: var(--muted); }
+    #calcRoot[data-theme="light"] .note{
       border-left: 3px solid rgba(245,158,11,.65);
       background: rgba(245,158,11,.10);
     }
-    :root[data-theme="light"] .codebox{
+    #calcRoot[data-theme="light"] .codebox{
       border:1px solid rgba(15,23,42,.14);
       background: rgba(15,23,42,.06);
       color: var(--text);
     }
-        *{box-sizing:border-box}
-    body{
+        #calcRoot, #calcRoot *{box-sizing:border-box}
+    #calcRoot{
       margin:0;
       font-family:var(--sans);
       background: radial-gradient(1000px 600px at 15% 0%, rgba(155,92,255,.25), transparent 55%),
@@ -116,49 +122,49 @@
                   var(--bg);
       color:var(--text);
     }
-    header{ padding: 26px 18px 10px; max-width: 1240px; margin: 0 auto; }
+    #calcRoot header{ padding: 26px 18px 10px; max-width: 1240px; margin: 0 auto; }
     
-    .brand{ display:flex; align-items:center; gap:14px; }
-    .logoMark{
+    #calcRoot .brand{ display:flex; align-items:center; gap:14px; }
+    #calcRoot .logoMark{
       width:56px; height:40px; border-radius: 14px;
       display:flex; align-items:center; justify-content:center;
       background: rgba(255,255,255,.04);
       box-shadow: inset 0 0 0 1px rgba(255,255,255,.07);
       overflow:hidden;
     }
-    .logoMark img{
+    #calcRoot .logoMark img{
       width:170px; height:40px; display:block;
       object-fit: cover; object-position: right center;
       filter: saturate(1.05);
     }
-    .titles{ min-width: 0; }
-    .titles h1{ margin:0 0 6px; }
-h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
-    .sub{ color:var(--muted); font-size: 13px; line-height:1.35; max-width: 1100px; }
-    .wrap{
+    #calcRoot .titles{ min-width: 0; }
+    #calcRoot .titles h1{ margin:0 0 6px; }
+#calcRoot h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
+    #calcRoot .sub{ color:var(--muted); font-size: 13px; line-height:1.35; max-width: 1100px; }
+    #calcRoot .wrap{
       max-width: 1240px; margin: 0 auto; padding: 12px 18px 40px;
       display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
     }
-    @media (max-width: 980px){ .wrap{grid-template-columns: 1fr} }
-    .card{
+    @media (max-width: 980px){ #calcRoot .wrap{grid-template-columns: 1fr} }
+    #calcRoot .card{
       background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
       border:1px solid rgba(255,255,255,.06);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       overflow:hidden;
     }
-    .card > .hd{
+    #calcRoot .card > .hd{
       padding: 14px 14px 10px;display:flex; align-items:center; justify-content:space-between; gap:10px;
     }
-    .pill{
+    #calcRoot .pill{
       font-size:12px; color: var(--muted);
       border:1px solid rgba(255,255,255,.10);
       padding:4px 10px; border-radius: 999px;
       background: rgba(0,0,0,.18); white-space:nowrap;
     }
-    .card .bd{ padding: 14px; }
-    .tabs{ display:flex; gap:8px; flex-wrap:wrap; }
-    .tab{
+    #calcRoot .card .bd{ padding: 14px; }
+    #calcRoot .tabs{ display:flex; gap:8px; flex-wrap:wrap; }
+    #calcRoot .tab{
       appearance:none;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(0,0,0,.16);
@@ -169,60 +175,60 @@ h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
       font-weight:800;
       font-size: 13px;
     }
-    .tab[aria-selected="true"]{
+    #calcRoot .tab[aria-selected="true"]{
       border-color: rgba(155,92,255,.55);
       box-shadow: 0 0 0 3px rgba(155,92,255,.15) inset;
       background: rgba(155,92,255,.14);
     }
-    .grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    @media (max-width: 520px){ .grid{grid-template-columns:1fr} }
-    label{ display:block; font-size:12px; color: var(--muted); margin: 0 0 6px; }
-    input, select, textarea{
+    #calcRoot .grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media (max-width: 520px){ #calcRoot .grid{grid-template-columns:1fr} }
+    #calcRoot label{ display:block; font-size:12px; color: var(--muted); margin: 0 0 6px; }
+    #calcRoot input, #calcRoot select, #calcRoot textarea{
       width:100%; padding: 10px 10px;
       border-radius: 12px; border:1px solid rgba(255,255,255,.10);
       background: rgba(0,0,0,.22); color: var(--text); outline:none;
     }
-    textarea{ min-height: 84px; resize: vertical; }
-    input:focus, select:focus, textarea:focus{
+    #calcRoot textarea{ min-height: 84px; resize: vertical; }
+    #calcRoot input:focus, #calcRoot select:focus, #calcRoot textarea:focus{
       border-color: rgba(155,92,255,.55);
       box-shadow: 0 0 0 3px rgba(155,92,255,.14);
     }
-    .row{ display:flex; gap:10px; flex-wrap:wrap; align-items:flex-end; }
-    .row > div{ flex: 1 1 140px; }
-    .muted{ color: var(--muted); font-size: 12px; }
-    .small{ font-size: 12px; }
-    .kpi{
+    #calcRoot .row{ display:flex; gap:10px; flex-wrap:wrap; align-items:flex-end; }
+    #calcRoot .row > div{ flex: 1 1 140px; }
+    #calcRoot .muted{ color: var(--muted); font-size: 12px; }
+    #calcRoot .small{ font-size: 12px; }
+    #calcRoot .kpi{
       display:grid; grid-template-columns: 1fr 1fr;
       gap:10px; margin-top: 10px;
     }
-    .kpi .box{
+    #calcRoot .kpi .box{
       border:1px solid rgba(255,255,255,.08);
       border-radius: 14px;
       padding: 10px 12px;
       background: rgba(0,0,0,.16);
     }
-    .kpi .t{ color: var(--muted); font-size:12px; }
-    .kpi .v{ font-family: var(--mono); font-size: 16px; font-weight:900; margin-top:4px; }
-    .hr{ height:1px; background: rgba(255,255,255,.06); margin: 14px 0; }
-    .btns{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 10px; }
-    button.action{
+    #calcRoot .kpi .t{ color: var(--muted); font-size:12px; }
+    #calcRoot .kpi .v{ font-family: var(--mono); font-size: 16px; font-weight:900; margin-top:4px; }
+    #calcRoot .hr{ height:1px; background: rgba(255,255,255,.06); margin: 14px 0; }
+    #calcRoot .btns{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 10px; }
+    #calcRoot button.action{
       appearance:none; border:1px solid rgba(255,255,255,.10);
       background: rgba(0,0,0,.20); color: var(--text);
       padding: 10px 12px; border-radius: 14px;
       cursor:pointer; font-weight: 900; font-size: 13px;
     }
-    .action:disabled{ opacity:.45; cursor:not-allowed; filter: grayscale(25%); }
-    .action:disabled:hover{ transform:none; }
-    button.action.primary{ border-color: rgba(155,92,255,.55); background: rgba(155,92,255,.18); }
-    button.action.good{ border-color: rgba(61,220,151,.40); background: rgba(61,220,151,.14); }
-    button.action.warn{ border-color: rgba(255,204,102,.55); background: rgba(255,204,102,.12); }
-    button.action:active{ transform: translateY(1px); }
-    .preview{
+    #calcRoot .action:disabled{ opacity:.45; cursor:not-allowed; filter: grayscale(25%); }
+    #calcRoot .action:disabled:hover{ transform:none; }
+    #calcRoot button.action.primary{ border-color: rgba(155,92,255,.55); background: rgba(155,92,255,.18); }
+    #calcRoot button.action.good{ border-color: rgba(61,220,151,.40); background: rgba(61,220,151,.14); }
+    #calcRoot button.action.warn{ border-color: rgba(255,204,102,.55); background: rgba(255,204,102,.12); }
+    #calcRoot button.action:active{ transform: translateY(1px); }
+    #calcRoot .preview{
       background: #ffffff; color:#0b0f17;
       border-radius: 14px; border: 1px solid rgba(0,0,0,.08);
       padding: 12px; min-height: 240px; overflow:auto;
     }
-    .codebox{
+    #calcRoot .codebox{
       width:100%;
       min-height: 240px;
       font-family: var(--mono);
@@ -237,7 +243,7 @@ h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
       padding: 10px;
       outline:none;
     }
-    .toast{
+    #calcRoot .toast{
       position: fixed; left:50%; bottom: 16px; transform: translateX(-50%);
       background: rgba(17,24,39,.92);
       border:1px solid rgba(255,255,255,.10);
@@ -246,8 +252,8 @@ h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
       font-size: 13px; box-shadow: var(--shadow);
       opacity: 0; pointer-events:none; transition: opacity .18s ease;
     }
-    .toast.show{ opacity: 1; }
-    .note{
+    #calcRoot .toast.show{ opacity: 1; }
+    #calcRoot .note{
       border-left: 3px solid rgba(255,204,102,.7);
       background: rgba(255,204,102,.10);
       padding: 10px 12px;
@@ -255,30 +261,30 @@ h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
       font-size: 12px;
       color: var(--text);
     }
-    .tbl{ width:100%; border-collapse: collapse; font-size: 12px; }
-    .tbl td,.tbl th{ border:1px solid rgba(0,0,0,.18); padding: 6px 8px; vertical-align: top; }
-    .tbl th{ background: rgba(0,0,0,.05); text-align:left; }
-    .right{ text-align:right; }
-    .badge{
+    #calcRoot .tbl{ width:100%; border-collapse: collapse; font-size: 12px; }
+    #calcRoot .tbl td, #calcRoot .tbl th{ border:1px solid rgba(0,0,0,.18); padding: 6px 8px; vertical-align: top; }
+    #calcRoot .tbl th{ background: rgba(0,0,0,.05); text-align:left; }
+    #calcRoot .right{ text-align:right; }
+    #calcRoot .badge{
       display:inline-block; font-size:11px;
       padding: 2px 8px; border-radius: 999px;
       border:1px solid rgba(0,0,0,.18);
       background: rgba(0,0,0,.04);
       margin-left:6px;
     }
-    .hidden{ display:none !important; }
-    code{ font-family: var(--mono); font-size: 12px; }
+    #calcRoot .hidden{ display:none !important; }
+    #calcRoot code{ font-family: var(--mono); font-size: 12px; }
   
     /* --- PAX dynamic fields --- */
-    .qtywrap{ display:none !important; }
-    .paxBox{
+    #calcRoot .qtywrap{ display:none !important; }
+    #calcRoot .paxBox{
       border:1px solid rgba(255,255,255,.08);
       border-radius: 14px;
       background: rgba(0,0,0,.14);
       padding: 10px;
       margin-top: 10px;
     }
-    .paxSecTitle{
+    #calcRoot .paxSecTitle{
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -286,36 +292,36 @@ h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
       font-weight:700;
       margin: 6px 0 8px;
     }
-    .paxRow{
+    #calcRoot .paxRow{
       display:grid;
       grid-template-columns: 1fr 220px;
       gap:10px;
       padding: 6px 0;
       border-bottom:1px dashed rgba(255,255,255,.08);
     }
-    .paxRow:last-child{ border-bottom:none; }
-    .paxRow label{ margin:0 0 4px; }
-    .paxTag{
+    #calcRoot .paxRow:last-child{ border-bottom:none; }
+    #calcRoot .paxRow label{ margin:0 0 4px; }
+    #calcRoot .paxTag{
       font-family: var(--mono);
       font-size: 12px;
       color: var(--muted);
       font-weight:600;
     }
-    .paxHint{
+    #calcRoot .paxHint{
       margin-top:8px;
       font-size: 12px;
       color: var(--muted);
       line-height: 1.35;
     }
     @media (max-width: 720px){
-      .paxRow{ grid-template-columns: 1fr; }
+      #calcRoot .paxRow{ grid-template-columns: 1fr; }
     }
 
   
 
-    .topRow{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
-    .themeCtl{ margin-left:auto; }
-    .themeCtl{
+    #calcRoot .topRow{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+    #calcRoot .themeCtl{ margin-left:auto; }
+    #calcRoot .themeCtl{
       display:flex; align-items:center; gap:10px;
       padding: 8px 10px;
       border-radius: 999px;
@@ -323,18 +329,18 @@ h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
       border: 1px solid rgba(255,255,255,.14);
       box-shadow: 0 8px 22px rgba(0,0,0,.18);
     }
-    :root[data-theme="light"] .themeCtl{
+    #calcRoot[data-theme="light"] .themeCtl{
       background: rgba(15,23,42,.04);
       border-color: rgba(15,23,42,.16);
       box-shadow: 0 10px 22px rgba(2,6,23,.10);
     }
-    .themeCtl label{
+    #calcRoot .themeCtl label{
       font-size:12px;
       color: var(--muted);
       font-weight:900;
       letter-spacing:.2px;
     }
-    .themeIcon{
+    #calcRoot .themeIcon{
       width:28px; height:28px;
       display:inline-flex; align-items:center; justify-content:center;
       border-radius: 999px;
@@ -343,11 +349,11 @@ h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
       font-size: 14px;
       line-height: 1;
     }
-    :root[data-theme="light"] .themeIcon{
+    #calcRoot[data-theme="light"] .themeIcon{
       background: rgba(15,23,42,.06);
       border-color: rgba(15,23,42,.16);
     }
-    .themeCtl select{
+    #calcRoot .themeCtl select{
       appearance: none;
       -webkit-appearance: none;
       -moz-appearance: none;
@@ -362,17 +368,17 @@ h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
       outline: none;
       position: relative;
     }
-    :root[data-theme="light"] .themeCtl select{
+    #calcRoot[data-theme="light"] .themeCtl select{
       background: rgba(255,255,255,.9);
       border-color: rgba(15,23,42,.16);
     }
-    .themeCtl select:focus{
+    #calcRoot .themeCtl select:focus{
       box-shadow: 0 0 0 3px rgba(155,92,255,.30);
       border-color: rgba(155,92,255,.55);
     }
     /* setinha */
-    .themeCtl{ position: relative; }
-    .themeCtl select{
+    #calcRoot .themeCtl{ position: relative; }
+    #calcRoot .themeCtl select{
       background-image:
         linear-gradient(45deg, transparent 50%, rgba(255,255,255,.85) 50%),
         linear-gradient(135deg, rgba(255,255,255,.85) 50%, transparent 50%),
@@ -387,22 +393,22 @@ h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
         1px 18px;
       background-repeat: no-repeat;
     }
-    :root[data-theme="light"] .themeCtl select{
+    #calcRoot[data-theme="light"] .themeCtl select{
       background-image:
         linear-gradient(45deg, transparent 50%, rgba(15,23,42,.85) 50%),
         linear-gradient(135deg, rgba(15,23,42,.85) 50%, transparent 50%),
         linear-gradient(to right, transparent, transparent);
     }
-.grid3{ display:grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 10px; }
-    @media (max-width: 720px){ .grid3{ grid-template-columns: 1fr; } }
+#calcRoot .grid3{ display:grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 10px; }
+    @media (max-width: 720px){ #calcRoot .grid3{ grid-template-columns: 1fr; } }
 
-    :root[data-theme="light"] input::placeholder, :root[data-theme="light"] textarea::placeholder{ color:#64748b; opacity:1; }
+    #calcRoot[data-theme="light"] input::placeholder, #calcRoot[data-theme="light"] textarea::placeholder{ color:#64748b; opacity:1; }
 
-    .rentCtl{ display:flex; align-items:center; gap:8px; }
-    .rentCtl .chk{ display:flex; align-items:center; gap:8px; user-select:none; }
-    .rentCtl input[type="checkbox"]{ width:16px; height:16px; }
+    #calcRoot .rentCtl{ display:flex; align-items:center; gap:8px; }
+    #calcRoot .rentCtl .chk{ display:flex; align-items:center; gap:8px; user-select:none; }
+    #calcRoot .rentCtl input[type="checkbox"]{ width:16px; height:16px; }
 
-    .subHd{
+    #calcRoot .subHd{
       padding: 0 14px 12px;
       display:flex;
       align-items:center;
@@ -411,13 +417,13 @@ h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
       flex-wrap:wrap;
       border-bottom:1px solid rgba(255,255,255,.06);
     }
-    :root[data-theme="light"] .subHd{ border-bottom:1px solid rgba(15,23,42,.10); }
-    .subHd .muted{ font-size:12px; }
+    #calcRoot[data-theme="light"] .subHd{ border-bottom:1px solid rgba(15,23,42,.10); }
+    #calcRoot .subHd .muted{ font-size:12px; }
 
 
     /* Rentabilização (uso interno) */
-    .rentSection{ margin-top: 10px; }
-    .rentToggle{
+    #calcRoot .rentSection{ margin-top: 10px; }
+    #calcRoot .rentToggle{
       display: inline-flex; align-items: center; gap: 10px;
       padding: 10px 12px;
       border-radius: 14px;
@@ -426,20 +432,20 @@ h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
       background: rgba(34,197,94,.14);
       border: 1px solid rgba(34,197,94,.28);
     }
-    .rentToggle input{ width: 16px; height: 16px; }
-    .rentToggle span{
+    #calcRoot .rentToggle input{ width: 16px; height: 16px; }
+    #calcRoot .rentToggle span{
       font-weight: 800;
       color: rgba(134,239,172,1);
     }
-    :root[data-theme="light"] .rentToggle{
+    #calcRoot[data-theme="light"] .rentToggle{
       background: rgba(34,197,94,.10);
       border-color: rgba(34,197,94,.22);
     }
-    :root[data-theme="light"] .rentToggle span{
+    #calcRoot[data-theme="light"] .rentToggle span{
       color: rgba(21,128,61,1);
     }
 
-    .rentHint{
+    #calcRoot .rentHint{
       margin: 6px 0 0 2px;
       font-size: 11px;
       color: var(--muted);
@@ -448,10 +454,10 @@ h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
       font-style: italic;
     }
 
-    .rentDivider{ margin: 10px 0 0; }
+    #calcRoot .rentDivider{ margin: 10px 0 0; }
 
 
-    .rentPanel{
+    #calcRoot .rentPanel{
       display:none;
       margin: 10px 0 4px;
       padding: 12px 12px;
@@ -460,43 +466,43 @@ h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
       border: 1px solid rgba(255,255,255,.10);
       border-left: 3px solid rgba(34,197,94,.40);
     }
-    :root[data-theme="light"] .rentPanel{
+    #calcRoot[data-theme="light"] .rentPanel{
       background: rgba(15,23,42,.03);
       border-color: rgba(15,23,42,.12);
       border-left-color: rgba(21,128,61,.35);
     }
-    .rentRow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:10px; }
-    .rentSection{ margin-top:10px; }
-    .rentChk{ display:flex; gap:8px; align-items:center; margin:8px 0 8px; }
-    .rentBlock{ border:1px dashed rgba(255,255,255,.18); border-radius:12px; padding:10px; margin-bottom:10px; }
-    body.theme-light .rentBlock{ border-color: rgba(0,0,0,.18); }
-    .rentBlockHdr{ font-weight:800; margin-bottom:8px; font-size:12px; color: var(--text); opacity:.95; }
+    #calcRoot .rentRow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:10px; }
+    #calcRoot .rentSection{ margin-top:10px; }
+    #calcRoot .rentChk{ display:flex; gap:8px; align-items:center; margin:8px 0 8px; }
+    #calcRoot .rentBlock{ border:1px dashed rgba(255,255,255,.18); border-radius:12px; padding:10px; margin-bottom:10px; }
+    #calcRoot.theme-light .rentBlock{ border-color: rgba(0,0,0,.18); }
+    #calcRoot .rentBlockHdr{ font-weight:800; margin-bottom:8px; font-size:12px; color: var(--text); opacity:.95; }
 
-    .rentOpts{ display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
-    .rentOpts label{ display:flex; gap:8px; align-items:center; font-size:13px; }
-    .rentTitle{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
-    .rentTitle b{ color: var(--text); }
-    .rentMuted{ color: var(--muted); font-size:12px; }
+    #calcRoot .rentOpts{ display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
+    #calcRoot .rentOpts label{ display:flex; gap:8px; align-items:center; font-size:13px; }
+    #calcRoot .rentTitle{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+    #calcRoot .rentTitle b{ color: var(--text); }
+    #calcRoot .rentMuted{ color: var(--muted); font-size:12px; }
 
 
-    .rentSection input[readonly]{
+    #calcRoot .rentSection input[readonly]{
       background: rgba(0,0,0,.14);
       border-style: dashed;
       opacity: .92;
     }
-    :root[data-theme="light"] .rentSection input[readonly]{
+    #calcRoot[data-theme="light"] .rentSection input[readonly]{
       background: rgba(15,23,42,.04);
     }
 
     /* ====== Visual cues (Cálculo / Rentabilização / CCO) ====== */
-    :root{
+    #calcRoot{
       --calc:#38bdf8;   /* cálculo */
       --rent:#22c55e;   /* rentabilização */
       --cco:#a78bfa;    /* CCO / RF */
       --sys:#94a3b8;    /* utilitários */
     }
-    .legend{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
-    .badge{
+    #calcRoot .legend{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+    #calcRoot .badge{
       display:inline-flex; align-items:center; gap:8px;
       padding: 6px 10px; border-radius: 999px;
       font-size: 12px; font-weight: 900; letter-spacing:.2px;
@@ -504,85 +510,85 @@ h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
       background: rgba(0,0,0,.18);
       color: var(--text);
     }
-    .badge::before{ content:""; width:10px; height:10px; border-radius:999px; display:inline-block; }
-    .badge--calc::before{ background: var(--calc); box-shadow: 0 0 0 3px rgba(56,189,248,.18); }
-    .badge--rent::before{ background: var(--rent); box-shadow: 0 0 0 3px rgba(34,197,94,.18); }
-    .badge--cco::before{  background: var(--cco);  box-shadow: 0 0 0 3px rgba(167,139,250,.18); }
+    #calcRoot .badge::before{ content:""; width:10px; height:10px; border-radius:999px; display:inline-block; }
+    #calcRoot .badge--calc::before{ background: var(--calc); box-shadow: 0 0 0 3px rgba(56,189,248,.18); }
+    #calcRoot .badge--rent::before{ background: var(--rent); box-shadow: 0 0 0 3px rgba(34,197,94,.18); }
+    #calcRoot .badge--cco::before{  background: var(--cco);  box-shadow: 0 0 0 3px rgba(167,139,250,.18); }
 
     /* Section accents */
-    .card.calcCard{ position:relative; }
-    .card.calcCard::before{
+    #calcRoot .card.calcCard{ position:relative; }
+    #calcRoot .card.calcCard::before{
       content:""; position:absolute; left:0; right:0; top:0; height:3px;
       background: linear-gradient(90deg, rgba(56,189,248,.85), rgba(56,189,248,.15), transparent 70%);
     }
-    .card.outputsCard{ position:relative; }
-    .card.outputsCard::before{
+    #calcRoot .card.outputsCard{ position:relative; }
+    #calcRoot .card.outputsCard::before{
       content:""; position:absolute; left:0; right:0; top:0; height:3px;
       background: linear-gradient(90deg, rgba(167,139,250,.85), rgba(167,139,250,.15), transparent 70%);
     }
-    .rentPanel{
+    #calcRoot .rentPanel{
       border-left: 4px solid rgba(34,197,94,.55);
       background: linear-gradient(180deg, rgba(34,197,94,.08), rgba(255,255,255,.02));
     }
 
     /* Output titles + tags */
-    .outTitle{ display:flex; align-items:flex-start; gap:8px; flex-wrap:wrap; }
-    .tag{
+    #calcRoot .outTitle{ display:flex; align-items:flex-start; gap:8px; flex-wrap:wrap; }
+    #calcRoot .tag{
       display:inline-flex; align-items:center; justify-content:center;
       padding: 4px 8px; border-radius: 999px;
       font-size: 11px; font-weight: 900; letter-spacing:.35px;
       border: 1px solid rgba(255,255,255,.10);
       background: rgba(0,0,0,.16);
     }
-    .tag--agency{ color: #cffafe; border-color: rgba(56,189,248,.40); background: rgba(56,189,248,.14); }
-    .tag--rent{   color: #dcfce7; border-color: rgba(34,197,94,.40);  background: rgba(34,197,94,.14); }
-    .tag--cco{    color: #ede9fe; border-color: rgba(167,139,250,.42); background: rgba(167,139,250,.16); }
-    .tag--sys{    color: #e2e8f0; border-color: rgba(148,163,184,.35); background: rgba(148,163,184,.12); }
+    #calcRoot .tag--agency{ color: #cffafe; border-color: rgba(56,189,248,.40); background: rgba(56,189,248,.14); }
+    #calcRoot .tag--rent{   color: #dcfce7; border-color: rgba(34,197,94,.40);  background: rgba(34,197,94,.14); }
+    #calcRoot .tag--cco{    color: #ede9fe; border-color: rgba(167,139,250,.42); background: rgba(167,139,250,.16); }
+    #calcRoot .tag--sys{    color: #e2e8f0; border-color: rgba(148,163,184,.35); background: rgba(148,163,184,.12); }
 
     /* Highlight areas */
-    #obsCode.codebox{
+    #calcRoot #obsCode.codebox{
       border-color: rgba(167,139,250,.45);
       background: rgba(167,139,250,.10);
     }
 /* Button flavors */
-    button.action.cco{ border-color: rgba(167,139,250,.55); background: rgba(167,139,250,.18); }
-    button.action.rent{ border-color: rgba(34,197,94,.45); background: rgba(34,197,94,.16); }
-    button.action.calc{ border-color: rgba(56,189,248,.45); background: rgba(56,189,248,.14); }
+    #calcRoot button.action.cco{ border-color: rgba(167,139,250,.55); background: rgba(167,139,250,.18); }
+    #calcRoot button.action.rent{ border-color: rgba(34,197,94,.45); background: rgba(34,197,94,.16); }
+    #calcRoot button.action.calc{ border-color: rgba(56,189,248,.45); background: rgba(56,189,248,.14); }
 
   
 /* Fallbacks caso classes não existam (não quebra nada) */
-[data-theme="light"] h1,[data-theme="light"] h2{color:#0f172a}
+#calcRoot[data-theme="light"] h1, #calcRoot[data-theme="light"] h2{color:#0f172a}
 
 /* NAC airline selector (GOL/LATAM/AZUL) */
-.airlineSelector{display:flex;gap:10px;flex-wrap:nowrap;margin-top:6px;padding:4px}
-.airBtn{flex:1 1 0;min-width:0;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 10px;height:52px;border-radius:14px;border:2px solid rgba(17,24,39,.14);background:#fff;cursor:pointer;user-select:none;transition:transform .02s ease, box-shadow .12s ease, border-color .12s ease, background-color .12s ease}
-.airBtn:hover{box-shadow:0 6px 18px rgba(17,24,39,.08);border-color:rgba(17,24,39,.22)}
-.airBtn:active{transform:scale(.99)}
-.airBtn.active{border-color:#7c3aed;background:rgba(124,58,237,.06);box-shadow:0 0 0 4px rgba(124,58,237,.18), 0 10px 26px rgba(124,58,237,.22);transform:translateY(-1px) scale(1.01)}
-.airBtn.active .airCode{opacity:1;color:#4c1d95}
-.airBtn.active .airLogo{filter:drop-shadow(0 2px 6px rgba(17,24,39,.18))}
-.airBtn.active:active{transform:translateY(-1px) scale(.99)}
-.airBtn:focus-visible{outline:3px solid rgba(124,58,237,.35);outline-offset:2px}
-.airLogo{display:inline-flex;align-items:center;justify-content:center;height:30px;width:auto;max-width:86px;border-radius:10px;overflow:hidden;background:transparent}
-.airLogo img{display:block;height:30px;width:auto}
-.airCode{font-weight:900;font-size:12px;color:#111827;opacity:.8}
+#calcRoot .airlineSelector{display:flex;gap:10px;flex-wrap:nowrap;margin-top:6px;padding:4px}
+#calcRoot .airBtn{flex:1 1 0;min-width:0;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 10px;height:52px;border-radius:14px;border:2px solid rgba(17,24,39,.14);background:#fff;cursor:pointer;user-select:none;transition:transform .02s ease, box-shadow .12s ease, border-color .12s ease, background-color .12s ease}
+#calcRoot .airBtn:hover{box-shadow:0 6px 18px rgba(17,24,39,.08);border-color:rgba(17,24,39,.22)}
+#calcRoot .airBtn:active{transform:scale(.99)}
+#calcRoot .airBtn.active{border-color:#7c3aed;background:rgba(124,58,237,.06);box-shadow:0 0 0 4px rgba(124,58,237,.18), 0 10px 26px rgba(124,58,237,.22);transform:translateY(-1px) scale(1.01)}
+#calcRoot .airBtn.active .airCode{opacity:1;color:#4c1d95}
+#calcRoot .airBtn.active .airLogo{filter:drop-shadow(0 2px 6px rgba(17,24,39,.18))}
+#calcRoot .airBtn.active:active{transform:translateY(-1px) scale(.99)}
+#calcRoot .airBtn:focus-visible{outline:3px solid rgba(124,58,237,.35);outline-offset:2px}
+#calcRoot .airLogo{display:inline-flex;align-items:center;justify-content:center;height:30px;width:auto;max-width:86px;border-radius:10px;overflow:hidden;background:transparent}
+#calcRoot .airLogo img{display:block;height:30px;width:auto}
+#calcRoot .airCode{font-weight:900;font-size:12px;color:#111827;opacity:.8}
 
 
 
 /* --- Theme control: basic (no pill / no custom arrow) --- */
-.themeCtl{
+#calcRoot .themeCtl{
   background: transparent !important;
   border: 0 !important;
   box-shadow: none !important;
   padding: 0 !important;
   border-radius: 0 !important;
 }
-.themeCtl label{
+#calcRoot .themeCtl label{
   font-size: 13px !important;
   font-weight: 700 !important;
   color: var(--muted) !important;
 }
-.themeCtl select{
+#calcRoot .themeCtl select{
   appearance: auto !important;
   -webkit-appearance: auto !important;
   -moz-appearance: auto !important;
@@ -600,12 +606,12 @@ h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
   background: rgba(255,255,255,.06) !important;
   color: var(--text) !important;
 }
-.themeCtl select:focus{
+#calcRoot .themeCtl select:focus{
   outline: none !important;
   box-shadow: 0 0 0 3px rgba(155,92,255,.25) !important;
   border-color: rgba(155,92,255,.55) !important;
 }
-:root[data-theme="light"] .themeCtl select{
+#calcRoot[data-theme="light"] .themeCtl select{
   border-color: rgba(15,23,42,.20) !important;
   background: #ffffff !important;
   color: #0f172a !important;
@@ -614,11 +620,11 @@ h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
 
 
 /* Theme select dropdown options legibility (dark) */
-:root[data-theme="dark"] .themeCtl select option{
+#calcRoot[data-theme="dark"] .themeCtl select option{
   background: #0b1020;
   color: #e9eefc;
 }
-:root[data-theme="light"] .themeCtl select option{
+#calcRoot[data-theme="light"] .themeCtl select option{
   background: #ffffff;
   color: #0f172a;
 }
@@ -629,14 +635,14 @@ h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
    - mais contraste para ver o selecionado
    - estilo tipo "segmented control"
    ========================= */
-:root[data-theme="light"] .card.calcCard .tabs{
+#calcRoot[data-theme="light"] .card.calcCard .tabs{
   background: rgba(124,58,237,.08);
   border: 1px solid rgba(124,58,237,.18);
   padding: 6px;
   border-radius: 999px;
   gap: 6px;
 }
-:root[data-theme="light"] .card.calcCard .tabs .tab{
+#calcRoot[data-theme="light"] .card.calcCard .tabs .tab{
   border: 1px solid transparent;
   background: transparent;
   color: #0f172a;
@@ -644,16 +650,16 @@ h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
   padding: 9px 15px;
   border-radius: 999px;
 }
-:root[data-theme="light"] .card.calcCard .tabs .tab:hover{
+#calcRoot[data-theme="light"] .card.calcCard .tabs .tab:hover{
   background: rgba(124,58,237,.10);
 }
-:root[data-theme="light"] .card.calcCard .tabs .tab[aria-selected="true"]{
+#calcRoot[data-theme="light"] .card.calcCard .tabs .tab[aria-selected="true"]{
   background: #7c3aed;
   color: #ffffff;
   border-color: rgba(109,40,217,.65);
   box-shadow: 0 10px 22px rgba(124,58,237,.22);
 }
-:root[data-theme="light"] .card.calcCard .tabs .tab:focus-visible{
+#calcRoot[data-theme="light"] .card.calcCard .tabs .tab:focus-visible{
   outline: none;
   box-shadow: 0 0 0 4px rgba(124,58,237,.22);
 }
@@ -661,31 +667,31 @@ h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
 
 
 /* ===== Saídas em abas ===== */
-.outputsTabs{display:grid;grid-template-columns:repeat(4,minmax(96px,1fr));gap:10px;margin:6px 0 12px}
-@media (max-width:760px){.outputsTabs{grid-template-columns:repeat(2,minmax(96px,1fr));}}
-.outputTabBtn{
+#calcRoot .outputsTabs{display:grid;grid-template-columns:repeat(4,minmax(96px,1fr));gap:10px;margin:6px 0 12px}
+@media (max-width:760px){#calcRoot .outputsTabs{grid-template-columns:repeat(2,minmax(96px,1fr));}}
+#calcRoot .outputTabBtn{
   appearance:none;display:inline-flex;align-items:center;justify-content:center;text-align:center;line-height:1.1;
   border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.16);color:var(--text);
   padding:9px 14px;border-radius:16px;cursor:pointer;font-weight:850;font-size:12.5px;min-height:46px;min-width:0;
   box-shadow:0 6px 16px rgba(2,6,23,.12);
   transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease, background-color .12s ease;
 }
-.outputTabBtn:hover{transform:translateY(-1px);box-shadow:0 10px 20px rgba(2,6,23,.16)}
-.outputTabBtn[aria-selected="true"]{
+#calcRoot .outputTabBtn:hover{transform:translateY(-1px);box-shadow:0 10px 20px rgba(2,6,23,.16)}
+#calcRoot .outputTabBtn[aria-selected="true"]{
   border-color: rgba(155,92,255,.55);
   box-shadow: 0 0 0 2px rgba(155,92,255,.15) inset, 0 10px 20px rgba(76,29,149,.14);
   background: rgba(155,92,255,.14);
 }
-.outputPanel{display:none}
-.outputPanel.is-active{display:block}
-.outputEmpty{border:1px dashed rgba(255,255,255,.14);border-radius:14px;padding:16px;background:rgba(0,0,0,.10);color:var(--muted)}
-.agencyOptBox{margin-top:10px;padding:10px 12px;border-radius:12px;border:1px dashed rgba(155,92,255,.28);background:rgba(155,92,255,.08)}
-.agencyOpt{display:flex;align-items:center;gap:8px;cursor:pointer;margin:0;font-size:13px;color:var(--text);font-weight:700}
-.agencyOpt input[type="checkbox"]{width:16px;height:16px}
-.outputsCard .hd{padding:14px 16px 8px}
-.outputsCard .bd{padding:10px 16px 16px}
-.outputsCard .btns{align-items:stretch;gap:10px;margin-top:12px}
-.outputsCard .btns .action{
+#calcRoot .outputPanel{display:none}
+#calcRoot .outputPanel.is-active{display:block}
+#calcRoot .outputEmpty{border:1px dashed rgba(255,255,255,.14);border-radius:14px;padding:16px;background:rgba(0,0,0,.10);color:var(--muted)}
+#calcRoot .agencyOptBox{margin-top:10px;padding:10px 12px;border-radius:12px;border:1px dashed rgba(155,92,255,.28);background:rgba(155,92,255,.08)}
+#calcRoot .agencyOpt{display:flex;align-items:center;gap:8px;cursor:pointer;margin:0;font-size:13px;color:var(--text);font-weight:700}
+#calcRoot .agencyOpt input[type="checkbox"]{width:16px;height:16px}
+#calcRoot .outputsCard .hd{padding:14px 16px 8px}
+#calcRoot .outputsCard .bd{padding:10px 16px 16px}
+#calcRoot .outputsCard .btns{align-items:stretch;gap:10px;margin-top:12px}
+#calcRoot .outputsCard .btns .action{
   flex:1 1 220px;
   min-height:48px;
   display:inline-flex;
@@ -698,22 +704,54 @@ h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
   box-shadow:0 6px 16px rgba(2,6,23,.10);
   transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease, background-color .12s ease;
 }
-.outputsCard .btns .action:hover{transform:translateY(-1px);box-shadow:0 10px 20px rgba(2,6,23,.14)}
-.outputsCard .preview,
-.outputsCard .codebox{border-radius:16px}
-.outputsCard .tag{font-size:12px;padding:7px 12px}
-#previewHint{margin:2px 0 0;line-height:1.45}
-.outTitle{line-height:1.45;font-size:12.5px}
-:root[data-theme="light"] .outputTabBtn{border:1px solid rgba(15,23,42,.12);background:#fff;color:#0f172a;box-shadow:0 5px 14px rgba(15,23,42,.05)}
-:root[data-theme="light"] .outputTabBtn:hover{box-shadow:0 10px 20px rgba(15,23,42,.08)}
-:root[data-theme="light"] .outputTabBtn[aria-selected="true"]{border-color: rgba(124,58,237,.50);background: rgba(124,58,237,.10);color:#111827;box-shadow: 0 0 0 2px rgba(124,58,237,.16) inset, 0 10px 20px rgba(124,58,237,.10)}
-:root[data-theme="light"] .outputsCard .btns .action{box-shadow:0 5px 14px rgba(15,23,42,.05)}
-:root[data-theme="light"] .outputsCard .btns .action:hover{box-shadow:0 10px 20px rgba(15,23,42,.08)}
-:root[data-theme="light"] .outputEmpty{border-color:rgba(15,23,42,.14);background:rgba(15,23,42,.03)}
-:root[data-theme="light"] .agencyOptBox{border-color:rgba(124,58,237,.24);background:rgba(124,58,237,.06)}
+#calcRoot .outputsCard .btns .action:hover{transform:translateY(-1px);box-shadow:0 10px 20px rgba(2,6,23,.14)}
+#calcRoot .outputsCard .preview, #calcRoot .outputsCard .codebox{border-radius:16px}
+#calcRoot .outputsCard .tag{font-size:12px;padding:7px 12px}
+#calcRoot #previewHint{margin:2px 0 0;line-height:1.45}
+#calcRoot .outTitle{line-height:1.45;font-size:12.5px}
+#calcRoot[data-theme="light"] .outputTabBtn{border:1px solid rgba(15,23,42,.12);background:#fff;color:#0f172a;box-shadow:0 5px 14px rgba(15,23,42,.05)}
+#calcRoot[data-theme="light"] .outputTabBtn:hover{box-shadow:0 10px 20px rgba(15,23,42,.08)}
+#calcRoot[data-theme="light"] .outputTabBtn[aria-selected="true"]{border-color: rgba(124,58,237,.50);background: rgba(124,58,237,.10);color:#111827;box-shadow: 0 0 0 2px rgba(124,58,237,.16) inset, 0 10px 20px rgba(124,58,237,.10)}
+#calcRoot[data-theme="light"] .outputsCard .btns .action{box-shadow:0 5px 14px rgba(15,23,42,.05)}
+#calcRoot[data-theme="light"] .outputsCard .btns .action:hover{box-shadow:0 10px 20px rgba(15,23,42,.08)}
+#calcRoot[data-theme="light"] .outputEmpty{border-color:rgba(15,23,42,.14);background:rgba(15,23,42,.03)}
+#calcRoot[data-theme="light"] .agencyOptBox{border-color:rgba(124,58,237,.24);background:rgba(124,58,237,.06)}
+
+
+    /* ===== blindagem contra o CSS global do site (exclusivo da versao Intranet) ===== */
+    #calcRoot{ color: var(--text); font-family: var(--sans); text-align: left; }
+    #calcRoot h1, #calcRoot h2{ font-family: var(--sans); color: var(--text); }
+    #calcRoot label{ display: block; }
+    #calcRoot input, #calcRoot select, #calcRoot textarea, #calcRoot button{
+      font-family: var(--sans);
+      font-size: 100%;
+      line-height: normal;
+    }
+    #calcRoot .codebox, #calcRoot .kpi .v{ font-family: var(--mono); }
+    #calcRoot table{ border-collapse: collapse; }
+    /* o preview do e-mail precisa continuar sempre claro, em qualquer tema */
+    #calcRoot .preview{ background: #ffffff; color: #0b0f17; }
+    /* o <header> da calculadora nao e o header do site: anula sticky/fixed/fundo do tema */
+    #calcRoot header{ position: static; top: auto; width: auto; background: transparent; box-shadow: none; z-index: auto; }
+    /* selo de versao: na Intranet fica no fim da calculadora, nao flutuando sobre a pagina */
+    #calcRoot .app-version-footer{ position: static; display: inline-block; margin: 6px 18px 10px; backdrop-filter: none; }
+    /* ===== fim da blindagem ===== */
+
+    /* ===== ajuste: abas Nacional/Internacional quebrando em 2 linhas =====
+       .hd e .tabs sao flex sem prioridade definida; quando a largura disponivel
+       na Intranet fica mais estreita que no site original (por causa da coluna
+       lateral de botoes), .tabs encolhe antes do previsto e empilha os botoes.
+       Aqui travamos o .tabs para nao encolher e deixamos o .pill (Calculando...)
+       quebrar linha primeiro, se precisar. */
+    #calcRoot .card > .hd{ flex-wrap: wrap; }
+    #calcRoot .tabs{ flex: 0 0 auto; flex-wrap: nowrap; }
+    #calcRoot .tab{ flex: 0 0 auto; white-space: nowrap; }
+    /* ===== fim do ajuste ===== */
+
+    /* ===== escala da calculadora dentro da Intranet (equivale a zoom 90% do navegador) ===== */
+    #calcRoot{ zoom: 0.9; }
 </style>
-</head>
-<body>
+<div id="calcRoot" data-theme="dark">
   <header>
     <div class="topRow">
       <div class="brand">
@@ -948,70 +986,7 @@ h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
             
             </div>
 
-            <input id="cia" list="ciaList" placeholder="Ex.: LA / G3 / AD / TP..." />
-            <datalist id="ciaList">
-                <option value="AA">American Airlines</option>
-                <option value="AC">Air Canada</option>
-                <option value="AF">Air France</option>
-                <option value="AM">Aeromexico</option>
-                <option value="AR">Aerolineas Argentinas</option>
-                <option value="AV">Avianca</option>
-                <option value="AZ">ITA Airways</option>
-                <option value="BA">British Airways</option>
-                <option value="CA">Air China</option>
-                <option value="CM">Copa Airlines</option>
-                <option value="CX">Cathay Pacific</option>
-                <option value="DL">Delta Air Lines</option>
-                <option value="EK">Emirates</option>
-                <option value="ET">Ethiopian Airlines</option>
-                <option value="EY">Etihad Airways</option>
-                <option value="G3">GOL</option>
-                <option value="GP">APG Airlines</option>
-                <option value="H1">Hahn Air Systems</option>
-                <option value="HR">Hahn Air</option>
-                <option value="H2">Sky Airline</option>
-                <option value="IB">Iberia</option>
-                <option value="JA">JetSmart</option>
-                <option value="JL">Japan Airlines</option>
-                <option value="KL">KLM</option>
-                <option value="KQ">Kenya Airways</option>
-                <option value="LA">LATAM</option>
-                <option value="LH">Lufthansa</option>
-                <option value="LY">El Al</option>
-                <option value="MU">China Eastern</option>
-                <option value="NH">ANA</option>
-                <option value="NZ">Air New Zealand</option>
-                <option value="OU">Croatia Airlines</option>
-                <option value="OS">Austrian Airlines</option>
-                <option value="QF">Qantas</option>
-                <option value="QR">Qatar Airways</option>
-                <option value="RK">Ryanair UK</option>
-                <option value="S4">Azores Airlines / SATA</option>
-                <option value="SA">South African Airways</option>
-                <option value="SK">SAS</option>
-                <option value="SQ">Singapore Airlines</option>
-                <option value="SV">Saudia</option>
-                <option value="TA">TACA</option>
-                <option value="TC">Air Tanzania</option>
-                <option value="TK">Turkish Airlines</option>
-                <option value="TP">TAP Air Portugal</option>
-                <option value="UA">United Airlines</option>
-                <option value="UX">Air Europa</option>
-                <option value="VA">Virgin Australia</option>
-                <option value="VS">Virgin Atlantic</option>
-                <option value="VN">Vietnam Airlines</option>
-                <option value="VY">Vueling</option>
-                <option value="W2">FlexFlight</option>
-                <option value="WB">RwandAir</option>
-                <option value="WY">Oman Air</option>
-                <option value="XL">LATAM Ecuador / legado</option>
-                <option value="XLM">Universal Assistance</option>
-                <option value="XQ">SunExpress</option>
-                <option value="7M">MAP Linhas Aéreas</option>
-                <option value="DT">TAAG Angola Airlines</option>
-                <option value="AT">Royal Air Maroc</option>
-                <option value="AD">Azul</option>
-            </datalist>
+            <input id="cia" placeholder="Ex.: LA / G3 / AD / TP..." />
 </div>
 <div class="grid3" style="grid-column: 1 / -1;">
             <div>
@@ -1308,55 +1283,18 @@ h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
 
           <div class="hr"></div>
 
-
-
-                    <div id="interFxqIntro" class="note" style="border-left:3px solid rgba(155,92,255,.65); background: rgba(155,92,255,.10);">
-            <div class="muted small"><b>Automático (Amadeus FXQ/FXO)</b> — fluxo: <b>1)</b> cole a máscara do PNR → <b>2)</b> cole o FXO por tipo → <b>3)</b> cole FA/FHE dos bilhetes. <b>CRR5 intocado.</b></div>
-            <div class="muted small" id="fxqStatus" style="margin-top:6px"></div>
-          </div>
+          <label>Bilhete original (opcional)</label>
+          <textarea id="inter_original" placeholder="Cole aqui dados do bilhete original"></textarea>
 
           <div class="hr"></div>
 
-          <label id="lbl_inter_voos">1) Itinerário / Máscara (cole o PNR)</label>
-          <textarea id="inter_voos" placeholder="Cole aqui RP/... com PAX + segmentos (Amadeus)."></textarea>
+          <label>Voos simulados (opcional)</label>
+          <textarea id="inter_voos" placeholder="Cole aqui os voos simulados (um por linha)"></textarea>
 
           <div class="hr"></div>
 
-          <div id="fxoWrap" class="hidden">
-            <div class="muted small"><b>2) Recálculo por tipo (FXO)</b> — cole o FXO (ou FXQ) de cada tipo abaixo. O sistema preenche Dif. tarifa, Multa e Dif. taxas automaticamente.</div>
-            <div class="hr"></div>
-
-            <div id="fxoBox_ADT_wrap" class="hidden">
-              <label>FXO (ADT)</label>
-              <textarea id="fxoBox_ADT" placeholder="Cole aqui o FXO do ADT"></textarea>
-              <div class="muted small" id="fxoBox_ADT_status" style="margin-top:6px"></div>
-            </div>
-
-            <div id="fxoBox_CHD_wrap" class="hidden">
-              <label>FXO (CHD)</label>
-              <textarea id="fxoBox_CHD" placeholder="Cole aqui o FXO do CHD"></textarea>
-              <div class="muted small" id="fxoBox_CHD_status" style="margin-top:6px"></div>
-            </div>
-
-            <div id="fxoBox_INF_wrap" class="hidden">
-              <label>FXO (INF)</label>
-              <textarea id="fxoBox_INF" placeholder="Cole aqui o FXO do INF"></textarea>
-              <div class="muted small" id="fxoBox_INF_status" style="margin-top:6px"></div>
-            </div>
-          </div>
-
-          <div id="manualInternoWrap">
-            <label>Cálculo (uso interno) — opcional</label>
-            <textarea id="inter_interno" placeholder="Cole aqui observações internas / máscara / prints (não enviar ao cliente se não quiser)"></textarea>
-          </div>
-
-          <div class="hr"></div>
-
-          <div id="ticketsWrap" class="hidden">
-            <label id="lbl_inter_original">3) Bilhetes (FA/FHE/TKT)</label>
-            <textarea id="inter_original" placeholder="Cole aqui FA/FHE ou máscara TKT (com /P1, /P2... quando houver)"></textarea>
-            <div class="muted small" id="ticketsStatus" style="margin-top:6px"></div>
-          </div>
+          <label>Cálculo (uso interno) — opcional</label>
+          <textarea id="inter_interno" placeholder="Cole aqui observações internas / máscara / prints (não enviar ao cliente se não quiser)"></textarea>
         </div>
 
         <div class="hr"></div>
@@ -1421,8 +1359,10 @@ h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
           <textarea id="raCode" class="codebox" style="min-height:96px" spellcheck="false" aria-label="CRR para reabrir cálculo"></textarea>
           <div class="btns" style="margin-top:10px">
             <button class="action" id="btnCarregarRACode">Carregar CRR</button>
+            <button class="action good" id="btnCopiarRegistro">Copiar linha pro registro</button>
           </div>
-          <div class="muted small" style="margin-top:8px">Se você colar um texto maior (ex.: a observação inteira do RF), o sistema tenta achar automaticamente o trecho <b>CRR5/CRR4/CRR2-...</b> (ou <b>CRR1/RA1</b> antigos).</div>
+          <div class="muted small" style="margin-top:8px">Se você colar um texto maior (ex.: a observação inteira do RF), o sistema tenta achar automaticamente o trecho <b>CRR4/CRR3/CRR2-...</b> (ou <b>CRR1/RA1</b> antigos).</div>
+          <div class="muted small" style="margin-top:4px">"Copiar linha pro registro" copia Data/Hora, LOC, Novo LOC e o CRR completo (separados por tabulação) — cole como nova linha na sua planilha de controle interno. Esse CRR completo não deve ser enviado à agência.</div>
         </div>
 
       </div>      </div>
@@ -1430,8 +1370,9 @@ h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
   </div>
 
   <div class="toast" id="toast">Copiado!</div>
-
-  <script>
+</div><!-- /#calcRoot -->
+<script>
+    const __calcRoot = () => document.getElementById("calcRoot") || document;
 
     const PAX_TYPES = ["ADT","CHD","INF"];
 
@@ -1971,11 +1912,6 @@ function fmtNumPT(n){
       const v = Number.isFinite(x) ? x : 0;
       return new Intl.NumberFormat("pt-BR", {minimumFractionDigits:2, maximumFractionDigits:2}).format(v);
     }
-function fmtNumPT4(n){
-      const x = Number(n);
-      const v = Number.isFinite(x) ? x : 0;
-      return new Intl.NumberFormat("pt-BR", {minimumFractionDigits:4, maximumFractionDigits:4}).format(v);
-    }
 
     function intVal(id){
       const v = parseInt(String(document.getElementById(id).value||"0").replace(/[^\d\-]/g,""),10);
@@ -2070,21 +2006,21 @@ function fmtNumPT4(n){
       const qty = {ADT:adt, CHD:chd, INF:inf};
 
       // Campos de valores (NAC / INTER)
-      for(const row of document.querySelectorAll(".paxTypeRow")){
+      for(const row of __calcRoot().querySelectorAll(".paxTypeRow")){
         const t = String(row.getAttribute("data-pax-type") || "").toUpperCase();
         const show = (qty[t] || 0) > 0;
         row.classList.toggle("hidden", !show);
       }
 
       // Rentabilização: esconder inputs de tipos não usados
-      for(const cell of document.querySelectorAll(".rentPaxCell")){
+      for(const cell of __calcRoot().querySelectorAll(".rentPaxCell")){
         const t = String(cell.getAttribute("data-pax-type") || "").toUpperCase();
         const show = (qty[t] || 0) > 0;
         cell.classList.toggle("hidden", !show);
       }
 
       // Ajusta colunas do grid da rent (evita “buracos”)
-      for(const grid of document.querySelectorAll('[data-role="rent-paid-grid"]')){
+      for(const grid of __calcRoot().querySelectorAll('[data-role="rent-paid-grid"]')){
         const visible = Array.from(grid.querySelectorAll(".rentPaxCell")).filter(el => !el.classList.contains("hidden"));
         const n = Math.max(1, visible.length);
         grid.style.gridTemplateColumns = `repeat(${n}, 1fr)`;
@@ -2323,7 +2259,7 @@ const store = getPaxStore();
     function getStatePayload(){
       // legado (CRR1/RA1): salva TODOS os campos (fica grande). Mantido só por compatibilidade.
       const data = { v: 1, mode: getActiveMode(), fields: {} };
-      for(const el of document.querySelectorAll("input, select, textarea")){
+      for(const el of __calcRoot().querySelectorAll("input, select, textarea")){
         if(!el.id) continue;
         if(el.id === "obsCode" || el.id === "raCode") continue;
         if(el.type === "checkbox"){ data.fields[el.id] = !!el.checked; }
@@ -2359,7 +2295,7 @@ const store = getPaxStore();
       const fields = {};
       // Para manter o CRR curto: não incluir campos gigantes (máscaras do GDS). Esses campos continuam no e-mail/OP.
       const SKIP_CRR = new Set(["pax","tks"]); 
-      for(const el of document.querySelectorAll("input, select, textarea")){
+      for(const el of __calcRoot().querySelectorAll("input, select, textarea")){
         if(!el.id) continue;
         if(el.id === "obsCode" || el.id === "raCode") continue;
 
@@ -2688,85 +2624,13 @@ function buildCRRCode(){
     }
 
 
-// ===== CRR5 (curto via Cloudflare Worker + Upstash) =====
-// Mantém o CRR4 local como fallback/offline.
-const CRR5_API = "https://crr-api.rexturfacilita.workers.dev/".replace(/\/+$/,"");
-
-function extractCRR5(text){
-  const compact = String(text || "").replace(/\s+/g,"");
-  const mm = compact.match(/CRR5-([A-Za-z0-9]{6,64})/i);
-  if(!mm) return null;
-  return `CRR5-${mm[1].toLowerCase()}`;
-}
-
-async function saveCRR5FromCRR4(crr4){
-  const r = await fetch(`${CRR5_API}/save`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ payload: String(crr4 || "") }),
-  });
-  if(!r.ok) throw new Error("Falha ao salvar CRR curto");
-  const data = await r.json().catch(()=>null);
-  if(!data || !data.id) throw new Error("Resposta inválida do servidor");
-  return `CRR5-${String(data.id).toLowerCase()}`;
-}
-
-async function loadCRR5ToCRR4(crr5){
-  const id = String(crr5 || "").trim().replace(/^CRR5-/i,"").toLowerCase();
-  const r = await fetch(`${CRR5_API}/load?id=${encodeURIComponent(id)}`);
-  if(!r.ok) throw new Error("CRR curto não encontrado (ou expirou)");
-  const data = await r.json().catch(()=>null);
-  if(!data || typeof data.payload !== "string") throw new Error("Resposta inválida do servidor");
-  return data.payload;
-}
-
-const __CRR5_CACHE = new Map(); // key: CRR4 -> CRR5
-
+// ===== CRR5 REMOVIDO DESTA BUILD (somente CRR4) =====
+// Esta build não lê nem gera CRR5: não há Cloudflare, não há Upstash,
+// nenhuma chamada de rede e nenhum id curto. O código que vai no e-mail
+// é sempre o CRR4 montado localmente por buildCRRCode().
+// (updateAll() já mantém o textarea #raCode sincronizado com buildCRRCode().)
 function getCRRCodeForEmail(){
-  const ta = document.getElementById("raCode");
-  const c5 = extractCRR5(ta ? ta.value : "");
-  return c5 || buildCRRCode();
-}
-
-function invalidateCRR5OnEdit(){
-  const ta = document.getElementById("raCode");
-  if(!ta) return;
-  // se estava "travado" em CRR5, destrava para obrigar gerar um novo após qualquer ajuste
-  if(ta.dataset && ta.dataset.manual === "1" && extractCRR5(ta.value)){
-    ta.dataset.manual = "0";
-    ta.dataset.sig = "";
-  }
-}
-
-async function ensureCRR5Current(){
-  const crr4 = buildCRRCode();
-  const ta = document.getElementById("raCode");
-  const existing5 = extractCRR5(ta ? ta.value : "");
-
-  // Reaproveita CRR5 se ele foi gerado para este mesmo CRR4 (assinatura)
-  if(existing5 && ta && ta.dataset && ta.dataset.sig === crr4){
-    __CRR5_CACHE.set(crr4, existing5);
-    return existing5;
-  }
-
-  const cached = __CRR5_CACHE.get(crr4);
-  if(cached){
-    if(ta){
-      ta.dataset.manual = "1";
-      ta.dataset.sig = crr4;
-      ta.value = cached;
-    }
-    return cached;
-  }
-
-  const crr5 = await saveCRR5FromCRR4(crr4);
-  __CRR5_CACHE.set(crr4, crr5);
-  if(ta){
-    ta.dataset.manual = "1";
-    ta.dataset.sig = crr4;
-    ta.value = crr5;
-  }
-  return crr5;
+  return buildCRRCode();
 }
 
 
@@ -2775,8 +2639,15 @@ async function ensureCRR5Current(){
       // aceita CRR colado puro, dentro de texto maior (OBS RF / e-mail), com quebras de linha, etc.
       let full = String(code || "");
       const compact = full.replace(/\s+/g,"");
-      const mm = compact.match(/(?:CRR4|CRR3|CRR2|CRR1|RA1)-[A-Za-z0-9\-_$\+]+/i);
-      let c = mm ? mm[0] : compact.trim();
+      const allMatches = compact.match(/(?:CRR4|CRR3|CRR2|CRR1|RA1)-[A-Za-z0-9\-_$\+]+/gi) || [];
+      // threads de e-mail podem conter mais de um código oculto (um por mensagem anterior).
+      // Pegar "o primeiro que aparecer" seria carregar um cálculo desatualizado sem avisar ninguém.
+      const unicos = [...new Set(allMatches.map(m => m.toUpperCase()))];
+      if(unicos.length > 1){
+        throw new Error(`Encontrei ${unicos.length} códigos diferentes nesse texto (provavelmente de respostas anteriores do e-mail). Cole só o trecho do e-mail mais recente para evitar carregar um cálculo desatualizado.`);
+      }
+      const mm = allMatches[0];
+      let c = mm ? mm : compact.trim();
 
       const up = c.toUpperCase();
       const prefix =
@@ -3043,8 +2914,12 @@ async function ensureCRR5Current(){
     function buildEmailHtmlNac(){
       const common = getCommon();
       const calc = calcNac();
-      const crr = getCRRCodeForEmail();
-      const crrEmailHtml = escapeHtml(crr) + (common.rentab ? "<br/>@#" : "");
+      // CRR no rodapé do e-mail, em fonte discreta (Sitka Heading 8, cinza claro).
+      // O marcador @# fica FORA desse estilo de propósito: o Outlook depende dele
+      // visível para aplicar a tag de Rentabilização automaticamente.
+      const crrStyle = 'font-family:"Sitka Heading",Georgia,serif; font-size:8pt; line-height:9pt; mso-line-height-rule:exactly; color:#bfbfbf; word-break:break-all;';
+      const crrEmailHtml = `<span style="${crrStyle}">${escapeHtml(getCRRCodeForEmail())}</span>`
+        + (common.rentab ? `<br/><span style="font-size:9px; color:#999">@#</span>` : "");
       const fp = document.getElementById("nac_fp").value;
       const link = document.getElementById("nac_link").value.trim();
       const voos = document.getElementById("nac_voos").value.trim();
@@ -3169,8 +3044,12 @@ const regrasExtra = regrasUser ? `<p style="margin:8px 0 0"><b>Observações:</b
     function buildEmailHtmlInter(){
       const common = getCommon();
       const calc = calcInter();
-      const crr = getCRRCodeForEmail();
-      const crrEmailHtml = escapeHtml(crr) + (common.rentab ? "<br/>@#" : "");
+      // CRR no rodapé do e-mail, em fonte discreta (Sitka Heading 8, cinza claro).
+      // O marcador @# fica FORA desse estilo de propósito: o Outlook depende dele
+      // visível para aplicar a tag de Rentabilização automaticamente.
+      const crrStyle = 'font-family:"Sitka Heading",Georgia,serif; font-size:8pt; line-height:9pt; mso-line-height-rule:exactly; color:#bfbfbf; word-break:break-all;';
+      const crrEmailHtml = `<span style="${crrStyle}">${escapeHtml(getCRRCodeForEmail())}</span>`
+        + (common.rentab ? `<br/><span style="font-size:9px; color:#999">@#</span>` : "");
       const incentivo = document.getElementById("inter_incentivo").value;
       const tipo = document.getElementById("inter_tipo").value;
       const fp = document.getElementById("inter_fp").value;
@@ -3888,18 +3767,18 @@ ${endossoRow}
     function rentCurrencyCode(){ return (getActiveMode()==="INTER") ? getInterCurrency() : "BRL"; }
     function setRentCurrencyLabels(){
       const cur = rentCurrencyCode();
-      for(const s of document.querySelectorAll(".rentCur")){ s.textContent = cur; }
+      for(const s of __calcRoot().querySelectorAll(".rentCur")){ s.textContent = cur; }
     }
 
     function switchOutputTab(name){
       const target = String(name || "agency").toLowerCase();
       const allowed = new Set(["agency","cco","rent","crr"]);
       const next = allowed.has(target) ? target : "agency";
-      for(const btn of document.querySelectorAll(".outputTabBtn")){
+      for(const btn of __calcRoot().querySelectorAll(".outputTabBtn")){
         const on = btn.getAttribute("data-output-tab") === next;
         btn.setAttribute("aria-selected", on ? "true" : "false");
       }
-      for(const panel of document.querySelectorAll(".outputPanel")){
+      for(const panel of __calcRoot().querySelectorAll(".outputPanel")){
         panel.classList.toggle("is-active", panel.getAttribute("data-output-panel") === next);
       }
       try{ localStorage.setItem("ra_output_last_tab", next); }catch(e){}
@@ -3910,7 +3789,7 @@ ${endossoRow}
       const rentBtn = document.getElementById("outTabBtnRent");
       const rentVisible = !!(rentSection && rentSection.style.display !== "none");
       if(rentBtn) rentBtn.style.display = rentVisible ? "inline-flex" : "none";
-      const active = document.querySelector('.outputTabBtn[aria-selected="true"]');
+      const active = __calcRoot().querySelector('.outputTabBtn[aria-selected="true"]');
       const activeName = active ? active.getAttribute("data-output-tab") : "agency";
       if(activeName === "rent" && !rentVisible){
         switchOutputTab("agency");
@@ -4071,7 +3950,7 @@ function updateAll(arg){
     }
 
 function clearAll(silent){
-      const ids = Array.from(document.querySelectorAll("input, textarea")).map(e=>e.id);
+      const ids = Array.from(__calcRoot().querySelectorAll("input, textarea")).map(e=>e.id);
       for(const id of ids){
         const el = document.getElementById(id);
         if(!el) continue;
@@ -4106,7 +3985,7 @@ document.getElementById("paxq_adt").value = "1";
 
     function saveLocal(){
       const data = {};
-      for(const el of document.querySelectorAll("input, select, textarea")){
+      for(const el of __calcRoot().querySelectorAll("input, select, textarea")){
         if(!el.id) continue;
         if(el.id === "obsCode" || el.id === "raCode") continue;
         if(el.type === "checkbox"){
@@ -4141,7 +4020,7 @@ document.getElementById("paxq_adt").value = "1";
     // wire tabs
     document.getElementById("tabNac").addEventListener("click", ()=>switchTab("tabNac"));
     document.getElementById("tabInter").addEventListener("click", ()=>switchTab("tabInter"));
-    for(const btn of document.querySelectorAll(".outputTabBtn")){
+    for(const btn of __calcRoot().querySelectorAll(".outputTabBtn")){
       btn.addEventListener("click", ()=>switchOutputTab(btn.getAttribute("data-output-tab") || "agency"));
     }
     // restaura última aba usada (NAC / INTER)
@@ -4156,7 +4035,7 @@ document.getElementById("paxq_adt").value = "1";
     }catch(e){ switchOutputTab("agency"); }
 
     // NAC: seletor de cia (GOL/LATAM/AZUL)
-    for(const btn of document.querySelectorAll("#ciaNacSelector .airBtn")){
+    for(const btn of __calcRoot().querySelectorAll("#ciaNacSelector .airBtn")){
       btn.addEventListener("click", ()=>{
         const ciaEl = document.getElementById("cia");
         if(ciaEl){ ciaEl.value = normalizeCia(btn.dataset.cia || ""); }
@@ -4167,995 +4046,13 @@ document.getElementById("paxq_adt").value = "1";
     // estado inicial do seletor
     syncCiaNacSelector();
 
-    
-
-    
-    // ----- FXQ/FXO Wizard (INTER Automático) -----
-    (function initFxqWizard(){
-      const $ = (id)=>document.getElementById(id);
-      const show = (el, on)=>{ if(el) el.classList.toggle("hidden", !on); };
-
-      const state = window.__FXQ_WIZ = {
-        paxList: [],
-        pIndexToTypePos: {},
-        requiredTypes: [],
-        fxoOk: {ADT:false, CHD:false, INF:false},
-        bagByType: {ADT:null, CHD:null, INF:null},
-        familyByType: {ADT:null, CHD:null, INF:null},
-        bagAuto: false,
-        parseMeta: {warnings:[], segments:[], confidence:0, loc:"", flightCarriers:[], ticketCarriers:[]}
-      };
-
-      function isInterAuto(){
-        const sel = $("inter_tipo");
-        return sel && String(sel.value||"").toLowerCase().includes("autom");
-      }
-
-      function setStatus(msg){
-        const el = $("fxqStatus");
-        if(el) el.textContent = msg || "";
-      }
-
-      function normalizeGdsText(raw){
-        let text = String(raw || "").replace(/\r/g, "\n");
-        text = text.replace(/\n{2,}/g, "\n");
-        text = text.replace(/[‐‑‒–—−]/g, "-");
-        text = text.replace(/^\s*(?:\)>|>+)\s*$/gmi, "");
-        text = text.replace(/^\s*md\s*$/gmi, "");
-        text = text.replace(/^\s*see\s+rtsvc\s*$/gmi, "");
-        text = splitInlinePassengerLines(text);
-        const lines = text.split(/\n/).map(x=>x.replace(/[\t ]+$/g,"")).filter((line,idx,arr)=>!(line==="" && arr[idx-1]===""));
-        return { raw:String(raw||""), text: lines.join("\n"), lines };
-      }
-
-      function splitInlinePassengerLines(text){
-        return String(text||"")
-          .replace(/([^\n])\s+(?=(\d{1,2})\.)/g, "$1\n")
-          .replace(/(\b(?:MR|MRS|MISS|MSTR|MS)\b(?:\([^\n]*?\))*)\s+(?=(\d{1,2})\.)/gi, "$1\n");
-      }
-
-      function parseLoc(text){
-        const s = String(text || "");
-        let m = s.match(/^\s*RP\/.*?\s+([A-Z0-9]{5,7})\s*$/mi);
-        if(m) return m[1].trim().toUpperCase();
-        m = s.match(/\bLOC\s+([A-Z0-9]{5,7})\b/i);
-        if(m) return m[1].trim().toUpperCase();
-        return "";
-      }
-
-      function normalizePersonName(s){
-        return normalizePaxName(String(s||"").replace(/\s+/g," ").trim());
-      }
-
-      function splitNameTitle(namePart){
-        const m = String(namePart||"").trim().match(/^(.*?)(?:\s+(MR|MRS|MS|MISS|MSTR|INF))?$/i);
-        return {
-          base: normalizePersonName(m ? m[1] : namePart),
-          title: (m && m[2]) ? String(m[2]).toUpperCase() : ""
-        };
-      }
-
-      function parseInfName(rawInf, adultName){
-        const adultSurname = normalizePersonName(String(adultName||"").split("/")[0] || "");
-        let s = String(rawInf||"").trim();
-        s = s.replace(/^\s*INF(?:ANT)?/i, "").replace(/^\//, "").trim();
-        const parts = s.split("/").map(x=>x.trim()).filter(Boolean);
-        const isDob = (v)=>/^\d{2}[A-Z]{3}\d{2}$/i.test(String(v||"").replace(/\s/g,""));
-        while(parts.length && isDob(parts[parts.length-1])) parts.pop();
-        if(parts.length >= 2){
-          const sn = normalizePersonName(parts[0] || adultSurname);
-          const tail = splitNameTitle(parts[1]);
-          return `${sn}/${tail.base} ${tail.title||"INF"}`.trim();
-        }
-        const tail = splitNameTitle(parts[0] || "INFANT");
-        const sn = adultSurname || "";
-        return `${sn ? sn + "/" : ""}${tail.base} ${tail.title||"INF"}`.trim();
-      }
-
-      function parsePassengersData(text){
-        const norm = normalizeGdsText(text);
-        const pax = [];
-        const warnings = [];
-        let confidence = 0;
-        const loc = parseLoc(norm.text);
-        const seen = new Set();
-        let nextInfIdx = 9000;
-
-        function addPax(idx, type, name, extra){
-          const t = String(type||"").toUpperCase();
-          if(!["ADT","CHD","INF"].includes(t)) return;
-          const nm = normalizePersonName(name);
-          if(!nm) return;
-          const key = `${idx}|${t}|${nm}`;
-          if(seen.has(key)) return;
-          seen.add(key);
-          pax.push(Object.assign({idx:Number(idx)||0, type:t, name:nm}, extra||{}));
-        }
-
-        for(const line of norm.lines){
-          const pm = line.match(/^\s*(\d+)\.\s*(.+)$/);
-          if(!pm) continue;
-          const idx = parseInt(pm[1],10);
-          const rest = pm[2] || "";
-          const namePart = (rest.split("(")[0] || rest).trim();
-          if(!/\//.test(namePart)) continue;
-          const groups = Array.from(rest.matchAll(/\(([^)]*)\)/g)).map(m=>String(m[1]||"").trim());
-          let type = "ADT";
-          if(groups.some(g=>/^\s*CHD\b/i.test(g))) type = "CHD";
-          else if(groups.some(g=>/^\s*ADT\b/i.test(g))) type = "ADT";
-          else if(groups.some(g=>/^\s*INF\s*$/i.test(g))) type = "INF";
-          addPax(idx, type, namePart, {source:"PNR"});
-          confidence += 12;
-
-          for(const g of groups){
-            if(!/^\s*INF/i.test(g) || /^\s*INF\s*$/i.test(g)) continue;
-            addPax(nextInfIdx++, "INF", parseInfName(g, namePart), {source:"INF_INLINE", linkedTo:idx});
-            confidence += 8;
-          }
-        }
-
-        // SSR INFT fallback
-        for(const line of norm.lines){
-          const m = line.match(/SSR\s+INFT\b.*?([A-Z][A-Z '\-]+)\/(.+?)(?:\s+|\/)(\d{2}[A-Z]{3}\d{2}).*?\/P(\d+)/i);
-          if(!m) continue;
-          const sn = normalizePersonName(m[1]);
-          const tail = splitNameTitle(m[2]);
-          const full = `${sn}/${tail.base} ${tail.title||"INF"}`.trim();
-          addPax(nextInfIdx++, "INF", full, {source:"SSR_INFT", linkedTo:parseInt(m[4],10), dob:m[3]});
-          confidence += 10;
-        }
-
-        pax.sort((a,b)=>{
-          const av = a.linkedTo ? a.linkedTo + 0.5 : a.idx;
-          const bv = b.linkedTo ? b.linkedTo + 0.5 : b.idx;
-          return av-bv;
-        });
-
-        const qty = {ADT:0, CHD:0, INF:0};
-        pax.forEach(p=>qty[p.type] = (qty[p.type]||0)+1);
-        if(!pax.length) warnings.push("Nenhum passageiro identificado na máscara.");
-        if(pax.length && !loc) warnings.push("LOC não identificado na máscara.");
-
-        return { loc, pax, qty, warnings, confidence: Math.max(0, Math.min(100, confidence)) };
-      }
-
-      function parseSegments(text){
-        const norm = normalizeGdsText(text);
-        const segs = [];
-        const seen = new Set();
-        function add(seg){
-          const key = `${seg.carrier}|${seg.flight}|${seg.date}|${seg.origin}|${seg.destination}|${seg.dep}`;
-          if(seen.has(key)) return;
-          seen.add(key);
-          segs.push(seg);
-        }
-        for(const line of norm.lines){
-          let m = line.match(/^\s*(\d+)\s+([A-Z0-9]{1,3})\s*(\d{1,4})\s+([A-Z])\s+(\d{2}[A-Z]{3})\s+\d\*?([A-Z]{6})\s+[A-Z]{2}\d+\s+(\d{4})\s+(\d{4})\s+(\d{2}[A-Z]{3}).*?(\b\d{1,2}P\b|\bNIL\b|\b0P\b)?/i);
-          if(m){
-            add({ segNo:parseInt(m[1],10), carrier:m[2].toUpperCase(), flight:m[3], bookingClass:m[4].toUpperCase(), date:m[5].toUpperCase(), origin:m[6].slice(0,3).toUpperCase(), destination:m[6].slice(3,6).toUpperCase(), dep:m[7], arr:m[8], arrDate:m[9].toUpperCase(), bag:(m[10]||"").toUpperCase(), source:"PNR" });
-            continue;
-          }
-          m = line.match(/^\s*([A-Z]{3})\s+([A-Z]{3})\s+([A-Z0-9]{1,3})\s+0*(\d{1,4})\s+([A-Z])\s+\*?\s*(\d{2}[A-Z]{3})\s+(\d{4})\s+.+?(\b\d{1,2}P\b|\bNIL\b|\b0P\b)\s*$/i);
-          if(m){
-            add({ segNo:0, carrier:m[3].toUpperCase(), flight:m[4], bookingClass:m[5].toUpperCase(), date:m[6].toUpperCase(), origin:m[1].toUpperCase(), destination:m[2].toUpperCase(), dep:m[7], arr:"", arrDate:"", bag:(m[8]||"").toUpperCase(), source:"FXO" });
-          }
-        }
-        return segs;
-      }
-
-      function renderFormattedVoosFromSegments(segs){
-        if(!Array.isArray(segs) || !segs.length) return "";
-        return segs.map(seg=>`${seg.carrier}${String(seg.flight).padStart(0,"0")} ${seg.bookingClass} ${seg.date} ${seg.origin}${seg.destination} ${seg.dep}${seg.arr?` ${seg.arr}`:""}${seg.arrDate?` ${seg.arrDate}`:""}`.trim()).join("\n");
-      }
-
-      function getUniqueFlightCarriers(segs){
-        return [...new Set((Array.isArray(segs) ? segs : []).map(seg=>String(seg && seg.carrier || '').trim().toUpperCase()).filter(Boolean))];
-      }
-
-      function formatCarrierList(codes){
-        return (Array.isArray(codes) ? codes : []).filter(Boolean).join(', ');
-      }
-
-      function setCarrierFieldFromTicketInfo(airlineInfos){
-        const ciaInput = $('cia');
-        if(!ciaInput) return { applied:false, code:'', note:'' };
-        const infos = Array.isArray(airlineInfos) ? airlineInfos.filter(Boolean) : [];
-        state.parseMeta.ticketCarriers = infos.map(info=>String(info.code||'').toUpperCase()).filter(Boolean);
-        if(infos.length !== 1){
-          delete ciaInput.dataset.ticketCarrierValidated;
-          return {
-            applied:false,
-            code:'',
-            note: infos.length > 1
-              ? 'Mais de uma dona de bilhete foi identificada; confirme a cia principal manualmente.'
-              : 'Bilhete ainda não identificou uma dona única.'
-          };
-        }
-        ciaInput.value = infos[0].code;
-        ciaInput.dataset.ticketCarrierValidated = '1';
-        try{ ciaInput.dispatchEvent(new Event('input', {bubbles:true})); }catch(e){}
-        try{ ciaInput.dispatchEvent(new Event('change', {bubbles:true})); }catch(e){}
-        return { applied:true, code:infos[0].code, note:`Cia final validada pelo bilhete: ${infos[0].code}` };
-      }
-
-      function applyPassengerData(parsed){
-        const pax = parsed && Array.isArray(parsed.pax) ? parsed.pax : [];
-        if(!pax.length){
-          setStatus("Cole a máscara do PNR (RP/...) contendo passageiros.");
-          show($("fxoWrap"), false);
-          show($("ticketsWrap"), false);
-          return false;
-        }
-
-        const counts = parsed.qty || {ADT:0, CHD:0, INF:0};
-        const store = {ADT:[], CHD:[], INF:[]};
-        const map = {};
-        const infLinkedMap = {};
-        const perTypeIdx = {ADT:0, CHD:0, INF:0};
-        let pOrder = 1;
-        for(const p of pax){
-          const idxWithin = perTypeIdx[p.type]++;
-          store[p.type].push({name:p.name, ticket:""});
-          if(p.type === 'INF' && Number.isFinite(p.linkedTo)){
-            const arr = infLinkedMap[p.linkedTo] || [];
-            arr.push({type:p.type, idx:idxWithin, name:p.name, sourceIdx:p.idx, linkedTo:p.linkedTo});
-            infLinkedMap[p.linkedTo] = arr;
-          } else {
-            map[pOrder++] = {type:p.type, idx:idxWithin, name:p.name, sourceIdx:p.idx};
-          }
-        }
-
-        if($("paxq_adt")) $("paxq_adt").value = String(counts.ADT||0);
-        if($("paxq_chd")) $("paxq_chd").value = String(counts.CHD||0);
-        if($("paxq_inf")) $("paxq_inf").value = String(counts.INF||0);
-        setPaxStore(store);
-        renderPaxFields();
-
-        state.paxList = pax;
-        state.pIndexToTypePos = map;
-        state.infLinkToTypePos = infLinkedMap;
-        state.requiredTypes = ["ADT","CHD","INF"].filter(t => (counts[t]||0)>0);
-        state.fxoOk = {ADT:false, CHD:false, INF:false};
-        state.bagByType = {ADT:null, CHD:null, INF:null};
-        state.familyByType = {ADT:null, CHD:null, INF:null};
-        state.parseMeta.loc = parsed.loc || "";
-        state.parseMeta.warnings = parsed.warnings || [];
-        state.parseMeta.confidence = parsed.confidence || 0;
-
-        const bagEl = $("bag"); if(bagEl){ bagEl.value = ""; delete bagEl.dataset.auto; }
-        const famEl = $("familia"); if(famEl && famEl.dataset.auto === "1"){ famEl.value = ""; delete famEl.dataset.auto; }
-
-        show($("fxoWrap"), true);
-        for(const t of ["ADT","CHD","INF"]){
-          show($(`fxoBox_${t}_wrap`), state.requiredTypes.includes(t));
-          const st = $(`fxoBox_${t}_status`); if(st) st.textContent = "";
-        }
-        show($("ticketsWrap"), false);
-        if($("ticketsStatus")) $("ticketsStatus").textContent = "";
-
-        if(parsed.loc && $("loc") && !$("loc").value.trim()) $("loc").value = parsed.loc;
-
-        const segs = parseSegments($("inter_voos")?.value || "");
-        state.parseMeta.segments = segs;
-        state.parseMeta.flightCarriers = getUniqueFlightCarriers(segs);
-        const segInfo = segs.length ? ` • ${segs.length} trecho(s)` : "";
-        const flightHint = state.parseMeta.flightCarriers.length ? ` • voos ${formatCarrierList(state.parseMeta.flightCarriers)}` : "";
-        const warnTxt = (parsed.warnings||[]).length ? ` • aviso: ${(parsed.warnings||[]).join(" | ")}` : "";
-        setStatus(`Detectado: ${counts.ADT||0} ADT • ${counts.CHD||0} CHD • ${counts.INF||0} INF${parsed.loc?` • LOC ${parsed.loc}`:""}${segInfo}${flightHint} • confiança ${parsed.confidence||0}%${warnTxt}. Agora cole o FXO por tipo.`);
-        return true;
-      }
-
-      function parseCurrencyPairs(chunk){
-        const pairs = [];
-        for(const m of String(chunk||"").matchAll(/\b([A-Z]{3})\s+(-?\d+(?:\.\d{1,2})?)/g)){
-          const cur = String(m[1]).toUpperCase();
-          const amt = parseFloat(m[2]);
-          if(cur && Number.isFinite(amt)) pairs.push({cur, amt});
-        }
-        return pairs;
-      }
-
-      function findLabelValue(text, label, preferCur){
-        const src = normalizeGdsText(text).text;
-        const labelsAnchor = '(?:OLD\\s+BASE\\s+FARE|NEW\\s+BASE\\s+FARE|FARE\\s+BALANCE|OLD\\s+TAX|NEW\\s+TAX|TAX\\s+BALANCE|TICKET\\s+DIFFERENCE|PENALTY|GRAND\\s+TOTAL|TOTAL\\s+ADD\\s+COLL|RESIDUAL\\s+VALUE)';
-
-        const lineRe = new RegExp('^\\s*' + label + '\\b.*$', 'gim');
-        for(const mLine of src.matchAll(lineRe)){
-          const ownPairs = parseCurrencyPairs(mLine[0]);
-          if(!ownPairs.length) continue;
-          const exactOwn = preferCur ? ownPairs.find(p=>p.cur===preferCur) : null;
-          return exactOwn || ownPairs[ownPairs.length-1] || null;
-        }
-
-        const blockRe = new RegExp('(?:^|\\n)\\s*' + label + '\\b([\\s\\S]*?)(?=\\n\\s*' + labelsAnchor + '\\b|$)', 'gi');
-        for(const mBlock of src.matchAll(blockRe)){
-          const chunk = String(mBlock[0] || '') + '\\n' + String(mBlock[1] || '');
-          const pairs = parseCurrencyPairs(chunk);
-          if(!pairs.length) continue;
-          const exact = preferCur ? pairs.find(p=>p.cur===preferCur) : null;
-          return exact || pairs[pairs.length-1] || null;
-        }
-        return null;
-      }
-
-      function extractFxoSubBlock(text, wantType){
-        const src = String(text||'');
-        if(!src.trim()) return src;
-        const type = String(wantType||'').toUpperCase();
-        const hasTagged = /(^|\n)\s*\[(ADT|CHD|INF)\]\s*$/im.test(src);
-        if(hasTagged){
-          const lines = src.replace(/\r\n?/g,'\n').split('\n');
-          let cur = '';
-          let buf = [];
-          const blocks = {};
-          const flush = ()=>{ if(cur && !blocks[cur]) blocks[cur] = buf.join('\n').trim(); buf = []; };
-          for(const line of lines){
-            const m = line.match(/^\s*\[(ADT|CHD|INF)\]\s*$/i);
-            if(m){ flush(); cur = String(m[1]).toUpperCase(); continue; }
-            if(cur) buf.push(line);
-          }
-          flush();
-          if(blocks[type]) return blocks[type];
-        }
-        return src;
-      }
-
-      function parseFxoBlock(text, wantType){
-        const s = extractFxoSubBlock(text, wantType);
-        const paxType = /\bCHD\b|\/CH\b/i.test(s) ? "CHD" : ((/\(INF\)|\bINF\b|\/IN\b/i.test(s)) && /FARE\s+BALANCE/i.test(s) ? "INF" : "ADT");
-        const oldBase = findLabelValue(s, 'OLD\\s+BASE\\s+FARE');
-        const newBase = findLabelValue(s, 'NEW\\s+BASE\\s+FARE');
-        const fare = findLabelValue(s, 'FARE\\s+BALANCE');
-        const taxBal = findLabelValue(s, 'TAX\\s+BALANCE');
-        const tktDiff = findLabelValue(s, 'TICKET\\s+DIFFERENCE');
-        const pen = findLabelValue(s, 'PENALTY');
-        const grand = findLabelValue(s, 'GRAND\\s+TOTAL');
-        const add = findLabelValue(s, 'TOTAL\\s+ADD\\s+COLL') || grand || tktDiff;
-        const residual = findLabelValue(s, 'RESIDUAL\\s+VALUE');
-        const bagInfo = parseBagFromText(s);
-        const familyInfo = parseFareFamilies(s);
-        const warnings = [];
-        if(!fare) warnings.push('FARE BALANCE não encontrado');
-        if(!pen) warnings.push('PENALTY não encontrado');
-        if(!add) warnings.push('TOTAL ADD COLL não encontrado');
-        let confidence = 0;
-        if(fare) confidence += 35;
-        if(pen) confidence += 20;
-        if(add) confidence += 25;
-        if(familyInfo.text) confidence += 10;
-        if(bagInfo.text) confidence += 10;
-        return { paxType, oldBase, newBase, fare, taxBal, tktDiff, pen, grand, add, residual, bag:bagInfo.text, family:familyInfo.text, familyItems:familyInfo.items, warnings, confidence:Math.min(100,confidence) };
-      }
-
-      function parseBagFromText(text){
-        const s = String(text||"");
-        const lines = normalizeGdsText(s).lines;
-        const rows = [];
-        let inTable = false;
-        for(const line of lines){
-          if(/AL\s+FLGT\s+BK\s+DATE\s+TIME.*\bBG\b/i.test(line)){ inTable = true; continue; }
-          if(!inTable) continue;
-          if(/ORIGIN\s+TRVL\s+CURRENCY|OLD\s+BASE\s+FARE/i.test(line)) break;
-          if(/S\s+U\s+R\s+F\s+A\s+C\s+E/i.test(line)) continue;
-          const m = line.match(/\b(NIL|0P|\d{1,2}P)\s*$/i);
-          if(!m) continue;
-          const raw = String(m[1]).toUpperCase();
-          const pieces = /NIL|0P/i.test(raw) ? 0 : parseInt(raw,10);
-          rows.push({pieces, raw});
-        }
-        if(!rows.length){
-          if(/\bNIL\b|\b0P\b/i.test(s)) return {pieces:[0], text:'Sem bag', groups:[]};
-          return {pieces:[], text:'', groups:[]};
-        }
-        const segs = Array.isArray(state?.parseMeta?.segments) ? state.parseMeta.segments.filter(x=>x && (x.source === 'PNR' || x.segNo)) : [];
-        const mapped = rows.map((r, idx)=>({ pieces:r.pieces, segNo: segs[idx] && segs[idx].segNo ? segs[idx].segNo : null }));
-        const uniq = Array.from(new Set(mapped.map(x=>x.pieces))).sort((a,b)=>a-b);
-        function bagLabel(n){ return n > 0 ? `${n}PC` : 'Sem bag'; }
-        if(uniq.length===1) return {pieces:uniq, text:bagLabel(uniq[0]), groups:[{pieces:uniq[0], segFrom:mapped[0].segNo, segTo:mapped[mapped.length-1].segNo}]};
-        const groups = [];
-        for(const item of mapped){
-          const last = groups[groups.length-1];
-          const contiguous = last && Number.isFinite(last.segTo) && Number.isFinite(item.segNo) && item.segNo === last.segTo + 1;
-          if(last && last.pieces === item.pieces && contiguous){
-            last.segTo = item.segNo;
-          } else {
-            groups.push({pieces:item.pieces, segFrom:item.segNo, segTo:item.segNo});
-          }
-        }
-        const textOut = groups.map(g=>{
-          const label = bagLabel(g.pieces);
-          if(Number.isFinite(g.segFrom) && g.segFrom>0){
-            return `${label} (SEG ${g.segFrom}${g.segTo && g.segTo !== g.segFrom ? `-${g.segTo}` : ''})`;
-          }
-          return label;
-        }).join(' • ');
-        return {pieces:uniq, text:textOut, groups};
-      }
-
-      function parseFareFamilies(text){
-        const items = Array.from(String(text||"").matchAll(/FARE\s+FAMILY:FC\d+:(\d+(?:-\d+)?):([A-Z0-9]+)/gi)).map(m=>({seg:m[1], fam:String(m[2]).toUpperCase()}));
-        if(!items.length) return {items:[], text:''};
-        const uniq = Array.from(new Set(items.map(x=>x.fam)));
-        if(uniq.length===1) return {items, text:uniq[0]};
-        const parts = [];
-        items.forEach(x=>{ const p = `${x.fam} (SEG ${x.seg})`; if(!parts.includes(p)) parts.push(p); });
-        return {items, text:parts.join(' • ')};
-      }
-
-      function resolveFxoCurrency(parsed, wantCur){
-        const hasAny = (o)=>o && Number.isFinite(o.amt) && o.cur;
-        const fareRaw = parsed.fare, penRaw = parsed.pen, addRaw = parsed.add;
-        const anyBRL = [fareRaw, penRaw, addRaw].some(x=>hasAny(x) && x.cur === 'BRL') && wantCur !== 'BRL';
-        let fx = parseBRNumber($("inter_fx")?.value);
-        let inferred = false;
-
-        if(anyBRL && !(fx > 0)){
-          const pairs = [parsed.fare, parsed.taxBal, parsed.residual, parsed.tktDiff, parsed.add].filter(hasAny);
-          const usdPair = pairs.find(x=>x.cur===wantCur && x.amt !== 0);
-          const brlPair = pairs.find(x=>x.cur==='BRL' && x.amt !== 0);
-          if(usdPair && brlPair){
-            fx = Math.abs(brlPair.amt / usdPair.amt);
-            if(fx > 0){ inferred = true; if($("inter_fx") && !$("inter_fx").value.trim()) $("inter_fx").value = fmtNumPT4(fx); }
-          }
-        }
-        if(anyBRL && !(fx > 0) && parsed.oldBase && parsed.newBase && parsed.fare && parsed.oldBase.cur===wantCur && parsed.newBase.cur===wantCur && parsed.fare.cur==='BRL'){
-          const diff = parsed.newBase.amt - parsed.oldBase.amt;
-          if(diff > 0){
-            fx = parsed.fare.amt / diff;
-            if(fx > 0){ inferred = true; if($("inter_fx") && !$("inter_fx").value.trim()) $("inter_fx").value = fmtNumPT4(fx); }
-          }
-        }
-
-        if(anyBRL && !(fx > 0)) return {canApply:false, needsFx:true, fx:0, inferred:false};
-
-        function toWant(obj){
-          if(!hasAny(obj)) return null;
-          if(obj.cur === 'BRL' && wantCur !== 'BRL') return {cur:wantCur, amt:obj.amt / fx, srcCur:'BRL'};
-          return {cur:obj.cur, amt:obj.amt, srcCur:obj.cur};
-        }
-        return { canApply:true, needsFx:false, fx:fx||0, inferred, fare:toWant(parsed.fare), pen:toWant(parsed.pen), add:toWant(parsed.add), taxBal:toWant(parsed.taxBal), tktDiff:toWant(parsed.tktDiff) };
-      }
-
-      function updateBagSummary(){
-        const bagEl = $("bag");
-        if(!bagEl) return;
-        const canOverwrite = !bagEl.value.trim() || bagEl.dataset.auto === '1';
-        if(!canOverwrite) return;
-        const vals = state.requiredTypes.filter(t=>state.bagByType[t]).map(t=>`${t}: ${state.bagByType[t]}`);
-        if(!vals.length) return;
-        const uniqVals = Array.from(new Set(vals.map(v=>v.split(': ')[1])));
-        bagEl.value = uniqVals.length === 1 ? uniqVals[0] : vals.join(' | ');
-        bagEl.dataset.auto = '1';
-      }
-
-      function updateFamilySummary(){
-        const famEl = $("familia");
-        if(!famEl) return;
-        const canOverwrite = !famEl.value.trim() || famEl.dataset.auto === '1';
-        if(!canOverwrite) return;
-        const vals = state.requiredTypes.filter(t=>state.familyByType[t]).map(t=>`${t}: ${state.familyByType[t]}`);
-        if(!vals.length) return;
-        const uniq = Array.from(new Set(vals.map(v=>v.split(': ')[1])));
-        famEl.value = uniq.length === 1 ? uniq[0] : vals.join(' | ');
-        famEl.dataset.auto = '1';
-      }
-
-      function syncInternoFromBoxes(){
-        const blocks = [];
-        for(const t of ['ADT','CHD','INF']){
-          const ta = $(`fxoBox_${t}`);
-          const txt = ta ? ta.value.trim() : '';
-          if(txt) blocks.push(`[${t}]\n${txt}`);
-        }
-        const interno = $("inter_interno");
-        if(interno) interno.value = blocks.join("\n\n");
-      }
-
-      function applyFxForType(type){
-        const ta = $(`fxoBox_${type}`);
-        const st = $(`fxoBox_${type}_status`);
-        if(!ta) return;
-        const parsed = parseFxoBlock(ta.value || '', type);
-        syncInternoFromBoxes();
-        const wantCur = (typeof getInterCurrency === 'function') ? getInterCurrency() : 'USD';
-        const resolved = resolveFxoCurrency(parsed, wantCur);
-        const fareEl = $(`inter_fare_${type}`), taxEl = $(`inter_tax_${type}`), penEl = $(`inter_pen_${type}`), duEl = $(`inter_du_${type}`), feeEl = $(`inter_fee_${type}`);
-        if(fareEl) fareEl.value = '';
-        if(taxEl) taxEl.value = '';
-        if(penEl) penEl.value = '';
-        if(duEl) duEl.value = '';
-        if(feeEl) feeEl.value = '';
-
-        if(!resolved.canApply){
-          state.fxoOk[type] = false;
-          if(st) st.textContent = `Este FXO veio em BRL (equivalente). Informe o câmbio ${wantCur}→BRL no campo “Câmbio”.`;
-          try{ updateAll(); }catch(e){}
-          return;
-        }
-
-        let ok = false;
-        if(resolved.fare && fareEl){ fareEl.value = fmtNumPT(resolved.fare.amt); ok = true; }
-        if(penEl){
-          penEl.value = fmtNumPT(resolved.pen ? resolved.pen.amt : 0);
-          if(resolved.pen) ok = true;
-        }
-        if(taxEl){
-          let diftax = null;
-          if(resolved.add){
-            const fareAmt = resolved.fare ? resolved.fare.amt : 0;
-            const penAmt = resolved.pen ? resolved.pen.amt : 0;
-            diftax = resolved.add.amt - fareAmt - penAmt;
-          } else if(resolved.tktDiff && resolved.fare){
-            diftax = resolved.tktDiff.amt - resolved.fare.amt;
-          } else if(resolved.taxBal){
-            diftax = resolved.taxBal.amt;
-          }
-          if(diftax !== null && Number.isFinite(diftax)){ taxEl.value = fmtNumPT(diftax); ok = true; }
-        }
-        if(parsed.bag){ state.bagByType[type] = parsed.bag; updateBagSummary(); }
-        if(parsed.family){ state.familyByType[type] = parsed.family; updateFamilySummary(); }
-        state.fxoOk[type] = ok;
-
-        if(st){
-          if(ok){
-            const msg = [`OK — ${wantCur}`];
-            if(resolved.fx>0 && (resolved.inferred || parseBRNumber($("inter_fx")?.value)>0)) msg.push(`câmbio ${fmtNumPT(resolved.fx)}${resolved.inferred?' (inferido)':''}`);
-            if(parsed.confidence) msg.push(`confiança ${parsed.confidence}%`);
-            if(parsed.warnings.length) msg.push(parsed.warnings.join(' | '));
-            st.textContent = msg.join(' • ');
-          }else{
-            st.textContent = 'Não encontrei FARE BALANCE / PENALTY / TOTAL ADD COLL suficientes neste bloco.';
-          }
-        }
-        try{ updateAll(); }catch(e){}
-        try{ applyPaxTypeVisibility(); }catch(e){}
-        const allOk = state.requiredTypes.every(t=>state.fxoOk[t]);
-        const allFilled = state.requiredTypes.every(t=>{
-          const box = $(`fxoBox_${t}`);
-          return box && String(box.value||'').trim();
-        });
-        const canOpenTickets = allOk || allFilled;
-        show($("ticketsWrap"), canOpenTickets);
-        if($("ticketsStatus")){
-          if(allOk){
-            $("ticketsStatus").textContent = 'Agora cole FA/FHE/TKT que eu distribuo nos passageiros.';
-          }else if(allFilled){
-            $("ticketsStatus").textContent = 'Os FXO foram colados. Você já pode inserir os bilhetes; se algum valor não bater, revise o bloco correspondente.';
-          }
-        }
-      }
-
-      function getAirlineInfoByTicketPrefix(ticket){
-        const raw = ensureTicketHyphen(String(ticket||''));
-        const prefix = raw.slice(0,3);
-        const map = {
-          '001':{code:'AA', name:'American Airlines'},
-          '006':{code:'DL', name:'Delta Air Lines'},
-          '014':{code:'AC', name:'Air Canada'},
-          '016':{code:'UA', name:'United Airlines'},
-          '027':{code:'AS', name:'Alaska Airlines'},
-          '037':{code:'US', name:'US Airways'},
-          '044':{code:'AR', name:'Aerolineas Argentinas'},
-          '045':{code:'AV', name:'Avianca'},
-          '047':{code:'TP', name:'TAP Air Portugal'},
-          '055':{code:'AZ', name:'ITA Airways / Alitalia legado'},
-          '057':{code:'AF', name:'Air France'},
-          '064':{code:'OK', name:'Czech Airlines'},
-          '071':{code:'ET', name:'Ethiopian Airlines'},
-          '074':{code:'KL', name:'KLM'},
-          '075':{code:'IB', name:'Iberia'},
-          '081':{code:'QF', name:'Qantas'},
-          '083':{code:'SA', name:'South African Airways'},
-          '125':{code:'BA', name:'British Airways'},
-          '134':{code:'AV', name:'Avianca'},
-          '139':{code:'AM', name:'Aeromexico'},
-          '142':{code:'LX', name:'Swiss'},
-          '145':{code:'UX', name:'Air Europa'},
-          '157':{code:'QR', name:'Qatar Airways'},
-          '160':{code:'CX', name:'Cathay Pacific'},
-          '176':{code:'EK', name:'Emirates'},
-          '180':{code:'KE', name:'Korean Air'},
-          '183':{code:'LY', name:'El Al'},
-          '205':{code:'NH', name:'ANA'},
-          '217':{code:'TG', name:'Thai Airways'},
-          '220':{code:'LH', name:'Lufthansa'},
-          '230':{code:'CM', name:'Copa Airlines'},
-          '235':{code:'TK', name:'Turkish Airlines'},
-          '257':{code:'OS', name:'Austrian Airlines'},
-          '390':{code:'A3', name:'Aegean'},
-          '462':{code:'QY', name:'European Air Transport'},
-          '530':{code:'VX', name:'Virgin America legado'},
-          '577':{code:'AD', name:'Azul'},
-          '724':{code:'LX', name:'Swiss'},
-          '724':{code:'LX', name:'Swiss'},
-          '724':{code:'LX', name:'Swiss'},
-          '932':{code:'VS', name:'Virgin Atlantic'},
-          '933':{code:'KQ', name:'Kenya Airways'},
-          '957':{code:'LA', name:'LATAM / TAM legado'},
-          '996':{code:'UX', name:'Air Europa'}
-        };
-        return map[prefix] || null;
-      }
-      const applyAirlineInputAlias = (()=>{
-        const aliasMap = {
-          'AMERICAN AIRLINES':'AA','AA':'AA',
-          'AIR CANADA':'AC','AC':'AC',
-          'AIR FRANCE':'AF','AF':'AF',
-          'AEROMEXICO':'AM','AM':'AM',
-          'AEROLINEAS ARGENTINAS':'AR','AR':'AR',
-          'AVIANCA':'AV','AV':'AV',
-          'ITA AIRWAYS':'AZ','AZ':'AZ','ALITALIA':'AZ',
-          'BRITISH AIRWAYS':'BA','BA':'BA',
-          'AIR CHINA':'CA','CA':'CA',
-          'COPA AIRLINES':'CM','CM':'CM',
-          'CATHAY PACIFIC':'CX','CX':'CX',
-          'DELTA':'DL','DELTA AIR LINES':'DL','DL':'DL',
-          'EMIRATES':'EK','EK':'EK',
-          'ETHIOPIAN':'ET','ETHIOPIAN AIRLINES':'ET','ET':'ET',
-          'ETIHAD':'EY','ETIHAD AIRWAYS':'EY','EY':'EY',
-          'GOL':'G3','GOL LINHAS AEREAS':'G3','G3':'G3',
-          'APG AIRLINES':'GP','GP':'GP',
-          'HAHN AIR':'HR','HR':'HR','HAHN AIR SYSTEMS':'H1','H1':'H1',
-          'IBERIA':'IB','IB':'IB',
-          'JETSMART':'JA','JA':'JA',
-          'KLM':'KL','KL':'KL',
-          'LATAM':'LA','LA':'LA','TAM':'LA',
-          'LUFTHANSA':'LH','LH':'LH',
-          'QATAR':'QR','QATAR AIRWAYS':'QR','QR':'QR',
-          'QANTAS':'QF','QF':'QF',
-          'ROYAL AIR MAROC':'AT','AT':'AT',
-          'SINGAPORE':'SQ','SINGAPORE AIRLINES':'SQ','SQ':'SQ',
-          'SOUTH AFRICAN':'SA','SOUTH AFRICAN AIRWAYS':'SA','SA':'SA',
-          'SKY AIRLINE':'H2','H2':'H2',
-          'SWISS':'LX','LX':'LX',
-          'TAP':'TP','TAP AIR PORTUGAL':'TP','TP':'TP',
-          'TURKISH':'TK','TURKISH AIRLINES':'TK','TK':'TK',
-          'UNITED':'UA','UNITED AIRLINES':'UA','UA':'UA',
-          'AIR EUROPA':'UX','UX':'UX',
-          'VIRGIN ATLANTIC':'VS','VS':'VS',
-          'AZUL':'AD','AD':'AD',
-          'TAAG':'DT','TAAG ANGOLA AIRLINES':'DT','DT':'DT',
-          'ANA':'NH','NH':'NH',
-          'KOREAN AIR':'KE','KE':'KE'
-        };
-        const fn = function(){
-          const el = document.getElementById('cia');
-          if(!el) return;
-          const raw = String(el.value || '').trim();
-          if(!raw) return;
-          const upper = raw.toUpperCase();
-          if(aliasMap[upper]) el.value = aliasMap[upper];
-        };
-        if(typeof window !== 'undefined') window.applyAirlineInputAlias = fn;
-        return fn;
-      })();
-
-      function getAirlineByTicketPrefix(ticket){
-        const info = getAirlineInfoByTicketPrefix(ticket);
-        return info ? info.name : '';
-      }
-
-      function canonicalPaxNameForMatch(name){
-        let s = normalizePaxName(String(name||'')).toUpperCase();
-        s = s.replace(/^\s*\d+\.\s*/, '');
-        s = s.replace(/\b(ADT|CHD|INF|CNN|INS|ST)\b/gi, ' ');
-        s = s.replace(/\b(MR|MRS|MISS|MSTR|MST|MS)\b/gi, ' ');
-        s = s.replace(/\s+/g, ' ').trim();
-        const parts = s.split('/');
-        if(parts.length >= 2){
-          const sur = parts[0].trim();
-          const giv = parts.slice(1).join('/').replace(/\//g,' ').replace(/\s+/g,' ').trim();
-          return (sur + '/' + giv).trim();
-        }
-        return s;
-      }
-      function paxNameLooseKey(name){
-        return canonicalPaxNameForMatch(name).replace(/[^A-Z0-9]+/g,'');
-      }
-      function extractTktMaskPassenger(line){
-        const raw = String(line || '');
-        const stripped = raw.replace(/^\s*\d+\.\s*/, '').trim();
-        if(!stripped) return { name:'', type:'' };
-        const tail = stripped.match(/(MRS|MISS|MSTR|MST|MR|MS)\s*(ADT|CHD|INF)\b|(ADT|CHD|INF)\b/i);
-        if(tail){
-          const type = (tail[2] || tail[3] || '').toUpperCase();
-          const namePart = stripped.slice(0, tail.index).trim();
-          return { name: normalizePaxName(namePart), type };
-        }
-        return { name: normalizePaxName(stripped), type:'' };
-      }
-      function nameMatchScore(a, b){
-        const ca = canonicalPaxNameForMatch(a || '');
-        const cb = canonicalPaxNameForMatch(b || '');
-        if(!ca || !cb) return 0;
-        if(ca === cb) return 100;
-        const la = paxNameLooseKey(ca);
-        const lb = paxNameLooseKey(cb);
-        if(!la || !lb) return 0;
-        if(la === lb) return 95;
-        if(la.includes(lb) || lb.includes(la)) return 85;
-        const ta = ca.replace(/\//g,' ').split(/\s+/).filter(Boolean);
-        const tb = cb.replace(/\//g,' ').split(/\s+/).filter(Boolean);
-        const sb = new Set(tb);
-        const common = ta.filter(t=>sb.has(t));
-        if(!common.length) return 0;
-        let score = common.length * 20;
-        const surA = (ca.split('/')[0] || '').trim();
-        const surB = (cb.split('/')[0] || '').trim();
-        if(surA && surB && surA === surB) score += 25;
-        if(ta[0] && tb[0] && ta[0] === tb[0]) score += 10;
-        return score;
-      }
-      function parseTickets(text){
-        const src = String(text||'');
-        const lines = normalizeGdsText(src).lines;
-        const out = {};
-        const infOut = {};
-        const meta = { loc:'', source:'', airlineInfos:[], tktMasks:[] };
-        let pendingTicket = null;
-        const orphanTickets = [];
-        const grabP = (line)=>{
-          const s = String(line||'');
-          const m = s.match(/\/P(\d+)(?:\D|$)/i);
-          return m ? parseInt(m[1],10) : null;
-        };
-        const grabTicket = (line)=>{
-          const s = String(line||'');
-          let m = s.match(/(?:^|[^\d])(\d{3})-(\d{10})(?:-(\d{2,3}))?(?=[^\d]|$)/);
-          if(m) return ensureTicketHyphen(`${m[1]}-${m[2]}`);
-          m = s.match(/(?:^|[^\d])(\d{13})(?:-(\d{2,3}))?(?=[^\d]|$)/);
-          if(m) return ensureTicketHyphen(m[1]);
-          return null;
-        };
-        const isFaFheLine = (line)=>/(?:^|\s)(?:FA|FHE)\s+(?:PAX|INF)(?:\s|$)/i.test(String(line||''));
-        const isTktMask = /(?:^|\n)\s*TKT-(\d{13})(?:-\d{2,3})?/i.test(src);
-
-        if(isTktMask){
-          meta.source = 'TKT';
-          const blocks = String(src).split(/(?=^\s*TKT-\d{13}(?:-\d{2,3})?)/m).filter(s=>/TKT-\d{13}/i.test(s));
-          for(const block of blocks){
-            const tkm = block.match(/(?:^|\n)\s*TKT-(\d{13})(?:-\d{2,3})?/i);
-            const baseTicket = tkm ? ensureTicketHyphen(tkm[1]) : '';
-            const locm = block.match(/\bLOC-([A-Z0-9]{5,6})\b/i);
-            if(!meta.loc && locm) meta.loc = (locm[1] || '').toUpperCase();
-            let paxName = '';
-            let paxType = '';
-            for(const line of normalizeGdsText(block).lines){
-              if(!/^\s*\d+\./.test(String(line||''))) continue;
-              const parsedPax = extractTktMaskPassenger(line);
-              if(parsedPax.name || parsedPax.type){
-                paxName = parsedPax.name || '';
-                paxType = parsedPax.type || '';
-                break;
-              }
-            }
-            if(baseTicket){
-              meta.tktMasks.push({
-                ticket: baseTicket,
-                loc: locm ? (locm[1]||'').toUpperCase() : '',
-                name: paxName,
-                type: paxType,
-                canonicalName: canonicalPaxNameForMatch(paxName)
-              });
-            }
-          }
-        }
-
-        for(const line of lines){
-          const isFaFhe = isFaFheLine(line);
-          const isInfLine = /(?:^|\s)(?:FA|FHE)\s+INF(?:\s|$)/i.test(String(line||''));
-          const tk = grabTicket(line);
-          const p = grabP(line);
-          if(isFaFhe && tk && p){
-            if(isInfLine){ infOut[p] = tk; }
-            else { out[p] = tk; }
-            pendingTicket = null;
-            continue;
-          }
-          if(isFaFhe && tk){
-            pendingTicket = {ticket:tk, isInf:isInfLine};
-            if(!orphanTickets.includes(tk)) orphanTickets.push(tk);
-            continue;
-          }
-          if(pendingTicket && p){
-            if(pendingTicket.isInf) infOut[p] = pendingTicket.ticket;
-            else out[p] = pendingTicket.ticket;
-            pendingTicket = null;
-            continue;
-          }
-          if(tk && p && !out[p] && !infOut[p]){
-            if(isInfLine) infOut[p] = tk;
-            else out[p] = tk;
-            continue;
-          }
-        }
-        if(orphanTickets.length === 1 && Object.keys(out).length === 0 && meta.tktMasks.length === 0){
-          out[1] = orphanTickets[0];
-        }
-        const allTickets = [...Object.values(out), ...Object.values(infOut), ...meta.tktMasks.map(x=>x.ticket)].filter(Boolean);
-        const airlineInfos = [...new Map(allTickets.map(tk=>{
-          const info = getAirlineInfoByTicketPrefix(tk);
-          return info ? [info.code, info] : null;
-        }).filter(Boolean)).values()];
-        meta.airlineInfos = airlineInfos;
-        return { mapping: out, infMapping: infOut, meta };
-      }
-      function applyTickets(){
-        const ta = $("inter_original");
-        if(!ta) return;
-        const parsed = parseTickets(ta.value || '');
-        const mapping = parsed.mapping || {};
-        const infMapping = parsed.infMapping || {};
-        const ts = $("ticketsStatus");
-        const keys = Object.keys(mapping);
-        const infKeys = Object.keys(infMapping);
-        const tktMasks = Array.isArray(parsed.meta?.tktMasks) ? parsed.meta.tktMasks : [];
-        if(!keys.length && !infKeys.length && !tktMasks.length){ if(ts) ts.textContent = 'Não encontrei bilhetes FA/FHE/TKT no texto colado.'; return; }
-        const map = state.pIndexToTypePos || {};
-        const infMap = state.infLinkToTypePos || {};
-        const store = getPaxStore();
-        let applied = 0;
-        keys.forEach(k=>{
-          const info = map[parseInt(k,10)];
-          if(info && store[info.type] && store[info.type][info.idx]){ store[info.type][info.idx].ticket = ensureTicketHyphen(mapping[k]); applied++; }
-        });
-        infKeys.forEach(k=>{
-          const linked = infMap[parseInt(k,10)];
-          const info = Array.isArray(linked) ? linked[0] : null;
-          if(info && store[info.type] && store[info.type][info.idx]){ store[info.type][info.idx].ticket = ensureTicketHyphen(infMapping[k]); applied++; }
-        });
-        if(tktMasks.length){
-          const candidates = [];
-          ['ADT','CHD','INF'].forEach(tp=>{
-            (store[tp]||[]).forEach((p,idx)=>{
-              candidates.push({ type:tp, idx, canonicalName: canonicalPaxNameForMatch(p.name||'') });
-            });
-          });
-          const used = new Set();
-          for(const row of tktMasks){
-            const wantType = row.type || '';
-            const canon = row.canonicalName || canonicalPaxNameForMatch(row.name||'');
-            let found = null;
-            if(canon){
-              const wantLoose = paxNameLooseKey(canon);
-              found = candidates.find(c=>!used.has(c.type+':'+c.idx) && (!wantType || c.type===wantType) && c.canonicalName===canon);
-              if(!found) found = candidates.find(c=>!used.has(c.type+':'+c.idx) && c.canonicalName===canon);
-              if(!found && wantLoose){
-                found = candidates.find(c=>!used.has(c.type+':'+c.idx) && (!wantType || c.type===wantType) && paxNameLooseKey(c.canonicalName)===wantLoose);
-              }
-              if(!found && wantLoose){
-                found = candidates.find(c=>!used.has(c.type+':'+c.idx) && (!wantType || c.type===wantType) && (paxNameLooseKey(c.canonicalName).includes(wantLoose) || wantLoose.includes(paxNameLooseKey(c.canonicalName))));
-              }
-              if(!found && wantLoose){
-                found = candidates.find(c=>!used.has(c.type+':'+c.idx) && (paxNameLooseKey(c.canonicalName)===wantLoose || paxNameLooseKey(c.canonicalName).includes(wantLoose) || wantLoose.includes(paxNameLooseKey(c.canonicalName))));
-              }
-              if(!found){
-                const scored = candidates
-                  .filter(c=>!used.has(c.type+':'+c.idx) && (!wantType || c.type===wantType))
-                  .map(c=>({ c, score: nameMatchScore(canon, c.canonicalName) }))
-                  .sort((a,b)=> b.score - a.score);
-                if(scored.length && scored[0].score >= 45 && (!scored[1] || scored[0].score > scored[1].score)){
-                  found = scored[0].c;
-                }
-              }
-            }
-            if(!found){
-              const eligible = candidates.filter(c=>!used.has(c.type+':'+c.idx) && (!wantType || c.type===wantType));
-              if(eligible.length === 1 && tktMasks.length === 1){
-                found = eligible[0];
-              }
-            }
-            if(found && store[found.type] && store[found.type][found.idx]){
-              store[found.type][found.idx].ticket = ensureTicketHyphen(row.ticket);
-              used.add(found.type+':'+found.idx);
-              applied++;
-            }
-          }
-        }
-        setPaxStore(store); renderPaxFields();
-        const airlineInfos = parsed.meta?.airlineInfos || [];
-        const carrierResult = setCarrierFieldFromTicketInfo(airlineInfos);
-        const ciaInput = $('cia');
-        const locInput = $('loc');
-        if(locInput && parsed.meta?.loc && !String(locInput.value||'').trim()){
-          locInput.value = parsed.meta.loc;
-          try{ locInput.dispatchEvent(new Event('input', {bubbles:true})); }catch(e){}
-          try{ locInput.dispatchEvent(new Event('change', {bubbles:true})); }catch(e){}
-        }
-        if(ts){
-          const airlines = airlineInfos.map(a=>a.name);
-          const flightCarriers = Array.isArray(state.parseMeta?.flightCarriers) ? state.parseMeta.flightCarriers : [];
-          const mode = tktMasks.length && !(keys.length || infKeys.length) ? 'pela máscara TKT/nome' : 'pelo P1/P2';
-          const flightTxt = flightCarriers.length ? ` • Voos identificados: ${formatCarrierList(flightCarriers)}` : '';
-          const ticketTxt = airlines.length ? ` • Dona do bilhete: ${airlines.join(', ')}` : '';
-          const carrierTxt = carrierResult.note ? ` • ${carrierResult.note}` : '';
-          if(applied){
-            ts.textContent = `OK — distribuí ${applied} bilhete(s) ${mode}.${ticketTxt}${flightTxt}${carrierTxt}`;
-          } else {
-            ts.textContent = `Encontrei bilhetes, mas não consegui mapear P1/P2/nome.${ticketTxt}${flightTxt}${carrierTxt}`;
-          }
-        }
-        if(applied) showToast('Bilhetes preenchidos no PAX');
-      }
-
-      function applyInterTipoUI(){
-        const auto = isInterAuto();
-        const manualWrap = $("manualInternoWrap");
-        const lblVoos = $("lbl_inter_voos"); const voosTA = $("inter_voos");
-        const lblTk = $("lbl_inter_original"); const tkTA = $("inter_original");
-        if(auto){
-          if(lblVoos) lblVoos.textContent = '1) Itinerário / Máscara (cole o PNR)';
-          if(voosTA) voosTA.placeholder = 'Cole aqui RP/... com PAX + segmentos (Amadeus).';
-          if(lblTk) lblTk.textContent = '3) Bilhetes (FA/FHE/TKT)';
-          if(tkTA) tkTA.placeholder = 'Cole aqui FA/FHE ou máscara TKT (com /P1, /P2... quando houver)';
-          if(manualWrap) manualWrap.classList.add('hidden');
-          const parsed = parsePassengersData(voosTA?.value || '');
-          if(parsed.pax.length) show($("fxoWrap"), true);
-          show($("ticketsWrap"), false);
-        } else {
-          if(lblVoos) lblVoos.textContent = 'Voos simulados (opcional)';
-          if(voosTA) voosTA.placeholder = 'Cole aqui os voos simulados (um por linha)';
-          if(lblTk) lblTk.textContent = 'Bilhete original (opcional)';
-          if(tkTA) tkTA.placeholder = 'Cole aqui dados do bilhete original';
-          if(manualWrap) manualWrap.classList.remove('hidden');
-          show($("fxoWrap"), false);
-          show($("ticketsWrap"), true);
-          setStatus('');
-        }
-      }
-
-      function maybeAutoFromPnr(val){
-        if(isInterAuto()) return;
-        if(/(^|\n)\s*RP\//i.test(String(val||''))){
-          const sel = $("inter_tipo");
-          if(sel){ sel.value = 'Automático'; applyInterTipoUI(); }
-        }
-      }
-
-      const interTipo = $("inter_tipo");
-      if(interTipo) interTipo.addEventListener('change', applyInterTipoUI);
-
-      const it = $("inter_voos");
-      if(it){
-        const runPnr = ()=>{
-          maybeAutoFromPnr(it.value);
-          if(!isInterAuto()) return;
-          const parsed = parsePassengersData(it.value);
-          applyPassengerData(parsed);
-        };
-        it.addEventListener('paste', ()=> setTimeout(runPnr, 0));
-        it.addEventListener('input', ()=>{ clearTimeout(it.__fxq_t); it.__fxq_t = setTimeout(runPnr, 250); });
-      }
-
-      ['ADT','CHD','INF'].forEach(t=>{
-        const ta = $(`fxoBox_${t}`);
-        if(!ta) return;
-        const run = ()=>{ if(isInterAuto()) applyFxForType(t); };
-        ta.addEventListener('paste', ()=> setTimeout(run, 0));
-        ta.addEventListener('input', ()=>{ clearTimeout(ta.__fxq_t); ta.__fxq_t = setTimeout(run, 250); });
-      });
-
-      const tk = $("inter_original");
-      if(tk){
-        const run = ()=>{ if(isInterAuto()) applyTickets(); };
-        tk.addEventListener('paste', ()=> setTimeout(run, 0));
-        tk.addEventListener('input', ()=>{ clearTimeout(tk.__fxq_t); tk.__fxq_t = setTimeout(run, 250); });
-      }
-
-      applyInterTipoUI();
-    })();
-
-// buttons
+    // buttons
     let lastEmailHtml = "";
     document.getElementById("btnGerar").addEventListener("click", async ()=>{
-      try{ await ensureCRR5Current(); }
-      catch(e){ showToast((e && e.message) ? e.message : "Falha ao gerar CRR5."); return; }
       lastEmailHtml = generateEmail();
     });
 
     document.getElementById("btnCopiarHtml").addEventListener("click", async ()=>{
-      try{ await ensureCRR5Current(); }
-      catch(e){ showToast((e && e.message) ? e.message : "Falha ao gerar CRR5."); return; }
       lastEmailHtml = generateEmail();
       if(!lastEmailHtml){ return; }
       const ok = await copyHtmlToClipboard(lastEmailHtml);
@@ -5189,34 +4086,29 @@ document.getElementById("paxq_adt").value = "1";
 // CRR
     // (botão "Copiar CRR" removido)
 
-document.getElementById("btnGerarCRR5") && document.getElementById("btnGerarCRR5").addEventListener("click", async ()=>{
-      try{
-        const crr5 = await ensureCRR5Current();
-        try{ await navigator.clipboard.writeText(crr5); showToast("CRR5 copiado!"); }
-        catch(e){ showToast("CRR5 gerado. Copie do campo."); }
-      }catch(e){ showToast((e && e.message) ? e.message : "Falha ao gerar CRR5."); }
-    });
-
 document.getElementById("btnCarregarRACode").addEventListener("click", async ()=>{
       const code = (document.getElementById("raCode").value || "").trim();
       try{
-        const c5 = extractCRR5(code);
-        if(c5){
-          const crr4 = await loadCRR5ToCRR4(c5);
-          loadCRRCode(crr4);
-          // mantém o CRR5 visível e marca assinatura para reuso
-          const rc = document.getElementById("raCode");
-          const sig = buildCRRCode();
-          __CRR5_CACHE.set(sig, c5);
-          if(rc){ rc.dataset.manual = "1"; rc.dataset.sig = sig; rc.value = c5; }
-        }else{
-          loadCRRCode(code);
-          const rc = document.getElementById("raCode");
-          if(rc){ rc.dataset.manual = "0"; rc.dataset.sig = ""; rc.value = buildCRRCode(); }
-        }
+        loadCRRCode(code);
+        const rc = document.getElementById("raCode");
+        if(rc){ rc.dataset.manual = "0"; rc.dataset.sig = ""; rc.value = buildCRRCode(); }
         lastEmailHtml = generateEmail();
       }catch(e){
         showToast((e && e.message) ? e.message : "Código inválido.");
+      }
+    });
+    document.getElementById("btnCopiarRegistro").addEventListener("click", async ()=>{
+      const loc = (document.getElementById("loc")?.value || "").trim().toUpperCase();
+      const novoLoc = (document.getElementById("novo_loc")?.value || "").trim().toUpperCase();
+      const crr = (document.getElementById("raCode")?.value || buildCRRCode() || "").trim();
+      if(!crr){ showToast("Gere o e-mail antes de copiar o registro."); return; }
+      const agora = new Date().toLocaleString("pt-BR");
+      const linha = [agora, loc, novoLoc, crr].join("\t");
+      try{
+        await navigator.clipboard.writeText(linha);
+        showToast("Linha copiada! Cole (Ctrl+V) como nova linha na planilha de registro.");
+      }catch(e){
+        showToast("Não foi possível copiar automaticamente. Copie o CRR manualmente.");
       }
     });
     document.getElementById("btnLimpar").addEventListener("click", clearAll);
@@ -5231,10 +4123,10 @@ document.getElementById("btnCarregarRACode").addEventListener("click", async ()=
       }
     }
 // reactive calc
-    for(const el of document.querySelectorAll("input, select, textarea")){
+    for(const el of __calcRoot().querySelectorAll("input, select, textarea")){
       if(el.id === "obsCode" || el.id === "raCode") continue;
-      el.addEventListener("input", ()=>{ invalidateCRR5OnEdit(); updateAll(); });
-      el.addEventListener("change", ()=>{ invalidateCRR5OnEdit(); updateAll(); });
+      el.addEventListener("input", ()=>{ updateAll(); });
+      el.addEventListener("change", ()=>{ updateAll(); });
     }
 
     // uppercase automático em campos-chave
@@ -5266,17 +4158,11 @@ document.getElementById("btnCarregarRACode").addEventListener("click", async ()=
     for(const id of ["rent_tipo_multa","rent_tipo_diftar","rent_tipo_diftax","rent_pago_cia","rent_cobrar_ag"]){
       const el = document.getElementById(id);
       if(!el) continue;
-      el.addEventListener("input", ()=>{ invalidateCRR5OnEdit(); updateAll(); });
-      el.addEventListener("change", ()=>{ invalidateCRR5OnEdit(); updateAll(); });
+      el.addEventListener("input", ()=>{ updateAll(); });
+      el.addEventListener("change", ()=>{ updateAll(); });
     }
 
-    const _ciaInput = document.getElementById('cia');
-      if(_ciaInput){
-        const _airlineAliasHandler = ()=>{ try{ if(window.applyAirlineInputAlias) window.applyAirlineInputAlias(); }catch(_e){} };
-        _ciaInput.addEventListener('change', _airlineAliasHandler);
-        _ciaInput.addEventListener('blur', _airlineAliasHandler);
-      }
-      updateAll();
+    updateAll();
     syncOutputTabs();
     renderPaxFields();
 
@@ -5304,14 +4190,6 @@ document.getElementById("btnCarregarRACode").addEventListener("click", async ()=
       raTA.addEventListener("blur", ()=>{ raTA.dataset.manual = "0"; if(!raTA.value.trim()) raTA.value = buildCRRCode(); });
     }
   
-    try{
-      const hsh = (window.location.hash || "").replace(/^#/, "").trim();
-      if(hsh && /^(?:CRR1|RA1)-/i.test(hsh)){
-        loadCRRCode(hsh);
-      }
-    }catch(e){}
-
-
     // ----- Tema (Claro / Escuro) -----
     (function initTheme(){
       const key = "ra_calc_theme";
@@ -5320,7 +4198,7 @@ document.getElementById("btnCarregarRACode").addEventListener("click", async ()=
 
       const apply = (v)=>{
         const theme = (v === "light") ? "light" : "dark";
-        document.documentElement.dataset.theme = theme;
+        (document.getElementById("calcRoot") || document.documentElement).dataset.theme = theme;
         localStorage.setItem(key, theme);
         if(sel) sel.value = theme;
         if(icon) icon.textContent = (theme === "light") ? "☀️" : "🌙";
@@ -5334,18 +4212,7 @@ document.getElementById("btnCarregarRACode").addEventListener("click", async ()=
         sel.addEventListener("change", () => apply(sel.value || "dark"));
       }
     })();
-
-    // ----- Versão exibida no rodapé -----
-    (function initVersionFooter(){
-      const APP_VERSION = "1.0.24c-stable-fxo-hotfix";
-      const footer = document.getElementById("appVersionFooter");
-      if(footer) footer.textContent = `Versão: ${APP_VERSION}`;
-    })();
-
-
 </script>
 
-<div class="app-version-footer" id="appVersionFooter" aria-label="Versão da calculadora">Versão: 1.0.24c-stable-fxo-hotfix</div>
 </body>
 </html>
-
