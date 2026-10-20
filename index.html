@@ -1359,10 +1359,8 @@
           <textarea id="raCode" class="codebox" style="min-height:96px" spellcheck="false" aria-label="CRR para reabrir cálculo"></textarea>
           <div class="btns" style="margin-top:10px">
             <button class="action" id="btnCarregarRACode">Carregar CRR</button>
-            <button class="action good" id="btnCopiarRegistro">Copiar linha pro registro</button>
           </div>
           <div class="muted small" style="margin-top:8px">Se você colar um texto maior (ex.: a observação inteira do RF), o sistema tenta achar automaticamente o trecho <b>CRR4/CRR3/CRR2-...</b> (ou <b>CRR1/RA1</b> antigos).</div>
-          <div class="muted small" style="margin-top:4px">"Copiar linha pro registro" copia Data/Hora, LOC, Novo LOC e o CRR completo (separados por tabulação) — cole como nova linha na sua planilha de controle interno. Esse CRR completo não deve ser enviado à agência.</div>
         </div>
 
       </div>      </div>
@@ -4095,20 +4093,6 @@ document.getElementById("btnCarregarRACode").addEventListener("click", async ()=
         lastEmailHtml = generateEmail();
       }catch(e){
         showToast((e && e.message) ? e.message : "Código inválido.");
-      }
-    });
-    document.getElementById("btnCopiarRegistro").addEventListener("click", async ()=>{
-      const loc = (document.getElementById("loc")?.value || "").trim().toUpperCase();
-      const novoLoc = (document.getElementById("novo_loc")?.value || "").trim().toUpperCase();
-      const crr = (document.getElementById("raCode")?.value || buildCRRCode() || "").trim();
-      if(!crr){ showToast("Gere o e-mail antes de copiar o registro."); return; }
-      const agora = new Date().toLocaleString("pt-BR");
-      const linha = [agora, loc, novoLoc, crr].join("\t");
-      try{
-        await navigator.clipboard.writeText(linha);
-        showToast("Linha copiada! Cole (Ctrl+V) como nova linha na planilha de registro.");
-      }catch(e){
-        showToast("Não foi possível copiar automaticamente. Copie o CRR manualmente.");
       }
     });
     document.getElementById("btnLimpar").addEventListener("click", clearAll);
