@@ -243,6 +243,14 @@ h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
       opacity: 0; pointer-events:none; transition: opacity .18s ease;
     }
     .toast.show{ opacity: 1; }
+    /* aviso da Rentabilização ao copiar o código OBS (RF): lançar na observação PRIVADA */
+    #rentObsModal{ position:fixed; inset:0; z-index:9999; display:none; align-items:center; justify-content:center; padding:16px; background:rgba(0,0,0,.55); }
+    #rentObsModal.show{ display:flex; }
+    #rentObsModal .rentObsBox{ max-width:460px; width:100%; background:var(--card); color:var(--text); border:2px solid rgba(255,204,102,.85); border-radius:16px; padding:18px 20px; box-shadow:var(--shadow); }
+    #rentObsModal h3{ margin:0 0 8px; font-size:16px; }
+    #rentObsModal p{ margin:0 0 14px; font-size:14px; line-height:1.45; }
+    #rentObsModal .rentObsPriv{ background:rgba(255,204,102,.22); padding:1px 6px; border-radius:6px; font-weight:800; }
+    #rentObsModal .btns{ display:flex; justify-content:flex-end; }
     .note{
       border-left: 3px solid rgba(255,204,102,.7);
       background: rgba(255,204,102,.10);
@@ -1323,6 +1331,14 @@ h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
 
       </div>      </div>
     </section>
+  </div>
+
+  <div id="rentObsModal" role="alertdialog" aria-modal="true" aria-labelledby="rentObsTitulo" aria-describedby="rentObsTexto" aria-hidden="true">
+    <div class="rentObsBox">
+      <h3 id="rentObsTitulo">⚠ Rentabilização ativa</h3>
+      <p id="rentObsTexto">Ao enviar a OP, lance este script na <span class="rentObsPriv">observação privada</span> (e não na observação pública).</p>
+      <div class="btns"><button type="button" class="action primary" id="rentObsOk">Entendi</button></div>
+    </div>
   </div>
 
   <div class="toast" id="toast">Copiado!</div>
@@ -4407,10 +4423,37 @@ document.getElementById("paxq_adt").value = "1";
       try{
         await navigator.clipboard.writeText(code);
         showToast("Código OBS copiado!");
+        mostrarAvisoRentabObs();   // Rentabilização ativa: lembra de lançar na observação PRIVADA
       }catch(e){
         showToast("Não deu pra copiar. Copie do campo de código.");
       }
     });
+
+    // ---- Aviso da Rentabilização: o script copiado deve ir na observação PRIVADA da OP ----
+    // Aparece SO com a Rentabilização marcada, depois de copiar o código OBS (RF): pelo botão ou direto do campo
+    // (selecionar tudo + Ctrl+C, ou menu Copiar). A cópia nunca é bloqueada; o aviso vem depois.
+    function mostrarAvisoRentabObs(){
+      const ativa = !!document.getElementById("rentab")?.checked;
+      const m = document.getElementById("rentObsModal");
+      if(!ativa || !m || m.classList.contains("show")) return false;
+      m.classList.add("show");
+      m.setAttribute("aria-hidden", "false");
+      const ok = document.getElementById("rentObsOk");
+      if(ok) ok.focus();
+      return true;
+    }
+    function fecharAvisoRentabObs(){
+      const m = document.getElementById("rentObsModal");
+      if(!m) return;
+      m.classList.remove("show");
+      m.setAttribute("aria-hidden", "true");
+    }
+    document.getElementById("rentObsOk").addEventListener("click", fecharAvisoRentabObs);
+    document.addEventListener("keydown", (e)=>{
+      const m = document.getElementById("rentObsModal");
+      if(m && m.classList.contains("show") && (e.key === "Escape" || e.key === "Esc")) fecharAvisoRentabObs();
+    });
+    document.getElementById("obsCode").addEventListener("copy", ()=>{ setTimeout(mostrarAvisoRentabObs, 0); });
     document.getElementById("btnCopiarRentForm").addEventListener("click", async ()=>{
       const htmlForm = buildSicaFormHtml();
       if(!htmlForm){
