@@ -1,9 +1,11 @@
-<!-- Calculadora de Reemissao - build Intranet
-     fonte: producao/index.html | versao: (sem APP_VERSION) | zoom: 0.9 | gerado: 2026-09-25 21:55
-     Gerado por ferramentas/scope_calc.js - nao editar a mao. -->
-<meta charset="utf-8">
-<style>
-    #calcRoot{
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calculadora de Reemissão • Gerador de cálculo de reemissão — regra LATAM</title>
+  <style>
+    :root{
       --bg:#0b0f17;
       --card:#121a27;
       --muted:#8ea0b7;
@@ -15,7 +17,7 @@
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
     }
 
-    #calcRoot[data-theme="light"]{--bg:#f6f7fb;
+    :root[data-theme="light"]{--bg:#f6f7fb;
       --card:#ffffff;
       --muted:#334155;
       --text:#0f172a;
@@ -37,47 +39,51 @@
 }
 
 /* ===== Melhorias visuais (tema claro) ===== */
-#calcRoot[data-theme="light"] .legend .item{color:var(--text);font-weight:700}
-#calcRoot[data-theme="light"] .legend .dot{box-shadow:0 0 0 3px rgba(15,23,42,.06)}
+[data-theme="light"] .legend .item{color:var(--text);font-weight:700}
+[data-theme="light"] .legend .dot{box-shadow:0 0 0 3px rgba(15,23,42,.06)}
 /* Destaque por área */
-#calcRoot[data-theme="light"] .accent-calc{color:#1d4ed8}
-#calcRoot[data-theme="light"] .accent-rent{color:#166534}
-#calcRoot[data-theme="light"] .accent-cco{color:#6d28d9}
+[data-theme="light"] .accent-calc{color:#1d4ed8}
+[data-theme="light"] .accent-rent{color:#166534}
+[data-theme="light"] .accent-cco{color:#6d28d9}
 /* Tags das saídas */
-#calcRoot[data-theme="light"] .tag{
+[data-theme="light"] .tag{
   border:1px solid rgba(15,23,42,.16);
   color:#0f172a;
   font-weight:800;
 }
-#calcRoot[data-theme="light"] .tag.agencia{background:rgba(29,78,216,.10);border-color:rgba(29,78,216,.28)}
-#calcRoot[data-theme="light"] .tag.rent{background:rgba(22,101,52,.10);border-color:rgba(22,101,52,.25)}
-#calcRoot[data-theme="light"] .tag.cco{background:rgba(109,40,217,.10);border-color:rgba(109,40,217,.28)}
-#calcRoot[data-theme="light"] .tag.crr{background:rgba(15,23,42,.06);border-color:rgba(15,23,42,.14)}
+[data-theme="light"] .tag.agencia{background:rgba(29,78,216,.10);border-color:rgba(29,78,216,.28)}
+[data-theme="light"] .tag.rent{background:rgba(22,101,52,.10);border-color:rgba(22,101,52,.25)}
+[data-theme="light"] .tag.cco{background:rgba(109,40,217,.10);border-color:rgba(109,40,217,.28)}
+[data-theme="light"] .tag.crr{background:rgba(15,23,42,.06);border-color:rgba(15,23,42,.14)}
 /* Títulos de blocos mais “na cara” */
-#calcRoot[data-theme="light"] .section-title{color:#0f172a;font-weight:900}
-#calcRoot[data-theme="light"] .section-title .sub{color:#334155;font-weight:700}
+[data-theme="light"] .section-title{color:#0f172a;font-weight:900}
+[data-theme="light"] .section-title .sub{color:#334155;font-weight:700}
 /* Botões por intenção (mantém legível no claro) */
-#calcRoot[data-theme="light"] .btn.primary{background:rgba(29,78,216,.12);border-color:rgba(29,78,216,.30)}
-#calcRoot[data-theme="light"] .btn.purple{background:rgba(109,40,217,.12);border-color:rgba(109,40,217,.30)}
-#calcRoot[data-theme="light"] .btn.green{background:rgba(22,101,52,.12);border-color:rgba(22,101,52,.25)}
+[data-theme="light"] .btn.primary{background:rgba(29,78,216,.12);border-color:rgba(29,78,216,.30)}
+[data-theme="light"] .btn.purple{background:rgba(109,40,217,.12);border-color:rgba(109,40,217,.30)}
+[data-theme="light"] .btn.green{background:rgba(22,101,52,.12);border-color:rgba(22,101,52,.25)}
 
 
-    #calcRoot[data-theme="light"]{
+    :root[data-theme="light"] body{
       background: radial-gradient(1000px 600px at 15% 0%, rgba(155,92,255,.18), transparent 55%),
                   radial-gradient(800px 400px at 85% 20%, rgba(61,220,151,.12), transparent 55%),
                   var(--bg);
       color: var(--text);
     }
-    #calcRoot[data-theme="light"] .card{
+    :root[data-theme="light"] .card{
       background: linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.01));
       border:1px solid rgba(15,23,42,.12);
     }
-    #calcRoot[data-theme="light"] input, #calcRoot[data-theme="light"] select, #calcRoot[data-theme="light"] textarea{
+    :root[data-theme="light"] input,
+    :root[data-theme="light"] select,
+    :root[data-theme="light"] textarea{
       border:1px solid rgba(15,23,42,.14);
       background: rgba(255,255,255,.90);
       color: var(--text);
     }
-    #calcRoot[data-theme="light"] .tab, #calcRoot[data-theme="light"] .action, #calcRoot[data-theme="light"] .pill{
+    :root[data-theme="light"] .tab,
+    :root[data-theme="light"] .action,
+    :root[data-theme="light"] .pill{
       border:1px solid rgba(255,255,255,.10);
       background: rgba(0,0,0,.20);
       color: var(--text);
@@ -86,19 +92,19 @@
       font-weight: 900;
       font-size: 13px;
     }
-    #calcRoot[data-theme="light"] .hr{ background: rgba(15,23,42,.10); }
-    #calcRoot[data-theme="light"] .muted{ color: var(--muted); }
-    #calcRoot[data-theme="light"] .note{
+    :root[data-theme="light"] .hr{ background: rgba(15,23,42,.10); }
+    :root[data-theme="light"] .muted{ color: var(--muted); }
+    :root[data-theme="light"] .note{
       border-left: 3px solid rgba(245,158,11,.65);
       background: rgba(245,158,11,.10);
     }
-    #calcRoot[data-theme="light"] .codebox{
+    :root[data-theme="light"] .codebox{
       border:1px solid rgba(15,23,42,.14);
       background: rgba(15,23,42,.06);
       color: var(--text);
     }
-        #calcRoot, #calcRoot *{box-sizing:border-box}
-    #calcRoot{
+        *{box-sizing:border-box}
+    body{
       margin:0;
       font-family:var(--sans);
       background: radial-gradient(1000px 600px at 15% 0%, rgba(155,92,255,.25), transparent 55%),
@@ -106,49 +112,49 @@
                   var(--bg);
       color:var(--text);
     }
-    #calcRoot header{ padding: 26px 18px 10px; max-width: 1240px; margin: 0 auto; }
+    header{ padding: 26px 18px 10px; max-width: 1240px; margin: 0 auto; }
     
-    #calcRoot .brand{ display:flex; align-items:center; gap:14px; }
-    #calcRoot .logoMark{
+    .brand{ display:flex; align-items:center; gap:14px; }
+    .logoMark{
       width:56px; height:40px; border-radius: 14px;
       display:flex; align-items:center; justify-content:center;
       background: rgba(255,255,255,.04);
       box-shadow: inset 0 0 0 1px rgba(255,255,255,.07);
       overflow:hidden;
     }
-    #calcRoot .logoMark img{
+    .logoMark img{
       width:170px; height:40px; display:block;
       object-fit: cover; object-position: right center;
       filter: saturate(1.05);
     }
-    #calcRoot .titles{ min-width: 0; }
-    #calcRoot .titles h1{ margin:0 0 6px; }
-#calcRoot h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
-    #calcRoot .sub{ color:var(--muted); font-size: 13px; line-height:1.35; max-width: 1100px; }
-    #calcRoot .wrap{
+    .titles{ min-width: 0; }
+    .titles h1{ margin:0 0 6px; }
+h1{ margin:0 0 6px; font-size: 20px; font-weight: 800; letter-spacing:.2px; }
+    .sub{ color:var(--muted); font-size: 13px; line-height:1.35; max-width: 1100px; }
+    .wrap{
       max-width: 1240px; margin: 0 auto; padding: 12px 18px 40px;
       display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
     }
-    @media (max-width: 980px){ #calcRoot .wrap{grid-template-columns: 1fr} }
-    #calcRoot .card{
+    @media (max-width: 980px){ .wrap{grid-template-columns: 1fr} }
+    .card{
       background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
       border:1px solid rgba(255,255,255,.06);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       overflow:hidden;
     }
-    #calcRoot .card > .hd{
+    .card > .hd{
       padding: 14px 14px 10px;display:flex; align-items:center; justify-content:space-between; gap:10px;
     }
-    #calcRoot .pill{
+    .pill{
       font-size:12px; color: var(--muted);
       border:1px solid rgba(255,255,255,.10);
       padding:4px 10px; border-radius: 999px;
       background: rgba(0,0,0,.18); white-space:nowrap;
     }
-    #calcRoot .card .bd{ padding: 14px; }
-    #calcRoot .tabs{ display:flex; gap:8px; flex-wrap:wrap; }
-    #calcRoot .tab{
+    .card .bd{ padding: 14px; }
+    .tabs{ display:flex; gap:8px; flex-wrap:wrap; }
+    .tab{
       appearance:none;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(0,0,0,.16);
@@ -159,60 +165,60 @@
       font-weight:800;
       font-size: 13px;
     }
-    #calcRoot .tab[aria-selected="true"]{
+    .tab[aria-selected="true"]{
       border-color: rgba(155,92,255,.55);
       box-shadow: 0 0 0 3px rgba(155,92,255,.15) inset;
       background: rgba(155,92,255,.14);
     }
-    #calcRoot .grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    @media (max-width: 520px){ #calcRoot .grid{grid-template-columns:1fr} }
-    #calcRoot label{ display:block; font-size:12px; color: var(--muted); margin: 0 0 6px; }
-    #calcRoot input, #calcRoot select, #calcRoot textarea{
+    .grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media (max-width: 520px){ .grid{grid-template-columns:1fr} }
+    label{ display:block; font-size:12px; color: var(--muted); margin: 0 0 6px; }
+    input, select, textarea{
       width:100%; padding: 10px 10px;
       border-radius: 12px; border:1px solid rgba(255,255,255,.10);
       background: rgba(0,0,0,.22); color: var(--text); outline:none;
     }
-    #calcRoot textarea{ min-height: 84px; resize: vertical; }
-    #calcRoot input:focus, #calcRoot select:focus, #calcRoot textarea:focus{
+    textarea{ min-height: 84px; resize: vertical; }
+    input:focus, select:focus, textarea:focus{
       border-color: rgba(155,92,255,.55);
       box-shadow: 0 0 0 3px rgba(155,92,255,.14);
     }
-    #calcRoot .row{ display:flex; gap:10px; flex-wrap:wrap; align-items:flex-end; }
-    #calcRoot .row > div{ flex: 1 1 140px; }
-    #calcRoot .muted{ color: var(--muted); font-size: 12px; }
-    #calcRoot .small{ font-size: 12px; }
-    #calcRoot .kpi{
+    .row{ display:flex; gap:10px; flex-wrap:wrap; align-items:flex-end; }
+    .row > div{ flex: 1 1 140px; }
+    .muted{ color: var(--muted); font-size: 12px; }
+    .small{ font-size: 12px; }
+    .kpi{
       display:grid; grid-template-columns: 1fr 1fr;
       gap:10px; margin-top: 10px;
     }
-    #calcRoot .kpi .box{
+    .kpi .box{
       border:1px solid rgba(255,255,255,.08);
       border-radius: 14px;
       padding: 10px 12px;
       background: rgba(0,0,0,.16);
     }
-    #calcRoot .kpi .t{ color: var(--muted); font-size:12px; }
-    #calcRoot .kpi .v{ font-family: var(--mono); font-size: 16px; font-weight:900; margin-top:4px; }
-    #calcRoot .hr{ height:1px; background: rgba(255,255,255,.06); margin: 14px 0; }
-    #calcRoot .btns{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 10px; }
-    #calcRoot button.action{
+    .kpi .t{ color: var(--muted); font-size:12px; }
+    .kpi .v{ font-family: var(--mono); font-size: 16px; font-weight:900; margin-top:4px; }
+    .hr{ height:1px; background: rgba(255,255,255,.06); margin: 14px 0; }
+    .btns{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 10px; }
+    button.action{
       appearance:none; border:1px solid rgba(255,255,255,.10);
       background: rgba(0,0,0,.20); color: var(--text);
       padding: 10px 12px; border-radius: 14px;
       cursor:pointer; font-weight: 900; font-size: 13px;
     }
-    #calcRoot .action:disabled{ opacity:.45; cursor:not-allowed; filter: grayscale(25%); }
-    #calcRoot .action:disabled:hover{ transform:none; }
-    #calcRoot button.action.primary{ border-color: rgba(155,92,255,.55); background: rgba(155,92,255,.18); }
-    #calcRoot button.action.good{ border-color: rgba(61,220,151,.40); background: rgba(61,220,151,.14); }
-    #calcRoot button.action.warn{ border-color: rgba(255,204,102,.55); background: rgba(255,204,102,.12); }
-    #calcRoot button.action:active{ transform: translateY(1px); }
-    #calcRoot .preview{
+    .action:disabled{ opacity:.45; cursor:not-allowed; filter: grayscale(25%); }
+    .action:disabled:hover{ transform:none; }
+    button.action.primary{ border-color: rgba(155,92,255,.55); background: rgba(155,92,255,.18); }
+    button.action.good{ border-color: rgba(61,220,151,.40); background: rgba(61,220,151,.14); }
+    button.action.warn{ border-color: rgba(255,204,102,.55); background: rgba(255,204,102,.12); }
+    button.action:active{ transform: translateY(1px); }
+    .preview{
       background: #ffffff; color:#0b0f17;
       border-radius: 14px; border: 1px solid rgba(0,0,0,.08);
       padding: 12px; min-height: 240px; overflow:auto;
     }
-    #calcRoot .codebox{
+    .codebox{
       width:100%;
       min-height: 240px;
       font-family: var(--mono);
@@ -227,7 +233,7 @@
       padding: 10px;
       outline:none;
     }
-    #calcRoot .toast{
+    .toast{
       position: fixed; left:50%; bottom: 16px; transform: translateX(-50%);
       background: rgba(17,24,39,.92);
       border:1px solid rgba(255,255,255,.10);
@@ -236,8 +242,8 @@
       font-size: 13px; box-shadow: var(--shadow);
       opacity: 0; pointer-events:none; transition: opacity .18s ease;
     }
-    #calcRoot .toast.show{ opacity: 1; }
-    #calcRoot .note{
+    .toast.show{ opacity: 1; }
+    .note{
       border-left: 3px solid rgba(255,204,102,.7);
       background: rgba(255,204,102,.10);
       padding: 10px 12px;
@@ -245,30 +251,30 @@
       font-size: 12px;
       color: var(--text);
     }
-    #calcRoot .tbl{ width:100%; border-collapse: collapse; font-size: 12px; }
-    #calcRoot .tbl td, #calcRoot .tbl th{ border:1px solid rgba(0,0,0,.18); padding: 6px 8px; vertical-align: top; }
-    #calcRoot .tbl th{ background: rgba(0,0,0,.05); text-align:left; }
-    #calcRoot .right{ text-align:right; }
-    #calcRoot .badge{
+    .tbl{ width:100%; border-collapse: collapse; font-size: 12px; }
+    .tbl td,.tbl th{ border:1px solid rgba(0,0,0,.18); padding: 6px 8px; vertical-align: top; }
+    .tbl th{ background: rgba(0,0,0,.05); text-align:left; }
+    .right{ text-align:right; }
+    .badge{
       display:inline-block; font-size:11px;
       padding: 2px 8px; border-radius: 999px;
       border:1px solid rgba(0,0,0,.18);
       background: rgba(0,0,0,.04);
       margin-left:6px;
     }
-    #calcRoot .hidden{ display:none !important; }
-    #calcRoot code{ font-family: var(--mono); font-size: 12px; }
+    .hidden{ display:none !important; }
+    code{ font-family: var(--mono); font-size: 12px; }
   
     /* --- PAX dynamic fields --- */
-    #calcRoot .qtywrap{ display:none !important; }
-    #calcRoot .paxBox{
+    .qtywrap{ display:none !important; }
+    .paxBox{
       border:1px solid rgba(255,255,255,.08);
       border-radius: 14px;
       background: rgba(0,0,0,.14);
       padding: 10px;
       margin-top: 10px;
     }
-    #calcRoot .paxSecTitle{
+    .paxSecTitle{
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -276,36 +282,36 @@
       font-weight:700;
       margin: 6px 0 8px;
     }
-    #calcRoot .paxRow{
+    .paxRow{
       display:grid;
       grid-template-columns: 1fr 220px;
       gap:10px;
       padding: 6px 0;
       border-bottom:1px dashed rgba(255,255,255,.08);
     }
-    #calcRoot .paxRow:last-child{ border-bottom:none; }
-    #calcRoot .paxRow label{ margin:0 0 4px; }
-    #calcRoot .paxTag{
+    .paxRow:last-child{ border-bottom:none; }
+    .paxRow label{ margin:0 0 4px; }
+    .paxTag{
       font-family: var(--mono);
       font-size: 12px;
       color: var(--muted);
       font-weight:600;
     }
-    #calcRoot .paxHint{
+    .paxHint{
       margin-top:8px;
       font-size: 12px;
       color: var(--muted);
       line-height: 1.35;
     }
     @media (max-width: 720px){
-      #calcRoot .paxRow{ grid-template-columns: 1fr; }
+      .paxRow{ grid-template-columns: 1fr; }
     }
 
   
 
-    #calcRoot .topRow{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
-    #calcRoot .themeCtl{ margin-left:auto; }
-    #calcRoot .themeCtl{
+    .topRow{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+    .themeCtl{ margin-left:auto; }
+    .themeCtl{
       display:flex; align-items:center; gap:10px;
       padding: 8px 10px;
       border-radius: 999px;
@@ -313,18 +319,18 @@
       border: 1px solid rgba(255,255,255,.14);
       box-shadow: 0 8px 22px rgba(0,0,0,.18);
     }
-    #calcRoot[data-theme="light"] .themeCtl{
+    :root[data-theme="light"] .themeCtl{
       background: rgba(15,23,42,.04);
       border-color: rgba(15,23,42,.16);
       box-shadow: 0 10px 22px rgba(2,6,23,.10);
     }
-    #calcRoot .themeCtl label{
+    .themeCtl label{
       font-size:12px;
       color: var(--muted);
       font-weight:900;
       letter-spacing:.2px;
     }
-    #calcRoot .themeIcon{
+    .themeIcon{
       width:28px; height:28px;
       display:inline-flex; align-items:center; justify-content:center;
       border-radius: 999px;
@@ -333,11 +339,11 @@
       font-size: 14px;
       line-height: 1;
     }
-    #calcRoot[data-theme="light"] .themeIcon{
+    :root[data-theme="light"] .themeIcon{
       background: rgba(15,23,42,.06);
       border-color: rgba(15,23,42,.16);
     }
-    #calcRoot .themeCtl select{
+    .themeCtl select{
       appearance: none;
       -webkit-appearance: none;
       -moz-appearance: none;
@@ -352,17 +358,17 @@
       outline: none;
       position: relative;
     }
-    #calcRoot[data-theme="light"] .themeCtl select{
+    :root[data-theme="light"] .themeCtl select{
       background: rgba(255,255,255,.9);
       border-color: rgba(15,23,42,.16);
     }
-    #calcRoot .themeCtl select:focus{
+    .themeCtl select:focus{
       box-shadow: 0 0 0 3px rgba(155,92,255,.30);
       border-color: rgba(155,92,255,.55);
     }
     /* setinha */
-    #calcRoot .themeCtl{ position: relative; }
-    #calcRoot .themeCtl select{
+    .themeCtl{ position: relative; }
+    .themeCtl select{
       background-image:
         linear-gradient(45deg, transparent 50%, rgba(255,255,255,.85) 50%),
         linear-gradient(135deg, rgba(255,255,255,.85) 50%, transparent 50%),
@@ -377,22 +383,22 @@
         1px 18px;
       background-repeat: no-repeat;
     }
-    #calcRoot[data-theme="light"] .themeCtl select{
+    :root[data-theme="light"] .themeCtl select{
       background-image:
         linear-gradient(45deg, transparent 50%, rgba(15,23,42,.85) 50%),
         linear-gradient(135deg, rgba(15,23,42,.85) 50%, transparent 50%),
         linear-gradient(to right, transparent, transparent);
     }
-#calcRoot .grid3{ display:grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 10px; }
-    @media (max-width: 720px){ #calcRoot .grid3{ grid-template-columns: 1fr; } }
+.grid3{ display:grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 10px; }
+    @media (max-width: 720px){ .grid3{ grid-template-columns: 1fr; } }
 
-    #calcRoot[data-theme="light"] input::placeholder, #calcRoot[data-theme="light"] textarea::placeholder{ color:#64748b; opacity:1; }
+    :root[data-theme="light"] input::placeholder, :root[data-theme="light"] textarea::placeholder{ color:#64748b; opacity:1; }
 
-    #calcRoot .rentCtl{ display:flex; align-items:center; gap:8px; }
-    #calcRoot .rentCtl .chk{ display:flex; align-items:center; gap:8px; user-select:none; }
-    #calcRoot .rentCtl input[type="checkbox"]{ width:16px; height:16px; }
+    .rentCtl{ display:flex; align-items:center; gap:8px; }
+    .rentCtl .chk{ display:flex; align-items:center; gap:8px; user-select:none; }
+    .rentCtl input[type="checkbox"]{ width:16px; height:16px; }
 
-    #calcRoot .subHd{
+    .subHd{
       padding: 0 14px 12px;
       display:flex;
       align-items:center;
@@ -401,13 +407,13 @@
       flex-wrap:wrap;
       border-bottom:1px solid rgba(255,255,255,.06);
     }
-    #calcRoot[data-theme="light"] .subHd{ border-bottom:1px solid rgba(15,23,42,.10); }
-    #calcRoot .subHd .muted{ font-size:12px; }
+    :root[data-theme="light"] .subHd{ border-bottom:1px solid rgba(15,23,42,.10); }
+    .subHd .muted{ font-size:12px; }
 
 
     /* Rentabilização (uso interno) */
-    #calcRoot .rentSection{ margin-top: 10px; }
-    #calcRoot .rentToggle{
+    .rentSection{ margin-top: 10px; }
+    .rentToggle{
       display: inline-flex; align-items: center; gap: 10px;
       padding: 10px 12px;
       border-radius: 14px;
@@ -416,20 +422,20 @@
       background: rgba(34,197,94,.14);
       border: 1px solid rgba(34,197,94,.28);
     }
-    #calcRoot .rentToggle input{ width: 16px; height: 16px; }
-    #calcRoot .rentToggle span{
+    .rentToggle input{ width: 16px; height: 16px; }
+    .rentToggle span{
       font-weight: 800;
       color: rgba(134,239,172,1);
     }
-    #calcRoot[data-theme="light"] .rentToggle{
+    :root[data-theme="light"] .rentToggle{
       background: rgba(34,197,94,.10);
       border-color: rgba(34,197,94,.22);
     }
-    #calcRoot[data-theme="light"] .rentToggle span{
+    :root[data-theme="light"] .rentToggle span{
       color: rgba(21,128,61,1);
     }
 
-    #calcRoot .rentHint{
+    .rentHint{
       margin: 6px 0 0 2px;
       font-size: 11px;
       color: var(--muted);
@@ -438,10 +444,10 @@
       font-style: italic;
     }
 
-    #calcRoot .rentDivider{ margin: 10px 0 0; }
+    .rentDivider{ margin: 10px 0 0; }
 
 
-    #calcRoot .rentPanel{
+    .rentPanel{
       display:none;
       margin: 10px 0 4px;
       padding: 12px 12px;
@@ -450,43 +456,43 @@
       border: 1px solid rgba(255,255,255,.10);
       border-left: 3px solid rgba(34,197,94,.40);
     }
-    #calcRoot[data-theme="light"] .rentPanel{
+    :root[data-theme="light"] .rentPanel{
       background: rgba(15,23,42,.03);
       border-color: rgba(15,23,42,.12);
       border-left-color: rgba(21,128,61,.35);
     }
-    #calcRoot .rentRow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:10px; }
-    #calcRoot .rentSection{ margin-top:10px; }
-    #calcRoot .rentChk{ display:flex; gap:8px; align-items:center; margin:8px 0 8px; }
-    #calcRoot .rentBlock{ border:1px dashed rgba(255,255,255,.18); border-radius:12px; padding:10px; margin-bottom:10px; }
-    #calcRoot.theme-light .rentBlock{ border-color: rgba(0,0,0,.18); }
-    #calcRoot .rentBlockHdr{ font-weight:800; margin-bottom:8px; font-size:12px; color: var(--text); opacity:.95; }
+    .rentRow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:10px; }
+    .rentSection{ margin-top:10px; }
+    .rentChk{ display:flex; gap:8px; align-items:center; margin:8px 0 8px; }
+    .rentBlock{ border:1px dashed rgba(255,255,255,.18); border-radius:12px; padding:10px; margin-bottom:10px; }
+    body.theme-light .rentBlock{ border-color: rgba(0,0,0,.18); }
+    .rentBlockHdr{ font-weight:800; margin-bottom:8px; font-size:12px; color: var(--text); opacity:.95; }
 
-    #calcRoot .rentOpts{ display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
-    #calcRoot .rentOpts label{ display:flex; gap:8px; align-items:center; font-size:13px; }
-    #calcRoot .rentTitle{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
-    #calcRoot .rentTitle b{ color: var(--text); }
-    #calcRoot .rentMuted{ color: var(--muted); font-size:12px; }
+    .rentOpts{ display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
+    .rentOpts label{ display:flex; gap:8px; align-items:center; font-size:13px; }
+    .rentTitle{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+    .rentTitle b{ color: var(--text); }
+    .rentMuted{ color: var(--muted); font-size:12px; }
 
 
-    #calcRoot .rentSection input[readonly]{
+    .rentSection input[readonly]{
       background: rgba(0,0,0,.14);
       border-style: dashed;
       opacity: .92;
     }
-    #calcRoot[data-theme="light"] .rentSection input[readonly]{
+    :root[data-theme="light"] .rentSection input[readonly]{
       background: rgba(15,23,42,.04);
     }
 
     /* ====== Visual cues (Cálculo / Rentabilização / CCO) ====== */
-    #calcRoot{
+    :root{
       --calc:#38bdf8;   /* cálculo */
       --rent:#22c55e;   /* rentabilização */
       --cco:#a78bfa;    /* CCO / RF */
       --sys:#94a3b8;    /* utilitários */
     }
-    #calcRoot .legend{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
-    #calcRoot .badge{
+    .legend{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+    .badge{
       display:inline-flex; align-items:center; gap:8px;
       padding: 6px 10px; border-radius: 999px;
       font-size: 12px; font-weight: 900; letter-spacing:.2px;
@@ -494,85 +500,85 @@
       background: rgba(0,0,0,.18);
       color: var(--text);
     }
-    #calcRoot .badge::before{ content:""; width:10px; height:10px; border-radius:999px; display:inline-block; }
-    #calcRoot .badge--calc::before{ background: var(--calc); box-shadow: 0 0 0 3px rgba(56,189,248,.18); }
-    #calcRoot .badge--rent::before{ background: var(--rent); box-shadow: 0 0 0 3px rgba(34,197,94,.18); }
-    #calcRoot .badge--cco::before{  background: var(--cco);  box-shadow: 0 0 0 3px rgba(167,139,250,.18); }
+    .badge::before{ content:""; width:10px; height:10px; border-radius:999px; display:inline-block; }
+    .badge--calc::before{ background: var(--calc); box-shadow: 0 0 0 3px rgba(56,189,248,.18); }
+    .badge--rent::before{ background: var(--rent); box-shadow: 0 0 0 3px rgba(34,197,94,.18); }
+    .badge--cco::before{  background: var(--cco);  box-shadow: 0 0 0 3px rgba(167,139,250,.18); }
 
     /* Section accents */
-    #calcRoot .card.calcCard{ position:relative; }
-    #calcRoot .card.calcCard::before{
+    .card.calcCard{ position:relative; }
+    .card.calcCard::before{
       content:""; position:absolute; left:0; right:0; top:0; height:3px;
       background: linear-gradient(90deg, rgba(56,189,248,.85), rgba(56,189,248,.15), transparent 70%);
     }
-    #calcRoot .card.outputsCard{ position:relative; }
-    #calcRoot .card.outputsCard::before{
+    .card.outputsCard{ position:relative; }
+    .card.outputsCard::before{
       content:""; position:absolute; left:0; right:0; top:0; height:3px;
       background: linear-gradient(90deg, rgba(167,139,250,.85), rgba(167,139,250,.15), transparent 70%);
     }
-    #calcRoot .rentPanel{
+    .rentPanel{
       border-left: 4px solid rgba(34,197,94,.55);
       background: linear-gradient(180deg, rgba(34,197,94,.08), rgba(255,255,255,.02));
     }
 
     /* Output titles + tags */
-    #calcRoot .outTitle{ display:flex; align-items:flex-start; gap:8px; flex-wrap:wrap; }
-    #calcRoot .tag{
+    .outTitle{ display:flex; align-items:flex-start; gap:8px; flex-wrap:wrap; }
+    .tag{
       display:inline-flex; align-items:center; justify-content:center;
       padding: 4px 8px; border-radius: 999px;
       font-size: 11px; font-weight: 900; letter-spacing:.35px;
       border: 1px solid rgba(255,255,255,.10);
       background: rgba(0,0,0,.16);
     }
-    #calcRoot .tag--agency{ color: #cffafe; border-color: rgba(56,189,248,.40); background: rgba(56,189,248,.14); }
-    #calcRoot .tag--rent{   color: #dcfce7; border-color: rgba(34,197,94,.40);  background: rgba(34,197,94,.14); }
-    #calcRoot .tag--cco{    color: #ede9fe; border-color: rgba(167,139,250,.42); background: rgba(167,139,250,.16); }
-    #calcRoot .tag--sys{    color: #e2e8f0; border-color: rgba(148,163,184,.35); background: rgba(148,163,184,.12); }
+    .tag--agency{ color: #cffafe; border-color: rgba(56,189,248,.40); background: rgba(56,189,248,.14); }
+    .tag--rent{   color: #dcfce7; border-color: rgba(34,197,94,.40);  background: rgba(34,197,94,.14); }
+    .tag--cco{    color: #ede9fe; border-color: rgba(167,139,250,.42); background: rgba(167,139,250,.16); }
+    .tag--sys{    color: #e2e8f0; border-color: rgba(148,163,184,.35); background: rgba(148,163,184,.12); }
 
     /* Highlight areas */
-    #calcRoot #obsCode.codebox{
+    #obsCode.codebox{
       border-color: rgba(167,139,250,.45);
       background: rgba(167,139,250,.10);
     }
 /* Button flavors */
-    #calcRoot button.action.cco{ border-color: rgba(167,139,250,.55); background: rgba(167,139,250,.18); }
-    #calcRoot button.action.rent{ border-color: rgba(34,197,94,.45); background: rgba(34,197,94,.16); }
-    #calcRoot button.action.calc{ border-color: rgba(56,189,248,.45); background: rgba(56,189,248,.14); }
+    button.action.cco{ border-color: rgba(167,139,250,.55); background: rgba(167,139,250,.18); }
+    button.action.rent{ border-color: rgba(34,197,94,.45); background: rgba(34,197,94,.16); }
+    button.action.calc{ border-color: rgba(56,189,248,.45); background: rgba(56,189,248,.14); }
 
   
 /* Fallbacks caso classes não existam (não quebra nada) */
-#calcRoot[data-theme="light"] h1, #calcRoot[data-theme="light"] h2{color:#0f172a}
+[data-theme="light"] h1,[data-theme="light"] h2{color:#0f172a}
 
 /* NAC airline selector (GOL/LATAM/AZUL) */
-#calcRoot .airlineSelector{display:flex;gap:10px;flex-wrap:nowrap;margin-top:6px;padding:4px}
-#calcRoot .airBtn{flex:1 1 0;min-width:0;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 10px;height:52px;border-radius:14px;border:2px solid rgba(17,24,39,.14);background:#fff;cursor:pointer;user-select:none;transition:transform .02s ease, box-shadow .12s ease, border-color .12s ease, background-color .12s ease}
-#calcRoot .airBtn:hover{box-shadow:0 6px 18px rgba(17,24,39,.08);border-color:rgba(17,24,39,.22)}
-#calcRoot .airBtn:active{transform:scale(.99)}
-#calcRoot .airBtn.active{border-color:#7c3aed;background:rgba(124,58,237,.06);box-shadow:0 0 0 4px rgba(124,58,237,.18), 0 10px 26px rgba(124,58,237,.22);transform:translateY(-1px) scale(1.01)}
-#calcRoot .airBtn.active .airCode{opacity:1;color:#4c1d95}
-#calcRoot .airBtn.active .airLogo{filter:drop-shadow(0 2px 6px rgba(17,24,39,.18))}
-#calcRoot .airBtn.active:active{transform:translateY(-1px) scale(.99)}
-#calcRoot .airBtn:focus-visible{outline:3px solid rgba(124,58,237,.35);outline-offset:2px}
-#calcRoot .airLogo{display:inline-flex;align-items:center;justify-content:center;height:30px;width:auto;max-width:86px;border-radius:10px;overflow:hidden;background:transparent}
-#calcRoot .airLogo img{display:block;height:30px;width:auto}
-#calcRoot .airCode{font-weight:900;font-size:12px;color:#111827;opacity:.8}
+.airlineSelector{display:flex;gap:10px;flex-wrap:nowrap;margin-top:6px;padding:4px}
+.airBtn{flex:1 1 0;min-width:0;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 10px;height:52px;border-radius:14px;border:2px solid rgba(17,24,39,.14);background:#fff;cursor:pointer;user-select:none;transition:transform .02s ease, box-shadow .12s ease, border-color .12s ease, background-color .12s ease}
+.airBtn:hover{box-shadow:0 6px 18px rgba(17,24,39,.08);border-color:rgba(17,24,39,.22)}
+.airBtn:active{transform:scale(.99)}
+.airBtn.active{border-color:#7c3aed;background:rgba(124,58,237,.06);box-shadow:0 0 0 4px rgba(124,58,237,.18), 0 10px 26px rgba(124,58,237,.22);transform:translateY(-1px) scale(1.01)}
+.airBtn.active .airCode{opacity:1;color:#4c1d95}
+.airBtn.active .airLogo{filter:drop-shadow(0 2px 6px rgba(17,24,39,.18))}
+.airBtn.active:active{transform:translateY(-1px) scale(.99)}
+.airBtn:focus-visible{outline:3px solid rgba(124,58,237,.35);outline-offset:2px}
+.airLogo{display:inline-flex;align-items:center;justify-content:center;height:30px;width:auto;max-width:86px;border-radius:10px;overflow:hidden;background:transparent}
+.airLogo img{display:block;height:30px;width:auto}
+.airCode{font-weight:900;font-size:12px;color:#111827;opacity:.8}
 
 
 
 /* --- Theme control: basic (no pill / no custom arrow) --- */
-#calcRoot .themeCtl{
+.themeCtl{
   background: transparent !important;
   border: 0 !important;
   box-shadow: none !important;
   padding: 0 !important;
   border-radius: 0 !important;
 }
-#calcRoot .themeCtl label{
+.themeCtl label{
   font-size: 13px !important;
   font-weight: 700 !important;
   color: var(--muted) !important;
 }
-#calcRoot .themeCtl select{
+.themeCtl select{
   appearance: auto !important;
   -webkit-appearance: auto !important;
   -moz-appearance: auto !important;
@@ -590,12 +596,12 @@
   background: rgba(255,255,255,.06) !important;
   color: var(--text) !important;
 }
-#calcRoot .themeCtl select:focus{
+.themeCtl select:focus{
   outline: none !important;
   box-shadow: 0 0 0 3px rgba(155,92,255,.25) !important;
   border-color: rgba(155,92,255,.55) !important;
 }
-#calcRoot[data-theme="light"] .themeCtl select{
+:root[data-theme="light"] .themeCtl select{
   border-color: rgba(15,23,42,.20) !important;
   background: #ffffff !important;
   color: #0f172a !important;
@@ -604,11 +610,11 @@
 
 
 /* Theme select dropdown options legibility (dark) */
-#calcRoot[data-theme="dark"] .themeCtl select option{
+:root[data-theme="dark"] .themeCtl select option{
   background: #0b1020;
   color: #e9eefc;
 }
-#calcRoot[data-theme="light"] .themeCtl select option{
+:root[data-theme="light"] .themeCtl select option{
   background: #ffffff;
   color: #0f172a;
 }
@@ -619,14 +625,14 @@
    - mais contraste para ver o selecionado
    - estilo tipo "segmented control"
    ========================= */
-#calcRoot[data-theme="light"] .card.calcCard .tabs{
+:root[data-theme="light"] .card.calcCard .tabs{
   background: rgba(124,58,237,.08);
   border: 1px solid rgba(124,58,237,.18);
   padding: 6px;
   border-radius: 999px;
   gap: 6px;
 }
-#calcRoot[data-theme="light"] .card.calcCard .tabs .tab{
+:root[data-theme="light"] .card.calcCard .tabs .tab{
   border: 1px solid transparent;
   background: transparent;
   color: #0f172a;
@@ -634,16 +640,16 @@
   padding: 9px 15px;
   border-radius: 999px;
 }
-#calcRoot[data-theme="light"] .card.calcCard .tabs .tab:hover{
+:root[data-theme="light"] .card.calcCard .tabs .tab:hover{
   background: rgba(124,58,237,.10);
 }
-#calcRoot[data-theme="light"] .card.calcCard .tabs .tab[aria-selected="true"]{
+:root[data-theme="light"] .card.calcCard .tabs .tab[aria-selected="true"]{
   background: #7c3aed;
   color: #ffffff;
   border-color: rgba(109,40,217,.65);
   box-shadow: 0 10px 22px rgba(124,58,237,.22);
 }
-#calcRoot[data-theme="light"] .card.calcCard .tabs .tab:focus-visible{
+:root[data-theme="light"] .card.calcCard .tabs .tab:focus-visible{
   outline: none;
   box-shadow: 0 0 0 4px rgba(124,58,237,.22);
 }
@@ -651,31 +657,31 @@
 
 
 /* ===== Saídas em abas ===== */
-#calcRoot .outputsTabs{display:grid;grid-template-columns:repeat(4,minmax(96px,1fr));gap:10px;margin:6px 0 12px}
-@media (max-width:760px){#calcRoot .outputsTabs{grid-template-columns:repeat(2,minmax(96px,1fr));}}
-#calcRoot .outputTabBtn{
+.outputsTabs{display:grid;grid-template-columns:repeat(4,minmax(96px,1fr));gap:10px;margin:6px 0 12px}
+@media (max-width:760px){.outputsTabs{grid-template-columns:repeat(2,minmax(96px,1fr));}}
+.outputTabBtn{
   appearance:none;display:inline-flex;align-items:center;justify-content:center;text-align:center;line-height:1.1;
   border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.16);color:var(--text);
   padding:9px 14px;border-radius:16px;cursor:pointer;font-weight:850;font-size:12.5px;min-height:46px;min-width:0;
   box-shadow:0 6px 16px rgba(2,6,23,.12);
   transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease, background-color .12s ease;
 }
-#calcRoot .outputTabBtn:hover{transform:translateY(-1px);box-shadow:0 10px 20px rgba(2,6,23,.16)}
-#calcRoot .outputTabBtn[aria-selected="true"]{
+.outputTabBtn:hover{transform:translateY(-1px);box-shadow:0 10px 20px rgba(2,6,23,.16)}
+.outputTabBtn[aria-selected="true"]{
   border-color: rgba(155,92,255,.55);
   box-shadow: 0 0 0 2px rgba(155,92,255,.15) inset, 0 10px 20px rgba(76,29,149,.14);
   background: rgba(155,92,255,.14);
 }
-#calcRoot .outputPanel{display:none}
-#calcRoot .outputPanel.is-active{display:block}
-#calcRoot .outputEmpty{border:1px dashed rgba(255,255,255,.14);border-radius:14px;padding:16px;background:rgba(0,0,0,.10);color:var(--muted)}
-#calcRoot .agencyOptBox{margin-top:10px;padding:10px 12px;border-radius:12px;border:1px dashed rgba(155,92,255,.28);background:rgba(155,92,255,.08)}
-#calcRoot .agencyOpt{display:flex;align-items:center;gap:8px;cursor:pointer;margin:0;font-size:13px;color:var(--text);font-weight:700}
-#calcRoot .agencyOpt input[type="checkbox"]{width:16px;height:16px}
-#calcRoot .outputsCard .hd{padding:14px 16px 8px}
-#calcRoot .outputsCard .bd{padding:10px 16px 16px}
-#calcRoot .outputsCard .btns{align-items:stretch;gap:10px;margin-top:12px}
-#calcRoot .outputsCard .btns .action{
+.outputPanel{display:none}
+.outputPanel.is-active{display:block}
+.outputEmpty{border:1px dashed rgba(255,255,255,.14);border-radius:14px;padding:16px;background:rgba(0,0,0,.10);color:var(--muted)}
+.agencyOptBox{margin-top:10px;padding:10px 12px;border-radius:12px;border:1px dashed rgba(155,92,255,.28);background:rgba(155,92,255,.08)}
+.agencyOpt{display:flex;align-items:center;gap:8px;cursor:pointer;margin:0;font-size:13px;color:var(--text);font-weight:700}
+.agencyOpt input[type="checkbox"]{width:16px;height:16px}
+.outputsCard .hd{padding:14px 16px 8px}
+.outputsCard .bd{padding:10px 16px 16px}
+.outputsCard .btns{align-items:stretch;gap:10px;margin-top:12px}
+.outputsCard .btns .action{
   flex:1 1 220px;
   min-height:48px;
   display:inline-flex;
@@ -688,54 +694,22 @@
   box-shadow:0 6px 16px rgba(2,6,23,.10);
   transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease, background-color .12s ease;
 }
-#calcRoot .outputsCard .btns .action:hover{transform:translateY(-1px);box-shadow:0 10px 20px rgba(2,6,23,.14)}
-#calcRoot .outputsCard .preview, #calcRoot .outputsCard .codebox{border-radius:16px}
-#calcRoot .outputsCard .tag{font-size:12px;padding:7px 12px}
-#calcRoot #previewHint{margin:2px 0 0;line-height:1.45}
-#calcRoot .outTitle{line-height:1.45;font-size:12.5px}
-#calcRoot[data-theme="light"] .outputTabBtn{border:1px solid rgba(15,23,42,.12);background:#fff;color:#0f172a;box-shadow:0 5px 14px rgba(15,23,42,.05)}
-#calcRoot[data-theme="light"] .outputTabBtn:hover{box-shadow:0 10px 20px rgba(15,23,42,.08)}
-#calcRoot[data-theme="light"] .outputTabBtn[aria-selected="true"]{border-color: rgba(124,58,237,.50);background: rgba(124,58,237,.10);color:#111827;box-shadow: 0 0 0 2px rgba(124,58,237,.16) inset, 0 10px 20px rgba(124,58,237,.10)}
-#calcRoot[data-theme="light"] .outputsCard .btns .action{box-shadow:0 5px 14px rgba(15,23,42,.05)}
-#calcRoot[data-theme="light"] .outputsCard .btns .action:hover{box-shadow:0 10px 20px rgba(15,23,42,.08)}
-#calcRoot[data-theme="light"] .outputEmpty{border-color:rgba(15,23,42,.14);background:rgba(15,23,42,.03)}
-#calcRoot[data-theme="light"] .agencyOptBox{border-color:rgba(124,58,237,.24);background:rgba(124,58,237,.06)}
-
-
-    /* ===== blindagem contra o CSS global do site (exclusivo da versao Intranet) ===== */
-    #calcRoot{ color: var(--text); font-family: var(--sans); text-align: left; }
-    #calcRoot h1, #calcRoot h2{ font-family: var(--sans); color: var(--text); }
-    #calcRoot label{ display: block; }
-    #calcRoot input, #calcRoot select, #calcRoot textarea, #calcRoot button{
-      font-family: var(--sans);
-      font-size: 100%;
-      line-height: normal;
-    }
-    #calcRoot .codebox, #calcRoot .kpi .v{ font-family: var(--mono); }
-    #calcRoot table{ border-collapse: collapse; }
-    /* o preview do e-mail precisa continuar sempre claro, em qualquer tema */
-    #calcRoot .preview{ background: #ffffff; color: #0b0f17; }
-    /* o <header> da calculadora nao e o header do site: anula sticky/fixed/fundo do tema */
-    #calcRoot header{ position: static; top: auto; width: auto; background: transparent; box-shadow: none; z-index: auto; }
-    /* selo de versao: na Intranet fica no fim da calculadora, nao flutuando sobre a pagina */
-    #calcRoot .app-version-footer{ position: static; display: inline-block; margin: 6px 18px 10px; backdrop-filter: none; }
-    /* ===== fim da blindagem ===== */
-
-    /* ===== ajuste: abas Nacional/Internacional quebrando em 2 linhas =====
-       .hd e .tabs sao flex sem prioridade definida; quando a largura disponivel
-       na Intranet fica mais estreita que no site original (por causa da coluna
-       lateral de botoes), .tabs encolhe antes do previsto e empilha os botoes.
-       Aqui travamos o .tabs para nao encolher e deixamos o .pill (Calculando...)
-       quebrar linha primeiro, se precisar. */
-    #calcRoot .card > .hd{ flex-wrap: wrap; }
-    #calcRoot .tabs{ flex: 0 0 auto; flex-wrap: nowrap; }
-    #calcRoot .tab{ flex: 0 0 auto; white-space: nowrap; }
-    /* ===== fim do ajuste ===== */
-
-    /* ===== escala da calculadora dentro da Intranet (equivale a zoom 90% do navegador) ===== */
-    #calcRoot{ zoom: 0.9; }
+.outputsCard .btns .action:hover{transform:translateY(-1px);box-shadow:0 10px 20px rgba(2,6,23,.14)}
+.outputsCard .preview,
+.outputsCard .codebox{border-radius:16px}
+.outputsCard .tag{font-size:12px;padding:7px 12px}
+#previewHint{margin:2px 0 0;line-height:1.45}
+.outTitle{line-height:1.45;font-size:12.5px}
+:root[data-theme="light"] .outputTabBtn{border:1px solid rgba(15,23,42,.12);background:#fff;color:#0f172a;box-shadow:0 5px 14px rgba(15,23,42,.05)}
+:root[data-theme="light"] .outputTabBtn:hover{box-shadow:0 10px 20px rgba(15,23,42,.08)}
+:root[data-theme="light"] .outputTabBtn[aria-selected="true"]{border-color: rgba(124,58,237,.50);background: rgba(124,58,237,.10);color:#111827;box-shadow: 0 0 0 2px rgba(124,58,237,.16) inset, 0 10px 20px rgba(124,58,237,.10)}
+:root[data-theme="light"] .outputsCard .btns .action{box-shadow:0 5px 14px rgba(15,23,42,.05)}
+:root[data-theme="light"] .outputsCard .btns .action:hover{box-shadow:0 10px 20px rgba(15,23,42,.08)}
+:root[data-theme="light"] .outputEmpty{border-color:rgba(15,23,42,.14);background:rgba(15,23,42,.03)}
+:root[data-theme="light"] .agencyOptBox{border-color:rgba(124,58,237,.24);background:rgba(124,58,237,.06)}
 </style>
-<div id="calcRoot" data-theme="dark">
+</head>
+<body>
   <header>
     <div class="topRow">
       <div class="brand">
@@ -1344,7 +1318,7 @@
           <div class="btns" style="margin-top:10px">
             <button class="action" id="btnCarregarRACode">Carregar CRR</button>
           </div>
-          <div class="muted small" style="margin-top:8px">Se você colar um texto maior (ex.: a observação inteira do RF), o sistema tenta achar automaticamente o trecho <b>CRR5/CRR4/CRR3/CRR2-...</b> (ou <b>CRR1/RA1</b> antigos). CRR5 ainda é lido (compatibilidade com cotações antigas), mas esta build nunca gera CRR5 novo — o e-mail sempre leva o CRR4 completo.</div>
+          <div class="muted small" style="margin-top:8px">Se você colar um texto maior (ex.: a observação inteira do RF), o sistema tenta achar automaticamente o trecho <b>CRR1/CRR4/CRR2-...</b> (ou <b>RA1</b> antigo). O CRR1 é o formato reduzido (código menor); o CRR4 continua sendo lido. CRR5 não é mais suportado — se o código colado for CRR5, peça o CRR4 de novo a quem enviou.</div>
         </div>
 
       </div>      </div>
@@ -1352,10 +1326,8 @@
   </div>
 
   <div class="toast" id="toast">Copiado!</div>
-</div><!-- /#calcRoot -->
-<script>
-    const __calcRoot = () => document.getElementById("calcRoot") || document;
 
+  <script>
     const PAX_TYPES = ["ADT","CHD","INF"];
 
     // ---------- helpers ----------
@@ -1442,12 +1414,12 @@
       for(const r of rows){
         const qty = Number(r.qty || 0) || 0;
         if(mode === "INTER"){
-          out.diftar += (Number(r.fare || 0) || 0) * qty;
-          out.diftax += (Number(r.tax || 0) || 0) * qty;
+          out.diftar += (Number((r.cobFare ?? r.fare) || 0) || 0) * qty;
+          out.diftax += (Number((r.cobTax ?? r.tax) || 0) || 0) * qty;
           out.multa  += (Number(r.pen || 0) || 0) * qty;
         } else {
-          out.diftar += (Number(r.diffFare || 0) || 0) * qty;
-          out.diftax += (Number(r.diffTax || 0) || 0) * qty;
+          out.diftar += (Number((r.cobFare ?? r.diffFare) || 0) || 0) * qty;
+          out.diftax += (Number((r.cobTax ?? r.diffTax) || 0) || 0) * qty;
           out.multa  += (Number(r.pen || 0) || 0) * qty;
         }
       }
@@ -1470,12 +1442,12 @@
         if(!out[t]) continue;
         const qty = Number(r.qty || 0) || 0;
         if(mode === "INTER"){
-          out[t].diftar += (Number(r.fare || 0) || 0) * qty;
-          out[t].diftax += (Number(r.tax || 0) || 0) * qty;
+          out[t].diftar += (Number((r.cobFare ?? r.fare) || 0) || 0) * qty;
+          out[t].diftax += (Number((r.cobTax ?? r.tax) || 0) || 0) * qty;
           out[t].multa  += (Number(r.pen || 0) || 0) * qty;
         } else {
-          out[t].diftar += (Number(r.diffFare || 0) || 0) * qty;
-          out[t].diftax += (Number(r.diffTax || 0) || 0) * qty;
+          out[t].diftar += (Number((r.cobFare ?? r.diffFare) || 0) || 0) * qty;
+          out[t].diftax += (Number((r.cobTax ?? r.diffTax) || 0) || 0) * qty;
           out[t].multa  += (Number(r.pen || 0) || 0) * qty;
         }
       }
@@ -1527,8 +1499,8 @@
         const r = byType[p.type] || {};
         const cob = {
           multa: Number(r.pen || 0) || 0,
-          diftar: Number((mode==="INTER" ? r.fare : r.diffFare) || 0) || 0,
-          diftax: Number((mode==="INTER" ? r.tax  : r.diffTax ) || 0) || 0,
+          diftar: Number((mode==="INTER" ? (r.cobFare ?? r.fare) : (r.cobFare ?? r.diffFare)) || 0) || 0,
+          diftax: Number((mode==="INTER" ? (r.cobTax ?? r.tax) : (r.cobTax ?? r.diffTax)) || 0) || 0,
         };
         return {
           ...p,
@@ -1988,21 +1960,21 @@ function fmtNumPT(n){
       const qty = {ADT:adt, CHD:chd, INF:inf};
 
       // Campos de valores (NAC / INTER)
-      for(const row of __calcRoot().querySelectorAll(".paxTypeRow")){
+      for(const row of document.querySelectorAll(".paxTypeRow")){
         const t = String(row.getAttribute("data-pax-type") || "").toUpperCase();
         const show = (qty[t] || 0) > 0;
         row.classList.toggle("hidden", !show);
       }
 
       // Rentabilização: esconder inputs de tipos não usados
-      for(const cell of __calcRoot().querySelectorAll(".rentPaxCell")){
+      for(const cell of document.querySelectorAll(".rentPaxCell")){
         const t = String(cell.getAttribute("data-pax-type") || "").toUpperCase();
         const show = (qty[t] || 0) > 0;
         cell.classList.toggle("hidden", !show);
       }
 
       // Ajusta colunas do grid da rent (evita “buracos”)
-      for(const grid of __calcRoot().querySelectorAll('[data-role="rent-paid-grid"]')){
+      for(const grid of document.querySelectorAll('[data-role="rent-paid-grid"]')){
         const visible = Array.from(grid.querySelectorAll(".rentPaxCell")).filter(el => !el.classList.contains("hidden"));
         const n = Math.max(1, visible.length);
         grid.style.gridTemplateColumns = `repeat(${n}, 1fr)`;
@@ -2241,7 +2213,7 @@ const store = getPaxStore();
     function getStatePayload(){
       // legado (CRR1/RA1): salva TODOS os campos (fica grande). Mantido só por compatibilidade.
       const data = { v: 1, mode: getActiveMode(), fields: {} };
-      for(const el of __calcRoot().querySelectorAll("input, select, textarea")){
+      for(const el of document.querySelectorAll("input, select, textarea")){
         if(!el.id) continue;
         if(el.id === "obsCode" || el.id === "raCode") continue;
         if(el.type === "checkbox"){ data.fields[el.id] = !!el.checked; }
@@ -2277,7 +2249,7 @@ const store = getPaxStore();
       const fields = {};
       // Para manter o CRR curto: não incluir campos gigantes (máscaras do GDS). Esses campos continuam no e-mail/OP.
       const SKIP_CRR = new Set(["pax","tks"]); 
-      for(const el of __calcRoot().querySelectorAll("input, select, textarea")){
+      for(const el of document.querySelectorAll("input, select, textarea")){
         if(!el.id) continue;
         if(el.id === "obsCode" || el.id === "raCode") continue;
 
@@ -2597,40 +2569,363 @@ const store = getPaxStore();
       return { v: 4, m: mode, f: out };
     }
 
+// ===== CRR1 (formato reduzido): deflate + dicionario CONGELADO =====
+// Copiados SEM alteracao do repositorio (src/script/31-core-crr-deflate.js e 32-core-crr-dicionario.js).
+// O dicionario faz parte do formato: mudar 1 caractere quebra todo CRR1 ja enviado.
+// [31-core-crr-deflate] Nucleo: deflate (RFC 1951) minimo e sincrono, usado pelo CRR1. Sem DOM, sem rede.
+//
+// Mesmo codigo do CRC da Calculadora de Cotacao (rextur-cotacao, 62-core-crc.js), validado contra o
+// zlib do Node nos dois sentidos, com e sem dicionario. O LZString (30-core-lzstring.js) continua aqui
+// so para LER os CRR4/CRR3 ja enviados; o CRR novo (CRR1) usa este deflate + o dicionario congelado
+// de 32-core-crr-dicionario.js. CompressionStream existe nos navegadores, mas e assincrono e nao existe
+// em jsdom -- aqui precisa ser sincrono.
+//
+// Formato CRR1-: base64url( 2 bytes de verificacao + deflate(JSON utf-8, com o dicionario CRR_DICT_V1) ).
+// O JSON dentro e o mesmo do CRR4 (getStatePayloadV4, {v:4, m, f}); so o "envelope" mudou.
+
+const CRR_LEN_BASE = [3,4,5,6,7,8,9,10,11,13,15,17,19,23,27,31,35,43,51,59,67,83,99,115,131,163,195,227,258];
+const CRR_LEN_EXTRA = [0,0,0,0,0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,0];
+const CRR_DIST_BASE = [1,2,3,4,5,7,9,13,17,25,33,49,65,97,129,193,257,385,513,769,1025,1537,2049,3073,4097,6145,8193,12289,16385,24577];
+const CRR_DIST_EXTRA = [0,0,0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13];
+const CRR_CL_ORDER = [16,17,18,0,8,7,9,6,10,5,11,4,12,3,13,2,14,1,15];
+
+// Comprimentos de codigo de Huffman (limitados a maxBits) a partir das frequencias.
+function crrHuffLengths(freq, maxBits){
+  let f = freq.slice();
+  for(;;){
+    const n = f.length, len = new Array(n).fill(0);
+    let nodes = [];
+    for(let s = 0; s < n; s++) if(f[s] > 0) nodes.push({ w: f[s], m: [s] });
+    if(nodes.length === 0) return len;
+    if(nodes.length === 1){ len[nodes[0].m[0]] = 1; return len; }
+    while(nodes.length > 1){
+      nodes.sort((a, b) => a.w - b.w);
+      const a = nodes.shift(), b = nodes.shift();
+      a.m.forEach(s => len[s]++); b.m.forEach(s => len[s]++);
+      nodes.push({ w: a.w + b.w, m: a.m.concat(b.m) });
+    }
+    if(Math.max.apply(null, len) <= maxBits) return len;
+    f = f.map(x => x > 0 ? (x + 1) >> 1 : 0);   // achata e tenta de novo (nunca zera um simbolo usado)
+  }
+}
+
+// Codigos canonicos (RFC 1951 3.2.2).
+function crrCanonCodes(len){
+  const cnt = new Array(16).fill(0);
+  len.forEach(l => { if(l) cnt[l]++; });
+  const next = new Array(16).fill(0);
+  let code = 0;
+  for(let b = 1; b <= 15; b++){ code = (code + cnt[b - 1]) << 1; next[b] = code; }
+  return len.map(l => l ? next[l]++ : 0);
+}
+
+function crrSymFor(base, v){ let i = base.length - 1; while(base[i] > v) i--; return i; }
+
+// bytes (array de 0..255) -> bytes deflate (raw, sem cabecalho zlib)
+// dict (opcional): bytes que o descompressor tambem conhece; o LZ77 pode referenciar o dicionario como se
+// fosse texto ja visto, o que encurta muito texto padronizado de GDS.
+function crrDeflate(payload, dict){
+  const pre = dict ? dict.length : 0;
+  const data = pre ? dict.concat(payload) : payload;
+  const n = data.length;
+  if(payload.length === 0) return [3, 0];
+  // 1) LZ77
+  const head = new Int32Array(1 << 15).fill(-1), prev = new Int32Array(n);
+  const hash = (p) => ((data[p] << 10) ^ (data[p + 1] << 5) ^ data[p + 2]) & 0x7fff;
+  const insert = (p) => { if(p + 2 < n){ const h = hash(p); prev[p] = head[h]; head[h] = p; } };
+  const L = [], D = [];   // literal: L=byte, D=0 | par: L=comprimento, D=distancia
+  for(let k = 0; k < pre; k++) insert(k);
+  let i = pre;
+  while(i < n){
+    let bestLen = 0, bestDist = 0;
+    if(i + 2 < n){
+      const maxLen = Math.min(258, n - i);
+      let p = head[hash(i)], chain = 128;
+      while(p >= 0 && i - p <= 32768 && chain-- > 0){
+        if(data[p + bestLen] === data[i + bestLen]){
+          let l = 0;
+          while(l < maxLen && data[p + l] === data[i + l]) l++;
+          if(l > bestLen){ bestLen = l; bestDist = i - p; if(l === maxLen) break; }
+        }
+        p = prev[p];
+      }
+    }
+    if(bestLen >= 3){
+      L.push(bestLen); D.push(bestDist);
+      for(let k = 0; k < bestLen; k++) insert(i + k);
+      i += bestLen;
+    } else {
+      L.push(data[i]); D.push(0);
+      insert(i); i++;
+    }
+  }
+
+  // 2) um bloco (fixo ou dinamico, o que sair menor)
+  function emit(dynamic){
+    const out = []; let bb = 0, bc = 0;
+    const put = (v, nb) => { bb |= v << bc; bc += nb; while(bc >= 8){ out.push(bb & 255); bb >>>= 8; bc -= 8; } };
+    const putCode = (code, l) => { let r = 0; for(let k = 0; k < l; k++) r = (r << 1) | ((code >> k) & 1); put(r, l); };
+
+    let litLens, distLens;
+    if(dynamic){
+      const lf = new Array(286).fill(0), df = new Array(30).fill(0);
+      for(let t = 0; t < L.length; t++){
+        if(D[t] === 0) lf[L[t]]++;
+        else { lf[257 + crrSymFor(CRR_LEN_BASE, L[t])]++; df[crrSymFor(CRR_DIST_BASE, D[t])]++; }
+      }
+      lf[256] = 1;
+      litLens = crrHuffLengths(lf, 15);
+      distLens = crrHuffLengths(df, 15);
+    } else {
+      litLens = []; for(let s = 0; s < 288; s++) litLens.push(s < 144 ? 8 : s < 256 ? 9 : s < 280 ? 7 : 8);
+      distLens = new Array(30).fill(5);
+    }
+    const litCodes = crrCanonCodes(litLens), distCodes = crrCanonCodes(distLens);
+
+    put(1, 1); put(dynamic ? 2 : 1, 2);
+    if(dynamic){
+      let hlit = 286; while(hlit > 257 && !litLens[hlit - 1]) hlit--;
+      let hdist = 30; while(hdist > 1 && !distLens[hdist - 1]) hdist--;
+      const lens = litLens.slice(0, hlit).concat(distLens.slice(0, hdist));
+      const rle = [];   // [simbolo, bits extras, valor extra]
+      for(let a = 0; a < lens.length;){
+        const v = lens[a]; let run = 1;
+        while(a + run < lens.length && lens[a + run] === v) run++;
+        let r = run;
+        if(v === 0){
+          while(r >= 3){
+            if(r >= 11){ const t = Math.min(r, 138); rle.push([18, 7, t - 11]); r -= t; }
+            else { rle.push([17, 3, r - 3]); r = 0; }
+          }
+          while(r-- > 0) rle.push([0, 0, 0]);
+        } else {
+          rle.push([v, 0, 0]); r--;
+          while(r >= 3){ const t = Math.min(r, 6); rle.push([16, 2, t - 3]); r -= t; }
+          while(r-- > 0) rle.push([v, 0, 0]);
+        }
+        a += run;
+      }
+      const cf = new Array(19).fill(0);
+      rle.forEach(e => cf[e[0]]++);
+      const clLens = crrHuffLengths(cf, 7), clCodes = crrCanonCodes(clLens);
+      let hclen = 19; while(hclen > 4 && !clLens[CRR_CL_ORDER[hclen - 1]]) hclen--;
+      put(hlit - 257, 5); put(hdist - 1, 5); put(hclen - 4, 4);
+      for(let k = 0; k < hclen; k++) put(clLens[CRR_CL_ORDER[k]], 3);
+      rle.forEach(e => { putCode(clCodes[e[0]], clLens[e[0]]); if(e[1]) put(e[2], e[1]); });
+    }
+    for(let t = 0; t < L.length; t++){
+      if(D[t] === 0){ putCode(litCodes[L[t]], litLens[L[t]]); continue; }
+      const ls = crrSymFor(CRR_LEN_BASE, L[t]);
+      putCode(litCodes[257 + ls], litLens[257 + ls]);
+      if(CRR_LEN_EXTRA[ls]) put(L[t] - CRR_LEN_BASE[ls], CRR_LEN_EXTRA[ls]);
+      const ds = crrSymFor(CRR_DIST_BASE, D[t]);
+      putCode(distCodes[ds], distLens[ds]);
+      if(CRR_DIST_EXTRA[ds]) put(D[t] - CRR_DIST_BASE[ds], CRR_DIST_EXTRA[ds]);
+    }
+    putCode(litCodes[256], litLens[256]);
+    if(bc > 0) out.push(bb & 255);
+    return out;
+  }
+  const fixo = emit(false), dinamico = emit(true);
+  return dinamico.length < fixo.length ? dinamico : fixo;
+}
+
+// bytes deflate (raw) -> array de bytes. Lanca Error se o fluxo estiver cortado ou invalido.
+function crrInflate(src, dict){
+  let pos = 0, bb = 0, bc = 0;
+  const pre = dict ? dict.length : 0;
+  const out = pre ? dict.slice() : [];
+  const bits = (nb) => {
+    while(bc < nb){
+      if(pos >= src.length) throw new Error("fim inesperado");
+      bb |= src[pos++] << bc; bc += 8;
+    }
+    const v = bb & ((1 << nb) - 1); bb >>>= nb; bc -= nb;
+    return v;
+  };
+  const mk = (len) => {
+    const count = new Array(16).fill(0);
+    len.forEach(l => count[l]++);
+    count[0] = 0;
+    const offs = [0, 0];
+    for(let k = 1; k < 15; k++) offs[k + 1] = offs[k] + count[k];
+    const sym = new Array(len.length);
+    for(let s = 0; s < len.length; s++) if(len[s]) sym[offs[len[s]]++] = s;
+    return { count, sym };
+  };
+  const dec = (h) => {
+    let code = 0, first = 0, index = 0;
+    for(let l = 1; l <= 15; l++){
+      code |= bits(1);
+      const c = h.count[l];
+      if(code - c < first) return h.sym[index + (code - first)];
+      index += c; first += c; first <<= 1; code <<= 1;
+    }
+    throw new Error("codigo invalido");
+  };
+  let fixedLit = null, fixedDist = null;
+  let final;
+  do {
+    final = bits(1);
+    const type = bits(2);
+    if(type === 0){
+      bb = 0; bc = 0;
+      if(pos + 4 > src.length) throw new Error("fim inesperado");
+      const len = src[pos] | (src[pos + 1] << 8);
+      pos += 4;
+      if(pos + len > src.length) throw new Error("fim inesperado");
+      for(let k = 0; k < len; k++) out.push(src[pos++]);
+      continue;
+    }
+    if(type === 3) throw new Error("bloco invalido");
+    let lit, dist;
+    if(type === 1){
+      if(!fixedLit){
+        const ll = []; for(let s = 0; s < 288; s++) ll.push(s < 144 ? 8 : s < 256 ? 9 : s < 280 ? 7 : 8);
+        fixedLit = mk(ll); fixedDist = mk(new Array(30).fill(5));
+      }
+      lit = fixedLit; dist = fixedDist;
+    } else {
+      const hlit = bits(5) + 257, hdist = bits(5) + 1, hclen = bits(4) + 4;
+      const cl = new Array(19).fill(0);
+      for(let k = 0; k < hclen; k++) cl[CRR_CL_ORDER[k]] = bits(3);
+      const clh = mk(cl);
+      const lens = [];
+      while(lens.length < hlit + hdist){
+        const s = dec(clh);
+        if(s < 16) lens.push(s);
+        else {
+          let rep, val = 0;
+          if(s === 16){ if(!lens.length) throw new Error("repeticao invalida"); val = lens[lens.length - 1]; rep = 3 + bits(2); }
+          else if(s === 17) rep = 3 + bits(3);
+          else rep = 11 + bits(7);
+          while(rep-- > 0) lens.push(val);
+        }
+      }
+      if(lens.length > hlit + hdist) throw new Error("tabela invalida");
+      lit = mk(lens.slice(0, hlit)); dist = mk(lens.slice(hlit));
+    }
+    for(;;){
+      const s = dec(lit);
+      if(s < 256){ out.push(s); }
+      else if(s === 256) break;
+      else {
+        const li = s - 257;
+        if(li >= 29) throw new Error("comprimento invalido");
+        const len = CRR_LEN_BASE[li] + bits(CRR_LEN_EXTRA[li]);
+        const di = dec(dist);
+        if(di >= 30) throw new Error("distancia invalida");
+        const d = CRR_DIST_BASE[di] + bits(CRR_DIST_EXTRA[di]);
+        if(d > out.length) throw new Error("distancia invalida");
+        for(let k = 0; k < len; k++) out.push(out[out.length - d]);
+      }
+      if(out.length > 4000000) throw new Error("tamanho absurdo");
+    }
+  } while(!final);
+  return pre ? out.slice(pre) : out;
+}
+
+// ----- texto <-> bytes (UTF-8 manual: TextEncoder nao existe em jsdom/vm) e base64 url-safe -----
+function crrUtf8Bytes(s){
+  const o = [];
+  for(let i = 0; i < s.length; i++){
+    let c = s.charCodeAt(i);
+    if(c >= 0xd800 && c <= 0xdbff && i + 1 < s.length){
+      const d = s.charCodeAt(i + 1);
+      if(d >= 0xdc00 && d <= 0xdfff){ c = 0x10000 + ((c - 0xd800) << 10) + (d - 0xdc00); i++; }
+    }
+    if(c < 0x80) o.push(c);
+    else if(c < 0x800) o.push(0xc0 | (c >> 6), 0x80 | (c & 63));
+    else if(c < 0x10000) o.push(0xe0 | (c >> 12), 0x80 | ((c >> 6) & 63), 0x80 | (c & 63));
+    else o.push(0xf0 | (c >> 18), 0x80 | ((c >> 12) & 63), 0x80 | ((c >> 6) & 63), 0x80 | (c & 63));
+  }
+  return o;
+}
+function crrUtf8Str(b){
+  let s = "";
+  for(let i = 0; i < b.length;){
+    const c = b[i++];
+    let cp;
+    if(c < 0x80) cp = c;
+    else if(c < 0xe0) cp = ((c & 31) << 6) | (b[i++] & 63);
+    else if(c < 0xf0){ cp = ((c & 15) << 12) | ((b[i++] & 63) << 6); cp |= b[i++] & 63; }
+    else { cp = ((c & 7) << 18) | ((b[i++] & 63) << 12); cp |= (b[i++] & 63) << 6; cp |= b[i++] & 63; }
+    s += cp > 0xffff
+      ? String.fromCharCode(0xd800 + ((cp - 0x10000) >> 10), 0xdc00 + ((cp - 0x10000) & 1023))
+      : String.fromCharCode(cp);
+  }
+  return s;
+}
+
+const CRR_B64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
+function crrB64Encode(bytes){
+  let s = "", acc = 0, nb = 0;
+  for(const b of bytes){
+    acc = (acc << 8) | b; nb += 8;
+    while(nb >= 6){ nb -= 6; s += CRR_B64[(acc >> nb) & 63]; }
+    acc &= (1 << nb) - 1;
+  }
+  if(nb > 0) s += CRR_B64[(acc << (6 - nb)) & 63];
+  return s;
+}
+function crrB64Decode(str){
+  const out = []; let acc = 0, nb = 0;
+  for(const ch of str){
+    const v = CRR_B64.indexOf(ch);
+    if(v < 0) throw new Error("caractere invalido");
+    acc = (acc << 6) | v; nb += 6;
+    if(nb >= 8){ nb -= 8; out.push((acc >> nb) & 255); acc &= (1 << nb) - 1; }
+  }
+  return out;
+}
+
+// Soma de verificacao de 2 bytes (Fletcher-16) do JSON: pega um caractere trocado ou perdido pelo
+// cliente de e-mail que, mesmo assim, ainda descomprimiria.
+function crrCheck(bytes){
+  let a = 0, b = 0;
+  for(const x of bytes){ a = (a + x) % 255; b = (b + a) % 255; }
+  return [b, a];
+}
+
+let _crrDictBytes = null;
+function crrDict(){ return _crrDictBytes || (_crrDictBytes = crrUtf8Bytes(CRR_DICT_V1)); }
+
+// [32-core-crr-dicionario] Nucleo: dicionario de vocabulario do CRR1. NAO EDITE.
+//
+// CONGELADO: faz parte do formato do codigo CRR1. Um CRR1 so abre com este texto exato; mudar um
+// caractere quebra a leitura de todo CRR1 ja enviado. ferramentas/test_parser.cjs trava o SHA-256 e
+// falha se mudar. Para um dicionario novo, crie o formato CRR2- e continue lendo o CRR1.
+// Origem e criterio: ferramentas/gerar-dicionario-crr.cjs (rodado uma unica vez, 04/11/2026).
+// So contem vocabulario generico do app e dois estados ficticios; nenhum dado de passageiro ou agencia real.
+const CRR_DICT_V1 = "dark\nlight\nSim\nNão\nFaturado\nLink de pagamento\nADT\nCHD\nINF\nBR1\nBR2\nConcierge\nExclusivo\nLOT\nSAO\nSPI\nSUL\nEmergencial\nUSD\nEUR\nCNY\nGBP\nOTHER\nManual\nAutomático\nAutomático com dados manuais\nNONEND/NONREF CHG/CXL - FEE APPLIES\nNONREF\nREFUNDABLE\nFaturado\nCartão de crédito\nImediato\nAutomático\nManual\nLATAM\nGOL\nAZUL\nAEROMEXICO\nCOPA\nTAP\nAIR FRANCE\nKLM\nIBERIA\nAMERICAN\nUNITED\nDELTA\nLUFTHANSA\nBRITISH\nEMIRATES\nQATAR\nAVIANCA\nSKY\nARGENTINAS\nBOLIVIANA\n MR\n MRS\n MSTR\n MISS\n MS\n CHD\n INF\n957-\n127-\n577-\n139-\n230-\n047-\n057-\n074-\n075-\n001-\n016-\n006-\n220-\n125-\n157-\n176-\n044-\n045-\n169-\n027-\n\\\"ADT\\\":[{\\\"name\\\":\\\"\n\\\",\\\"ticket\\\":\\\"\n\\\"},{\\\"name\\\":\\\"\n\\\"}],\\\"CHD\\\":[{\\\"name\\\":\\\"\n\\\"}],\\\"INF\\\":[{\\\"name\\\":\\\"\n\\\"}],\\\"CHD\\\":[],\\\"INF\\\":[]}\n\\\"}]}\n{\"v\":4,\"m\":0,\"f\":{\n{\"v\":4,\"m\":1,\"f\":{\n{\"v\":4,\"m\":0,\"f\":{\"3\":\"AGENCIA EXEMPLO VIAGENS\",\"14\":1234.56,\"15\":1890.12,\"16\":87.45,\"17\":50,\"18\":350,\"n\":\"LA\",\"p\":\"ABC123\",\"q\":957,\"r\":\"XYZ789\",\"s\":1,\"t\":0,\"u\":0,\"v\":\"{\\\"ADT\\\":[{\\\"name\\\":\\\"SILVA/JOAO MR\\\",\\\"ticket\\\":\\\"957-2123456789\\\"}],\\\"CHD\\\":[],\\\"INF\\\":[]}\",\"w\":\"LIGHT\",\"z\":\"1PC\",\"1q\":\"LA3302 GRU-SDU 20NOV 0630 0745\",\"1r\":\"Remarcacao permitida com multa.\"}}\n{\"v\":4,\"m\":1,\"f\":{\"1\":1,\"2\":112233,\"3\":\"TURISMO BRASIL LTDA\",\"5\":1,\"8\":150,\"20\":2,\"21\":312,\"22\":45.5,\"23\":50,\"24\":150,\"25\":25,\"26\":1,\"27\":312,\"28\":45.5,\"29\":50,\"1u\":5.4935,\"1x\":\"Automático\",\"2m\":\"AM15 GRU-MEX 20MAY 0940 1500\\nAM14 MEX-GRU 07JUN 1845 0145\",\"2l\":\"Bilhete original emitido em 10OUT26\",\"n\":\"AM\",\"p\":\"DEF456\",\"q\":139,\"r\":\"UVW321\",\"s\":2,\"t\":1,\"u\":0,\"v\":\"{\\\"ADT\\\":[{\\\"name\\\":\\\"SANTOS/ANA MRS\\\",\\\"ticket\\\":\\\"139-2111111111\\\"},{\\\"name\\\":\\\"SANTOS/PEDRO MR\\\",\\\"ticket\\\":\\\"139-2111111112\\\"}],\\\"CHD\\\":[{\\\"name\\\":\\\"SANTOS/LUCAS MSTR\\\",\\\"ticket\\\":\\\"139-2111111113\\\"}],\\\"INF\\\":[]}\",\"w\":\"CLASICA\",\"z\":\"2PC\",\"2a\":150,\"2b\":25,\"2n\":\"Alterar apenas a volta.\",\"2i\":1,\"2j\":\"NONEND/NONREF CHG/CXL - FEE APPLIES\"}}";
+
+// ===== fim do bloco copiado =====
+
 function buildCRRCode(){
-      // padrão agora: CRR4 (compactado + chaves curtas)
-      const payload = getStatePayloadV4();
-      const json = JSON.stringify(payload);
-      const packed = LZString.compressToEncodedURIComponent(json);
-      return "CRR4-" + packed;
+      // CRR1 = o MESMO conteudo do CRR4 ({v:4,m,f}, chaves curtas por indice), so que com deflate + dicionario
+      // no lugar do LZString: codigo menor e nenhuma informacao a menos. O CRR4/CRR3/CRR2/RA1 continuam LIDOS.
+      const json = crrUtf8Bytes(JSON.stringify(getStatePayloadV4()));
+      return "CRR1-" + crrB64Encode(crrCheck(json).concat(crrDeflate(json, crrDict())));
+    }
+
+    // CRR1 -> texto JSON do payload. Lanca Error se estiver cortado ou alterado (soma de verificacao).
+    function decodeCRR1Text(b64){
+      const bytes = crrB64Decode(b64);
+      const raw = crrInflate(bytes.slice(2), crrDict());
+      const chk = crrCheck(raw);
+      if(chk[0] !== bytes[0] || chk[1] !== bytes[1]) throw new Error("soma de verificação");
+      return crrUtf8Str(raw);
     }
 
 
-// ===== CRR5 nesta build: só LEITURA, nunca geração =====
-// Esta build nunca cria CRR5 novo (sem chamada a /save, sem id curto no
-// e-mail). O código que vai no e-mail é sempre o CRR4 montado localmente
-// por buildCRRCode(). Mas um CRR5 colado em "Carregar CRR" — de uma
-// cotação enviada antes da virada para CRR4-only — ainda é resolvido via
-// Worker, para não perder o acesso a cálculos já enviados nesse formato.
-const CRR5_API = "https://crr-api.rexturfacilita.workers.dev/".replace(/\/+$/,"");
+// ===== CRR5: DESATIVADO (criação e leitura) =====
+// Esta build não cria CRR5 (sem chamada a /save) nem lê CRR5 existente
+// (sem chamada a /load) — nenhuma chamada de rede ao Worker externo.
+// Todo cálculo usa exclusivamente o CRR4, montado localmente por
+// buildCRRCode(). Um CRR5 colado em "Carregar CRR" (de uma cotação
+// enviada antes desta mudança) não é mais resolvido: loadCRRCode()
+// não reconhece o prefixo CRR5- e cai no erro "Código inválido".
 
-function extractCRR5(text){
-  const compact = String(text || "").replace(/\s+/g,"");
-  const mm = compact.match(/CRR5-([A-Za-z0-9]{6,64})/i);
-  if(!mm) return null;
-  return `CRR5-${mm[1].toLowerCase()}`;
-}
-
-async function loadCRR5ToCRR4(crr5){
-  const id = String(crr5 || "").trim().replace(/^CRR5-/i,"").toLowerCase();
-  const r = await fetch(`${CRR5_API}/load?id=${encodeURIComponent(id)}`);
-  if(!r.ok) throw new Error("CRR5 não encontrado (ou expirou). Se for uma cotação antiga, pode já ter sido descontinuado — peça o CRR4 de novo ao autor.");
-  const data = await r.json().catch(()=>null);
-  if(!data || typeof data.payload !== "string") throw new Error("Resposta inválida do servidor ao buscar CRR5.");
-  return data.payload;
-}
-
-// (updateAll() já mantém o textarea #raCode sincronizado com buildCRRCode().)
 function getCRRCodeForEmail(){
   return buildCRRCode();
 }
@@ -2641,15 +2936,9 @@ function getCRRCodeForEmail(){
       // aceita CRR colado puro, dentro de texto maior (OBS RF / e-mail), com quebras de linha, etc.
       let full = String(code || "");
       const compact = full.replace(/\s+/g,"");
-      const allMatches = compact.match(/(?:CRR4|CRR3|CRR2|CRR1|RA1)-[A-Za-z0-9\-_$\+]+/gi) || [];
-      // threads de e-mail podem conter mais de um código oculto (um por mensagem anterior).
-      // Pegar "o primeiro que aparecer" seria carregar um cálculo desatualizado sem avisar ninguém.
-      const unicos = [...new Set(allMatches.map(m => m.toUpperCase()))];
-      if(unicos.length > 1){
-        throw new Error(`Encontrei ${unicos.length} códigos diferentes nesse texto (provavelmente de respostas anteriores do e-mail). Cole só o trecho do e-mail mais recente para evitar carregar um cálculo desatualizado.`);
-      }
-      const mm = allMatches[0];
-      let c = mm ? mm : compact.trim();
+      // CRR1 (novo) e base64url puro: nao pode engolir "+55" / "$" de uma assinatura colada logo depois do codigo.
+      const mm = compact.match(/CRR1-[A-Za-z0-9\-_]+/i) || compact.match(/(?:CRR4|CRR3|CRR2|RA1)-[A-Za-z0-9\-_$\+]+/i);
+      let c = mm ? mm[0] : compact.trim();
 
       const up = c.toUpperCase();
       const prefix =
@@ -2661,20 +2950,28 @@ function getCRRCodeForEmail(){
       if(!prefix) throw new Error("Código inválido");
 
       // CRR2 pode vir sem hífen, CRR1/RA1 vinha "chunkado" — unchunk resolve ambos
-      const raw = (prefix === "CRR1-" || prefix === "RA1-")
+      const raw = (prefix === "RA1-")
         ? dechunkLegacy4(c.slice(prefix.length))
         : (prefix === "CRR2-" ? cleanB64Url(c.slice(prefix.length)) : c.slice(prefix.length));
       if(!raw || raw.length < 16) throw new Error("Código incompleto");
 
       let payloadText = "";
       try{
-        if(prefix === "CRR4-" || prefix === "CRR3-"){
+        if(prefix === "CRR1-"){
+          try{ payloadText = decodeCRR1Text(raw); }
+          catch(e1){
+            // CRR1 antigo (chunkado; base64 do JSON): continua legivel
+            try{ payloadText = b64UrlDecode(dechunkLegacy4(raw)); JSON.parse(payloadText); }
+            catch(e2){ throw new Error("CRR incompleto ou danificado. Copie o código inteiro do rodapé do e-mail."); }
+          }
+        } else if(prefix === "CRR4-" || prefix === "CRR3-"){
           payloadText = LZString.decompressFromEncodedURIComponent(raw);
           if(payloadText == null) throw new Error("Falha ao decodificar");
         } else {
           payloadText = b64UrlDecode(raw);
         }
       }catch(e){
+        if(/danificado/.test(String(e && e.message))) throw e;
         throw new Error("Falha ao decodificar");
       }
 
@@ -2757,7 +3054,26 @@ function getCRRCodeForEmail(){
 
 
     // ---------- calculations ----------
+    // REGRA LATAM (28/10/2026) vale SO para a LATAM (cia LA / LATAM / JJ). GOL e Azul seguem a regra anterior.
+    function ciaDigitadaRegra(){ const el = document.getElementById("cia"); return el ? String(el.value || "").trim() : ""; }
+    function isLatamCiaRegra(){ return /(^|[\s,\/])(?:LA|LATAM|JJ)($|[\s,\/])/i.test(ciaDigitadaRegra()); }
+    // Aviso na tela quando ha credito de troca (REGRA LATAM): o credito nao abate a multa.
+    function setCreditoNote(totalElId, texto){
+      const tot = document.getElementById(totalElId);
+      if(!tot) return;
+      let n = document.getElementById(totalElId + "_credito");
+      if(!n){
+        n = document.createElement("div");
+        n.id = totalElId + "_credito";
+        n.className = "muted small";
+        n.style.marginTop = "6px";
+        const kpi = tot.closest(".kpi");
+        (kpi || tot).insertAdjacentElement("afterend", n);
+      }
+      n.textContent = texto || "";
+    }
     function calcNac(){
+      const latam = isLatamCiaRegra();
       let total = 0;
       let paxCount = 0;
       const rows = [];
@@ -2771,20 +3087,33 @@ function getCRRCodeForEmail(){
         const diffTax  = val(`nac_tax_${t}`);
         const du       = val(`nac_du_${t}`);
         const pen      = val(`nac_pen_${t}`);
-        const perPax = diffFare + diffTax + du + pen;
+        // REGRA LATAM (28/10/2026), SO para a LATAM: a multa e SEMPRE cobrada. O credito da troca (sobra) nao a abate: por
+        // passageiro, so a diferenca POSITIVA (tarifa + taxa) entra; DU/Rav e multa sao cobrados sempre.
+        // GOL e Azul (e qualquer outra cia): regra anterior, sem mudanca.
+        const net = diffFare + diffTax;
+        const aplica = latam && net < 0;
+        const credito = aplica ? -net : 0;
+        const cobFare = aplica ? 0 : diffFare;
+        const cobTax  = aplica ? 0 : diffTax;
+        const perPax = latam ? Math.max(0, net) + du + pen : diffFare + diffTax + du + pen;
         total += perPax * qty;
-        rows.push({t, qty, oldFare, newFare, diffFare, diffTax, du, pen, perPax, totalTipo: perPax*qty});
+        rows.push({t, qty, oldFare, newFare, diffFare, diffTax, du, pen, perPax, totalTipo: perPax*qty, credito, cobFare, cobTax});
       }
       const servicesOn = !!document.getElementById("nac_services_on")?.checked;
       const services = servicesOn ? val("nac_services_brl") : 0;
       const totalNet = Math.max(0, total - services);
       const avg = paxCount > 0 ? totalNet / paxCount : 0;
       document.getElementById("nac_total_brl").textContent = fmtBRL(totalNet);
+      { const cred = rows.reduce((a,r)=>a + (r.credito||0)*r.qty, 0);
+        const temCredito = rows.some(r => (r.diffFare + r.diffTax) < 0);
+        setCreditoNote("nac_total_brl", cred > 0 ? "Crédito da troca de " + fmtBRL(cred) + " não abate a multa (regra LATAM): o total considera só a multa, o DU/Rav e as diferenças positivas. O valor residual será perdido com a confirmação da reemissão."
+          : ((!latam && !ciaDigitadaRegra() && temCredito) ? "Cia não informada: o crédito da troca está abatendo a multa (regra anterior). Se for LATAM, informe a cia." : "")); }
       const _avgEl = document.getElementById("nac_total_avg"); if(_avgEl) _avgEl.textContent = fmtBRL(avg);
       return {totalBRL: totalNet, totalBRLGross: total, servicesBRL: services, avgBRL: avg, paxCount, rows};
     }
 
     function calcInter(){
+  const latam = isLatamCiaRegra();
   let totalCur = 0;
   let paxCount = 0;
   const rows = [];
@@ -2812,14 +3141,25 @@ function getCRRCodeForEmail(){
       feeCur = (fx > 0 && fxUSD > 0) ? feeUSD * (fxUSD / fx) : 0;
     }
 
-    const perPax = fare + tax + du + pen + feeCur;
+    // REGRA LATAM (28/10/2026), SO para a LATAM: multa sempre cobrada; o credito da troca (sobra) nao a abate (ver calcNac).
+    // GOL e Azul (e qualquer outra cia): regra anterior, sem mudanca.
+    const net = fare + tax;
+    const aplica = latam && net < 0;
+    const credito = aplica ? -net : 0;
+    const cobFare = aplica ? 0 : fare;
+    const cobTax  = aplica ? 0 : tax;
+    const perPax = latam ? Math.max(0, net) + du + pen + feeCur : fare + tax + du + pen + feeCur;
     totalCur += perPax * qty;
-    rows.push({t, qty, fare, tax, du, pen, feeUSD, feeCur, perPax, totalTipo: perPax*qty});
+    rows.push({t, qty, fare, tax, du, pen, feeUSD, feeCur, perPax, totalTipo: perPax*qty, credito, cobFare, cobTax});
   }
 
   const totalBRL = fx > 0 ? totalCur * fx : 0;
   document.getElementById("inter_total_cur").textContent = fmtCur(totalCur);
   document.getElementById("inter_total_brl").textContent = fmtBRL(totalBRL);
+  { const cred = rows.reduce((a,r)=>a + (r.credito||0)*r.qty, 0);
+    const temCredito = rows.some(r => (r.fare + r.tax) < 0);
+    setCreditoNote("inter_total_brl", cred > 0 ? "Crédito da troca de " + fmtCur(cred) + " não abate a multa (regra LATAM): o total considera só a multa, o DU/Rav, o RC e as diferenças positivas. O valor residual será perdido com a confirmação da reemissão."
+      : ((!latam && !ciaDigitadaRegra() && temCredito) ? "Cia não informada: o crédito da troca está abatendo a multa (regra anterior). Se for LATAM, informe a cia." : "")); }
 
   const rcNeedsUsdFx = (cur !== "USD" && hasFeeUSD && !(fxUSD > 0));
   return {totalCur, fx, fxUSD, totalBRL, paxCount, cur, rows, rcNeedsUsdFx};
@@ -2916,12 +3256,8 @@ function getCRRCodeForEmail(){
     function buildEmailHtmlNac(){
       const common = getCommon();
       const calc = calcNac();
-      // CRR no rodapé do e-mail, em fonte discreta (Sitka Heading 8, cinza claro).
-      // O marcador @# fica FORA desse estilo de propósito: o Outlook depende dele
-      // visível para aplicar a tag de Rentabilização automaticamente.
-      const crrStyle = 'font-family:"Sitka Heading",Georgia,serif; font-size:8pt; line-height:9pt; mso-line-height-rule:exactly; color:#bfbfbf; word-break:break-all;';
-      const crrEmailHtml = `<span style="${crrStyle}">${escapeHtml(getCRRCodeForEmail())}</span>`
-        + (common.rentab ? `<br/><span style="font-size:9px; color:#999">@#</span>` : "");
+      const crr = getCRRCodeForEmail();
+      const crrEmailHtml = escapeHtml(crr) + (common.rentab ? "<br/>@#" : "");
       const fp = document.getElementById("nac_fp").value;
       const link = document.getElementById("nac_link").value.trim();
       const voos = document.getElementById("nac_voos").value.trim();
@@ -2983,14 +3319,18 @@ const servicesRow = (calc.servicesBRL && calc.servicesBRL > 0)
 
       const azulRuleLi = isAzul ? `<li>${escapeHtml(AZUL_RULE_TEXT)}</li>` : "";
       const latamGolRuleLi = (isLatamGol && !isAzul) ? `<li>${escapeHtml(LATAM_GOL_RULE_TEXT)}</li>` : "";
+      const residualNacTotal = calc.rows.reduce((a,r)=>a + (r.credito||0)*r.qty, 0);
+      const residualRuleLi = residualNacTotal > 0 ? `<li>O valor residual (crédito da troca) será perdido com a confirmação da reemissão.</li>` : "";
       const regrasPadrao = `
         <ul style="margin:8px 0 0; padding-left:18px">
           ${azulRuleLi}
-          ${latamGolRuleLi}
+          ${latamGolRuleLi}${residualRuleLi}
 <li>Solicitações com menos de <b>2h</b> do embarque original poderão acarretar em multa de <b>no show</b>.</li>
         </ul>
       `;
 const regrasExtra = regrasUser ? `<p style="margin:8px 0 0"><b>Observações:</b><br/>${brToHtml(regrasUser)}</p>` : "";
+      const creditoNac = calc.rows.reduce((a,r)=>a + (r.credito||0)*r.qty, 0);
+      const creditoRowNac = creditoNac > 0 ? `<tr><td colspan="9" style="font-size:12px; color:#475569">Crédito da troca não é abatido do saldo (regra LATAM).</td></tr>` : "";
 
       return `
         <div style="font-family:Arial, sans-serif; font-size:13px; color:#0b0f17">
@@ -3029,7 +3369,7 @@ const regrasExtra = regrasUser ? `<p style="margin:8px 0 0"><b>Observações:</b
             <tr>
               <td colspan="8" style="text-align:right; background-color:#d9cce3"><b>TOTAL A PAGAR (BRL)</b></td>
               <td style="text-align:right; background-color:#d9cce3"><b>${fmtBRL(calc.totalBRL)}</b></td>
-            </tr>
+            </tr>${creditoRowNac}
           </table>
 
           ${linkLine}
@@ -3046,12 +3386,8 @@ const regrasExtra = regrasUser ? `<p style="margin:8px 0 0"><b>Observações:</b
     function buildEmailHtmlInter(){
       const common = getCommon();
       const calc = calcInter();
-      // CRR no rodapé do e-mail, em fonte discreta (Sitka Heading 8, cinza claro).
-      // O marcador @# fica FORA desse estilo de propósito: o Outlook depende dele
-      // visível para aplicar a tag de Rentabilização automaticamente.
-      const crrStyle = 'font-family:"Sitka Heading",Georgia,serif; font-size:8pt; line-height:9pt; mso-line-height-rule:exactly; color:#bfbfbf; word-break:break-all;';
-      const crrEmailHtml = `<span style="${crrStyle}">${escapeHtml(getCRRCodeForEmail())}</span>`
-        + (common.rentab ? `<br/><span style="font-size:9px; color:#999">@#</span>` : "");
+      const crr = getCRRCodeForEmail();
+      const crrEmailHtml = escapeHtml(crr) + (common.rentab ? "<br/>@#" : "");
       const incentivo = document.getElementById("inter_incentivo").value;
       const tipo = document.getElementById("inter_tipo").value;
       const fp = document.getElementById("inter_fp").value;
@@ -3099,6 +3435,8 @@ const regrasExtra = regrasUser ? `<p style="margin:8px 0 0"><b>Observações:</b
         ${link ? `<p style="margin:6px 0 0">Link de pagamento: <b><a href="${escapeHtml(linkHref)}" target="_blank" rel="noopener">${escapeHtml(link)}</a></b></p>` : ""}
       `.trim();
 
+      const creditoInt = calc.rows.reduce((a,r)=>a + (r.credito||0)*r.qty, 0);
+      const creditoRowInt = creditoInt > 0 ? `<tr><td colspan="8" style="font-size:12px; color:#475569">Crédito da troca não é abatido do saldo (regra LATAM). O valor residual (crédito da troca) será perdido com a confirmação da reemissão.</td></tr>` : "";
       const fxLine = calc.fx > 0
         ? `<p style="margin:6px 0 0"><b>Câmbio informado:</b> 1 ${escapeHtml(calc.cur)} = ${calc.fx.toFixed(4).replace(".",",")} BRL • <b>Total (BRL):</b> ${fmtBRL(calc.totalBRL)}</p>`
         : `<p style="margin:6px 0 0; color:#6b4b00"><b>Atenção:</b> informe o câmbio (Moeda → BRL) para gerar o total em BRL.</p>`;
@@ -3140,7 +3478,7 @@ const regrasExtra = regrasUser ? `<p style="margin:8px 0 0"><b>Observações:</b
             <tr>
               <td colspan="7" style="text-align:right; background-color:#d9cce3"><b>TOTAL (${escapeHtml(calc.cur)})</b></td>
               <td style="text-align:right; background-color:#d9cce3"><b>${fmtCur(calc.totalCur)}</b></td>
-            </tr>
+            </tr>${creditoRowInt}
           </table>
 
           ${fxLine}
@@ -3193,7 +3531,7 @@ function rfHeader(mode){
           <tr><td style="padding:6px;">Diferença de tarifa (por pax):</td><td style="padding:6px; text-align:left;">${escAttr(fmtBRL(r.diffFare))}</td></tr>
           <tr><td style="padding:6px;">Diferença de taxa (por pax):</td><td style="padding:6px; text-align:left;">${escAttr(fmtBRL(r.diffTax))}</td></tr>
           <tr><td style="padding:6px;">DU/Rav (por pax):</td><td style="padding:6px; text-align:left;">${escAttr(fmtBRL(r.du))}</td></tr>
-          <tr><td style="padding:6px;">Multa (por pax):</td><td style="padding:6px; text-align:left;">${escAttr(fmtBRL(r.pen))}</td></tr>
+          <tr><td style="padding:6px;">Multa (por pax):</td><td style="padding:6px; text-align:left;">${escAttr(fmtBRL(r.pen))}</td></tr>${r.credito > 0 ? `<tr><td style="padding:6px;">Crédito da troca (não abatido da multa; será perdido na confirmação da reemissão):</td><td style="padding:6px; text-align:left;">${escAttr(fmtBRL(r.credito))}</td></tr>` : ""}
           <tr><td style="padding:6px;"><b>Total (por pax)</b></td><td style="padding:6px; text-align:left;"><b>${escAttr(fmtBRL(r.perPax))}</b></td></tr>
           
         `;
@@ -3258,8 +3596,8 @@ function rfHeader(mode){
           if(qty<=0) continue;
           let per = 0;
           if(cat==="multa") per = Number(r.pen||0) || 0;
-          if(cat==="diftar") per = Number(r.diffFare||0) || 0;
-          if(cat==="diftax") per = Number(r.diffTax||0) || 0;
+          if(cat==="diftar") per = Number((r.cobFare ?? r.diffFare)||0) || 0;
+          if(cat==="diftax") per = Number((r.cobTax ?? r.diffTax)||0) || 0;
           const v = per * qty;
           if(t==="ADT") out.adt += v;
           if(t==="CHD") out.chd += v;
@@ -3375,7 +3713,7 @@ ${folioRow}
           <tr><td style="padding:6px;">Diferença de tarifa (por pax):</td><td style="padding:6px; text-align:left;">${escAttr(fmtCur(r.fare))}</td></tr>
           <tr><td style="padding:6px;">Diferença de taxa (por pax):</td><td style="padding:6px; text-align:left;">${escAttr(fmtCur(r.tax))}</td></tr>
           <tr><td style="padding:6px;">DU/Rav (por pax):</td><td style="padding:6px; text-align:left;">${escAttr(fmtCur(r.du))}</td></tr>
-          <tr><td style="padding:6px;">Multa (por pax):</td><td style="padding:6px; text-align:left;">${escAttr(fmtCur(r.pen))}</td></tr>
+          <tr><td style="padding:6px;">Multa (por pax):</td><td style="padding:6px; text-align:left;">${escAttr(fmtCur(r.pen))}</td></tr>${r.credito > 0 ? `<tr><td style="padding:6px;">Crédito da troca (não abatido da multa; será perdido na confirmação da reemissão):</td><td style="padding:6px; text-align:left;">${escAttr(fmtCur(r.credito))}</td></tr>` : ""}
           <tr><td style="padding:6px;">RC (USD) (por pax):</td><td style="padding:6px; text-align:left;">${rcCell}</td></tr>
           <tr><td style="padding:6px;"><b>Total (por pax)</b></td><td style="padding:6px; text-align:left;"><b>${escAttr(fmtCur(r.perPax))}</b></td></tr>
           
@@ -3440,8 +3778,8 @@ ${folioRow}
           if(qty<=0) continue;
           let per = 0;
           if(cat==="multa") per = Number(r.pen||0) || 0;
-          if(cat==="diftar") per = Number(r.fare||0) || 0;
-          if(cat==="diftax") per = Number(r.tax||0) || 0;
+          if(cat==="diftar") per = Number((r.cobFare ?? r.fare)||0) || 0;
+          if(cat==="diftax") per = Number((r.cobTax ?? r.tax)||0) || 0;
           const v = per * qty;
           if(t==="ADT") out.adt += v;
           if(t==="CHD") out.chd += v;
@@ -3769,18 +4107,18 @@ ${endossoRow}
     function rentCurrencyCode(){ return (getActiveMode()==="INTER") ? getInterCurrency() : "BRL"; }
     function setRentCurrencyLabels(){
       const cur = rentCurrencyCode();
-      for(const s of __calcRoot().querySelectorAll(".rentCur")){ s.textContent = cur; }
+      for(const s of document.querySelectorAll(".rentCur")){ s.textContent = cur; }
     }
 
     function switchOutputTab(name){
       const target = String(name || "agency").toLowerCase();
       const allowed = new Set(["agency","cco","rent","crr"]);
       const next = allowed.has(target) ? target : "agency";
-      for(const btn of __calcRoot().querySelectorAll(".outputTabBtn")){
+      for(const btn of document.querySelectorAll(".outputTabBtn")){
         const on = btn.getAttribute("data-output-tab") === next;
         btn.setAttribute("aria-selected", on ? "true" : "false");
       }
-      for(const panel of __calcRoot().querySelectorAll(".outputPanel")){
+      for(const panel of document.querySelectorAll(".outputPanel")){
         panel.classList.toggle("is-active", panel.getAttribute("data-output-panel") === next);
       }
       try{ localStorage.setItem("ra_output_last_tab", next); }catch(e){}
@@ -3791,7 +4129,7 @@ ${endossoRow}
       const rentBtn = document.getElementById("outTabBtnRent");
       const rentVisible = !!(rentSection && rentSection.style.display !== "none");
       if(rentBtn) rentBtn.style.display = rentVisible ? "inline-flex" : "none";
-      const active = __calcRoot().querySelector('.outputTabBtn[aria-selected="true"]');
+      const active = document.querySelector('.outputTabBtn[aria-selected="true"]');
       const activeName = active ? active.getAttribute("data-output-tab") : "agency";
       if(activeName === "rent" && !rentVisible){
         switchOutputTab("agency");
@@ -3952,7 +4290,7 @@ function updateAll(arg){
     }
 
 function clearAll(silent){
-      const ids = Array.from(__calcRoot().querySelectorAll("input, textarea")).map(e=>e.id);
+      const ids = Array.from(document.querySelectorAll("input, textarea")).map(e=>e.id);
       for(const id of ids){
         const el = document.getElementById(id);
         if(!el) continue;
@@ -3987,7 +4325,7 @@ document.getElementById("paxq_adt").value = "1";
 
     function saveLocal(){
       const data = {};
-      for(const el of __calcRoot().querySelectorAll("input, select, textarea")){
+      for(const el of document.querySelectorAll("input, select, textarea")){
         if(!el.id) continue;
         if(el.id === "obsCode" || el.id === "raCode") continue;
         if(el.type === "checkbox"){
@@ -4022,7 +4360,7 @@ document.getElementById("paxq_adt").value = "1";
     // wire tabs
     document.getElementById("tabNac").addEventListener("click", ()=>switchTab("tabNac"));
     document.getElementById("tabInter").addEventListener("click", ()=>switchTab("tabInter"));
-    for(const btn of __calcRoot().querySelectorAll(".outputTabBtn")){
+    for(const btn of document.querySelectorAll(".outputTabBtn")){
       btn.addEventListener("click", ()=>switchOutputTab(btn.getAttribute("data-output-tab") || "agency"));
     }
     // restaura última aba usada (NAC / INTER)
@@ -4037,7 +4375,7 @@ document.getElementById("paxq_adt").value = "1";
     }catch(e){ switchOutputTab("agency"); }
 
     // NAC: seletor de cia (GOL/LATAM/AZUL)
-    for(const btn of __calcRoot().querySelectorAll("#ciaNacSelector .airBtn")){
+    for(const btn of document.querySelectorAll("#ciaNacSelector .airBtn")){
       btn.addEventListener("click", ()=>{
         const ciaEl = document.getElementById("cia");
         if(ciaEl){ ciaEl.value = normalizeCia(btn.dataset.cia || ""); }
@@ -4091,19 +4429,7 @@ document.getElementById("paxq_adt").value = "1";
 document.getElementById("btnCarregarRACode").addEventListener("click", async ()=>{
       const code = (document.getElementById("raCode").value || "").trim();
       try{
-        // Checa duplicidade entre CRR5 (legado) e os formatos locais juntos,
-        // antes de resolver — uma thread pode ter mais de um código distinto.
-        const compact = code.replace(/\s+/g,"");
-        const crr5Matches = compact.match(/CRR5-[A-Za-z0-9]{6,64}/gi) || [];
-        const localMatches = compact.match(/(?:CRR4|CRR3|CRR2|CRR1|RA1)-[A-Za-z0-9\-_$\+]+/gi) || [];
-        const unicos = [...new Set([...crr5Matches, ...localMatches].map(m => m.toUpperCase()))];
-        if(unicos.length > 1){
-          throw new Error(`Encontrei ${unicos.length} códigos diferentes nesse texto (provavelmente de respostas anteriores do e-mail). Cole só o trecho do e-mail mais recente para evitar carregar um cálculo desatualizado.`);
-        }
-
-        const c5 = extractCRR5(code);
-        const crr4 = c5 ? await loadCRR5ToCRR4(c5) : code;
-        loadCRRCode(crr4);
+        loadCRRCode(code);
         const rc = document.getElementById("raCode");
         if(rc){ rc.dataset.manual = "0"; rc.dataset.sig = ""; rc.value = buildCRRCode(); }
         lastEmailHtml = generateEmail();
@@ -4123,7 +4449,7 @@ document.getElementById("btnCarregarRACode").addEventListener("click", async ()=
       }
     }
 // reactive calc
-    for(const el of __calcRoot().querySelectorAll("input, select, textarea")){
+    for(const el of document.querySelectorAll("input, select, textarea")){
       if(el.id === "obsCode" || el.id === "raCode") continue;
       el.addEventListener("input", ()=>{ updateAll(); });
       el.addEventListener("change", ()=>{ updateAll(); });
@@ -4190,6 +4516,14 @@ document.getElementById("btnCarregarRACode").addEventListener("click", async ()=
       raTA.addEventListener("blur", ()=>{ raTA.dataset.manual = "0"; if(!raTA.value.trim()) raTA.value = buildCRRCode(); });
     }
   
+    try{
+      const hsh = (window.location.hash || "").replace(/^#/, "").trim();
+      if(hsh && /^(?:CRR1|RA1)-/i.test(hsh)){
+        loadCRRCode(hsh);
+      }
+    }catch(e){}
+
+
     // ----- Tema (Claro / Escuro) -----
     (function initTheme(){
       const key = "ra_calc_theme";
@@ -4198,7 +4532,7 @@ document.getElementById("btnCarregarRACode").addEventListener("click", async ()=
 
       const apply = (v)=>{
         const theme = (v === "light") ? "light" : "dark";
-        (document.getElementById("calcRoot") || document.documentElement).dataset.theme = theme;
+        document.documentElement.dataset.theme = theme;
         localStorage.setItem(key, theme);
         if(sel) sel.value = theme;
         if(icon) icon.textContent = (theme === "light") ? "☀️" : "🌙";
@@ -4213,3 +4547,5 @@ document.getElementById("btnCarregarRACode").addEventListener("click", async ()=
       }
     })();
 </script>
+</body>
+</html>
